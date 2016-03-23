@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/24 15:25:44 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/23 11:44:06 by tglaudel         ###   ########.fr       */
+/*   Created: 2016/03/23 14:18:17 by tglaudel          #+#    #+#             */
+/*   Updated: 2016/03/23 14:27:40 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "asm.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t n)
+void	print_label(t_label *start)
 {
-	size_t i;
+	t_label *tmp;
 
-	i = 0;
-	while (src[i] != '\0' && (i < n))
+	tmp = start;
+
+	ft_putendl("\nLabels :");
+	while (tmp)
 	{
-		dst[i] = src[i];
-		i++;
+		ft_putendl(tmp->name);
+		tmp = tmp->next;
 	}
-	while (i < n)
-	{
-		dst[i] = '\0';
-		i++;
-	}
-	return (dst);
 }

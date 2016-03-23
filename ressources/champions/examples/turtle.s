@@ -28,7 +28,7 @@ ardef:
 	st			r2, -400
 	st			r2, -400
 	st			r2, -400
-	st			r2, -400
+	st			r2, -400 #vkbkewbql
 	st			r2, -400
 	st			r2, -400
 	st			r2, -400

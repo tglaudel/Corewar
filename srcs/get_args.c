@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 15:37:02 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/22 19:06:12 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/23 15:03:36 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ static int	check_args(int fd, t_env *env)
 	char *line;
 
 	line = NULL;
-	(void)env;
 	while (get_next_line(fd, &line) == 1)
 	{
-		if (is_good_format(line))
+		if (is_good_format(line, &env->cor, env))
 		{
-			ft_putendl(line);
+			continue ;
+			//ft_putendl(line);
 			//add_args(line, env);
 		}
-		//else
-		//	return (0);
+		ft_strdel(&line);
 	}
+	ft_strdel(&line);
 	return (1);
 }
 
