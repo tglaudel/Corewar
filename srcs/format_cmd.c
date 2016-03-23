@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 15:04:20 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/23 17:15:48 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/23 19:51:17 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_op	g_op_tab[17] =
 	{0, 0, {0}, 0}
 };
 
+
+
 static int	format_cmd_arg(char *s)
 {
 	int i;
@@ -40,11 +42,11 @@ static int	format_cmd_arg(char *s)
 	i = 0;
 	while (s[i] == ' ' || s[i] == '\t')
 		i++;
-	if (is_all_num(&s[i]) == 1)
+	if (is_ind(&s[i]) == 1)
 		return (T_IND);
-	else if (s[i] == '%')
+	else if (is_dir(&s[i]) == 1)
 		return (T_DIR);
-	else if (s[i] == 'r' && is_all_num(&s[i + 1]) && ft_atoi(&s[i + 1]) <= REG_NUMBER)
+	else if (is_reg(&s[i]) == 1)
 		return (T_REG);
 	return (0);
 }
@@ -65,7 +67,7 @@ static int	check_cmd(char *s, int nb_arg, int op)
 		return (0);
 	while (nb_arg--)
 	{
-		ft_printf("arg %d : '%s'\n", n, arg[n]);
+		ft_printf("arg %s %d : '%s'\n", g_op_tab[op].name, n, arg[n]);
 		if ((format_cmd_arg(arg[n]) & g_op_tab[op].i[n]) == 0)
 			return (0);
 		n++;
@@ -83,16 +85,16 @@ int			is_cmd(char *s, t_env *e)
 	(void)e;
 	while (s[i] == '\t' || s[i] == ' ')
 		i++;
-	while (g_op_tab[n].name != 0 && ft_strncmp(&s[i], g_op_tab[n].name, ft_strlen(g_op_tab[n].name)) != 0)
-		n++;
-	if (n < 16)
+	while (g_op_tab[n].name != 0)
 	{
-		if (check_cmd(&s[i + ft_strlen(g_op_tab[n].name)], g_op_tab[n].nb_arg, n) != 1)
-			return (0);
-		ft_putstr("CMD Valide : ");
-		ft_putendl(&s[i]);
-		return (1);
+		if (ft_strncmp(&s[i], g_op_tab[n].name, ft_strlen(g_op_tab[n].name)) == 0)
+			if (check_cmd(&s[i + ft_strlen(g_op_tab[n].name)], g_op_tab[n].nb_arg, n) == 1)
+			{
+				ft_putstr("CMD Valide : ");
+				ft_putendl(&s[i]);
+				return (1);
+			}
+		n++;
 	}
-	else
-		return (0);
+	return (0);
 }

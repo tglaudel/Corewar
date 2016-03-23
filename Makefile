@@ -6,7 +6,7 @@
 #    By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 08:59:28 by tglaudel          #+#    #+#              #
-#    Updated: 2016/03/23 15:11:21 by tglaudel         ###   ########.fr        #
+#    Updated: 2016/03/23 19:29:58 by tglaudel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC_NAME = main.c \
 		   format_comment_name.c \
 		   format_label.c \
 		   format_cmd.c \
+		   is_something.c \
 		   utils.c \
 		   print.c \
 

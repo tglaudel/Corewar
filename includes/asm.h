@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:25:26 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/23 16:57:19 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/23 19:29:35 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ int					is_good_format(char *s, t_header *cor, t_env *e);
 int					is_comment(char *s, t_header *cor);
 int					is_label(char *s, t_env *e);
 int					is_cmd(char *s, t_env *e);
+int					is_dir(char *s);
+int					is_reg(char *s);
+int					is_ind(char *s);
 
 /*
 ** Utils & print:
