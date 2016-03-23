@@ -4,4 +4,4 @@
 
 test:
 	live %1
-	st			r2, -400
+	st			r16, -400

@@ -6,26 +6,12 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:18:38 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/23 13:15:20 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/23 16:56:02 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OP_H
 # define OP_H
-
-# define IND_SIZE				2
-# define REG_SIZE				4
-# define DIR_SIZE				REG_SIZE
-
-# define REG_CODE				1
-# define DIR_CODE				2
-# define IND_CODE				3
-
-# define MAX_ARGS_NUMBER		4
-# define MAX_PLAYERS			4
-# define MEM_SIZE				(4*1024)
-# define IDX_MOD				(MEM_SIZE / 8)
-# define CHAMP_MAX_SIZE			(MEM_SIZE / 6)
 
 # define COMMENT_CHAR			'#'
 # define LABEL_CHAR				':'
@@ -40,11 +26,6 @@
 # define COMMENT_CMD_LENGTH		8
 
 # define REG_NUMBER				16
-
-# define CYCLE_TO_DIE			1536
-# define CYCLE_DELTA			50
-# define NBR_LIVE				21
-# define MAX_CHECKS				10
 
 typedef char	t_arg_type;
 
@@ -69,12 +50,8 @@ typedef struct		s_op
 {
 	char			*name;
 	int				nb_arg;
-	t_arg_type		i[3]; // t'es serieux toi ?? ok tonpere
+	t_arg_type		i[3];
 	int				op_code;
-	int				indet1;
-	char			*action;
-	int				m_carry; // ??
-	int				intdet2; // modulo ?
 }					t_op;
 
 #endif

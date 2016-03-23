@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:25:26 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/23 15:06:24 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/23 16:57:19 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,24 @@
 
 # define OPT_STRING "av"
 
+typedef struct		s_arg
+{
+	char			type;
+	char			*arg;
+}					t_arg;
+
+typedef struct		s_cmd
+{
+	int				op_code;
+	t_arg			**tab;
+	struct s_cmd	*next;
+}					t_cmd;
+
 typedef struct		s_label
 {
 	char			*name;
 	int				pos;
+	t_cmd			*cmd;
 	struct s_label	*next;
 }					t_label;
 
@@ -31,6 +45,8 @@ typedef struct		s_env
 	t_header		cor;
 	t_label			*label_s;
 	t_label			*label_e;
+	t_cmd			*cmd_s;
+	t_cmd			*cmd_e;
 }					t_env;
 
 
@@ -62,6 +78,7 @@ int					is_cmd(char *s, t_env *e);
 
 int					in_str(char c, char *s);
 int					len_tab(char **s);
+int					is_all_num(char *s);
 void				print_label(t_label *start);
 
 #endif
