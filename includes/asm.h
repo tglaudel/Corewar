@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:25:26 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/24 11:35:33 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/24 16:18:49 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,12 @@ typedef struct		s_arg
 
 typedef struct		s_cmd
 {
-	int				op_code;
+	char			opc;
+	char			odc;
+	int				pos_oct;
+	int				size;
 	t_arg			**tab;
+	char			*label;
 	struct s_cmd	*next;
 }					t_cmd;
 
@@ -47,8 +51,9 @@ typedef struct		s_env
 	t_label			*label_e;
 	t_cmd			*cmd_s;
 	t_cmd			*cmd_e;
+	int				pos_rel; // position relative de la cmd;
+	char			*label_c; // label en cours, variable tmp;
 }					t_env;
-
 
 /*
 ** Options & env :
@@ -83,5 +88,7 @@ int					in_str(char c, char *s);
 int					len_tab(char **s);
 int					is_all_num(char *s);
 void				print_label(t_label *start);
+void				print_cmd(t_cmd *start);
+char				*format_str(char *s);
 
 #endif

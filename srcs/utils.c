@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 17:30:41 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/24 11:54:50 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/24 15:53:02 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,21 @@ int			in_str(char c, char *s)
 			return (1);
 	}
 	return (0);
+}
+
+char		*format_str(char *s)
+{
+	int i;
+	int n;
+	char *str;
+
+	n = 0;
+	i = 0;
+	while (s[i] == '\t' || s[i] == ' ')
+		i++;
+	while (s[i + n] != '\t' && s[i + n] != ' ' && s[i + n] != '\0' &&\
+	in_str(s[i + n], COMMENT_CHAR) != 1)
+		n++;
+	str = ft_strsub(&s[i], 0, n);
+	return (str);
 }

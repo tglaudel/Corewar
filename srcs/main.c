@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:24:56 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/24 12:05:14 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/24 16:19:20 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@
 static void		init_env(t_env *env)
 {
 	env->opt = 0;
+	env->label_s = NULL;
+	env->label_e = NULL;
+	env->cmd_s = NULL;
+	env->cmd_e = NULL;
+	env->pos_rel = 0;
+	env->label_c = NULL;
 }
 
 int				main(int ac, char **av)
@@ -30,5 +36,6 @@ int				main(int ac, char **av)
 	ft_putendl(e.cor.prog_name);
 	ft_putendl(e.cor.comment);
 	print_label(e.label_s);
+	print_cmd(e.cmd_s);
 	return (0);
 }
