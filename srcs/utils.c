@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 17:30:41 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/24 15:53:02 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/24 16:58:10 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ int			in_str(char c, char *s)
 
 char		*format_str(char *s)
 {
-	int i;
-	int n;
-	char *str;
+	int		i;
+	int		n;
+	char	*str;
 
 	n = 0;
 	i = 0;

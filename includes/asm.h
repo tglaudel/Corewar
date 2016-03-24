@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:25:26 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/24 16:18:49 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/24 19:01:51 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 typedef struct		s_arg
 {
 	char			type;
+	char			size;
 	char			*arg;
 }					t_arg;
 
@@ -89,6 +90,7 @@ int					len_tab(char **s);
 int					is_all_num(char *s);
 void				print_label(t_label *start);
 void				print_cmd(t_cmd *start);
+void				print_opt_a(t_env *e);
 char				*format_str(char *s);
 
 #endif

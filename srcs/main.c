@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:24:56 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/24 16:19:20 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/24 17:50:55 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ int				main(int ac, char **av)
 	init_env(&e);
 	e.opt = get_opt(&av[1], OPT_STRING);
 	get_args(&av[1], &e);
-	ft_putendl(e.cor.prog_name);
-	ft_putendl(e.cor.comment);
-	print_label(e.label_s);
-	print_cmd(e.cmd_s);
+	if (have_opt('a', e.opt))
+		print_opt_a(&e);
 	return (0);
 }
