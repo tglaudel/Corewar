@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:25:26 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/23 19:29:35 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/24 11:35:33 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct		s_env
 */
 
 int					get_opt(char **av, char *l_opt);
-int					have_opt(char *l_opt, char o, int opt);
+int					have_opt(char o, int opt);
 
 /*
 ** Gets :

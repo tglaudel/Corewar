@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 15:04:20 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/23 19:51:17 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/24 10:36:43 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ t_op	g_op_tab[17] =
 	{0, 0, {0}, 0}
 };
 
-
-
 static int	format_cmd_arg(char *s)
 {
 	int i;
@@ -53,9 +51,9 @@ static int	format_cmd_arg(char *s)
 
 static int	check_cmd(char *s, int nb_arg, int op)
 {
-	int i;
-	int n;
-	char **arg;
+	int		i;
+	int		n;
+	char	**arg;
 
 	(void)op;
 	n = 0;
@@ -87,8 +85,10 @@ int			is_cmd(char *s, t_env *e)
 		i++;
 	while (g_op_tab[n].name != 0)
 	{
-		if (ft_strncmp(&s[i], g_op_tab[n].name, ft_strlen(g_op_tab[n].name)) == 0)
-			if (check_cmd(&s[i + ft_strlen(g_op_tab[n].name)], g_op_tab[n].nb_arg, n) == 1)
+		if (ft_strncmp(&s[i], g_op_tab[n].name, \
+			ft_strlen(g_op_tab[n].name)) == 0)
+			if (check_cmd(&s[i + ft_strlen(g_op_tab[n].name)], \
+			g_op_tab[n].nb_arg, n) == 1)
 			{
 				ft_putstr("CMD Valide : ");
 				ft_putendl(&s[i]);

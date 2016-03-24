@@ -6,13 +6,13 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 13:35:21 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/23 15:18:09 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/24 12:03:28 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static t_label	*new_label()
+static t_label	*new_label(void)
 {
 	t_label *new;
 
@@ -52,10 +52,11 @@ int				is_label(char *s, t_env *e)
 	j = i;
 	add_label(e, s, j);
 	while (s[++i])
-		if (s[i] != '\t' && s[i] != ' ' && s[i] != COMMENT_CHAR && s[i] != '\0')
+		if (s[i] != '\t' && s[i] != ' ' && in_str(s[i], COMMENT_CHAR) != 1 &&\
+		s[i] != '\0')
 		{
 			if (is_cmd(&s[i], e))
-			 	return (1);
+				return (1);
 			else
 				return (0);
 		}

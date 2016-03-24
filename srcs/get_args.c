@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 15:37:02 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/23 15:03:36 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/24 12:08:39 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ static int	check_args(int fd, t_env *env)
 		if (is_good_format(line, &env->cor, env))
 		{
 			continue ;
-			//ft_putendl(line);
-			//add_args(line, env);
 		}
 		ft_strdel(&line);
 	}
@@ -47,13 +45,14 @@ void		get_args(char **av, t_env *e)
 	int fd;
 
 	i = 0;
-	(void)e;
 	while (av[i] && av[i][0] == '-')
 		i++;
-	if (check_asm(av[i]) != 1)
+	if (av[i] == NULL)
+		ft_errors("ERROR : No args.", 1, 0);
+	else if (check_asm(av[i]) != 1)
 		ft_errors("ERROR : format file.", 1, 0);
-	if ((fd = open(av[i], O_RDONLY)) == -1)
+	else if ((fd = open(av[i], O_RDONLY)) == -1)
 		ft_errors("ERROR : Open file fail.", 1, 0);
-	if (check_args(fd, e) != 1)
+	else if (check_args(fd, e) != 1)
 		ft_errors("ERROR : format cmd.", 1, 0);
 }

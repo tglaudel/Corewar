@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 17:30:41 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/23 17:15:22 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/24 11:54:50 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,24 @@ int			is_all_num(char *s)
 	sign = 0;
 	if (s[i] == '+' || s[i] == '-')
 	{
-		sign++;
 		i++;
+		sign++;
 	}
 	while (s[i] != '\0')
 	{
+		if (in_str(s[i], COMMENT_CHAR))
+			break ;
 		if (ft_isdigit(s[i]) != 1)
+		{
+			while (s[i] == ' ' || s[i] == '\t')
+				i++;
+			if (s[i] == '\0' || in_str(s[i], COMMENT_CHAR))
+				return (1);
 			return (0);
+		}
 		i++;
 	}
-	if (i >= 1 + sign)
-		return (1);
-	return (0);
+	return (i >= 1 + sign);
 }
 
 int			len_tab(char **s)

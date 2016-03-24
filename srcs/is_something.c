@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 19:24:42 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/23 19:41:13 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/24 10:32:33 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,13 @@ int		is_dir(char *s)
 		while (s[++i] != '\0')
 		{
 			if (in_str(s[i], LABEL_CHARS) != 1)
+			{
+				while (s[i] == ' ' || s[i] == '\t')
+					i++;
+				if (s[i] == '\0' || in_str(s[i], COMMENT_CHAR))
+					return (1);
 				return (0);
+			}
 		}
 	else
 		return (0);

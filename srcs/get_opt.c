@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 11:13:48 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/22 16:43:35 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/24 11:35:14 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ static int		position_in_opt(char *opt, char o)
 	return (-1);
 }
 
-int				have_opt(char *l_opt, char o, int opt)
+int				have_opt(char o, int opt)
 {
 	int tmp;
 	int i;
 
 	tmp = 1;
-	i = position_in_opt(l_opt, o);
+	i = position_in_opt(OPT_STRING, o);
 	tmp = tmp << i;
 	if (tmp & opt)
 		return (1);

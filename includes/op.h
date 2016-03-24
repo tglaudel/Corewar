@@ -6,14 +6,14 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:18:38 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/23 16:56:02 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/24 10:04:29 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OP_H
 # define OP_H
 
-# define COMMENT_CHAR			'#'
+# define COMMENT_CHAR			"#;"
 # define LABEL_CHAR				':'
 # define DIRECT_CHAR			'%'
 # define SEPARATOR_CHAR			','
