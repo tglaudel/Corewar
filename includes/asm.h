@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:25:26 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/24 19:01:51 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/25 14:08:10 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,13 @@ typedef struct		s_arg
 typedef struct		s_cmd
 {
 	char			opc;
-	char			odc;
+	unsigned char	odc;
 	int				pos_oct;
 	int				size;
 	t_arg			**tab;
 	char			*label;
 	struct s_cmd	*next;
+	unsigned char	*octet;
 }					t_cmd;
 
 typedef struct		s_label
@@ -68,6 +69,7 @@ int					have_opt(char o, int opt);
 */
 
 void				get_args(char **av, t_env *e);
+char				create_odc(int opc, t_arg **tab);
 
 /*
 ** Check & parsing:
@@ -80,6 +82,12 @@ int					is_cmd(char *s, t_env *e);
 int					is_dir(char *s);
 int					is_reg(char *s);
 int					is_ind(char *s);
+
+/*
+** Conversion:
+*/
+
+void				convert_to_octet(t_cmd *start);
 
 /*
 ** Utils & print:

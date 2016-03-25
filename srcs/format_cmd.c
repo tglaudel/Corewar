@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 15:04:20 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/24 19:34:40 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/25 13:11:34 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,6 @@ t_op	g_op_tab[17] =
 	{0, 0, {0}, 0}
 };
 
-// static char		get_odc(int n, t_arg *tab)
-// {
-// 	if
-// }
-
 static int		get_size(t_arg **tab, int odc)
 {
 	int i;
@@ -47,13 +42,19 @@ static int		get_size(t_arg **tab, int odc)
 	n = 0;
 	while (tab[++i])
 		n += tab[i]->size;
-	if (odc == 1)
+	if (odc != 0)
 		n++;
 	return (n + 1);
 }
 
-static int		format_cmd_size(char type, char *s, int n)
+static int		format_cmd_size(char type, char *s, int n, int opc)
 {
+	if (type == T_DIR && opc == 9)
+		return (T_DIR);
+	if (type == T_IND && (opc == 3 || (opc == 11 && n == 1) || (opc == 13 && n == 0)))
+		return (T_DIR);
+	if (type == T_DIR && opc == 11 && n == 1)
+		return (T_DIR);
 	if (type == T_REG || type == T_IND)
 		return (type);
 	if (s[1] == ':')
@@ -79,7 +80,7 @@ static int		format_cmd_arg(char *s)
 	return (0);
 }
 
-static t_arg	**get_cmd_arg(char *s, int n)
+static t_arg	**get_cmd_arg(char *s, int opc)
 {
 	int		i;
 	t_arg	**tab;
@@ -92,15 +93,15 @@ static t_arg	**get_cmd_arg(char *s, int n)
 	while (s[i] == ' ' || s[i] == '\t')
 		i++;
 	arg = ft_strsplit(&s[i], SEPARATOR_CHAR);
-	tab = (t_arg**)malloc(sizeof(t_arg*) * n + 1);
 	nb_arg = len_tab(arg);
+	tab = (t_arg**)malloc(sizeof(t_arg*) * nb_arg + 1);
 	i = 0;
 	while (nb_arg--)
 	{
 		tab[i] = (t_arg*)malloc(sizeof(t_arg));
 		tab[i]->type = format_cmd_arg(arg[i]);
 		tab[i]->arg = format_str(arg[i]);
-		tab[i]->size = format_cmd_size(tab[i]->type, tab[i]->arg, i);
+		tab[i]->size = format_cmd_size(tab[i]->type, tab[i]->arg, i, opc);
 		i++;
 	}
 	tab[i] = NULL;
@@ -132,9 +133,14 @@ static void		add_cmd(t_env *e, char *s, int n)
 		e->cmd_s = new;
 	new->opc = n;
 	new->tab = get_cmd_arg(s, n);
-	new->odc = 0;//get_odc(n, new->tab);
+	new->odc = create_odc(n, new->tab);
 	new->size = get_size(new->tab, new->odc);
 	new->pos_oct = e->pos_rel;
+	if (e->label_c != NULL)
+	{
+		new->label = ft_strdup(e->label_c);
+		ft_strdel(&e->label_c);
+	} 
 	e->pos_rel += new->size;
 	if (e->cmd_e != NULL)
 		e->cmd_e->next = new;

@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:18:38 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/24 17:30:18 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/25 13:28:20 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,19 @@ typedef char	t_arg_type;
 # define T_IND					4
 # define T_LAB					8
 
+# define REG_OPC				1
+# define DIR_OPC				2
+# define IND_OPC				3
+
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)
 # define COREWAR_EXEC_MAGIC		0xea83f3
 
 typedef struct		s_header
 {
-	//unsigned int	magic;
+	unsigned int	magic;
 	char			prog_name[PROG_NAME_LENGTH + 1];
+	unsigned int	prog_size;
 	char			comment[COMMENT_LENGTH + 1];
 }					t_header;
 

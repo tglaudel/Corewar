@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 14:18:17 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/24 17:52:51 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/25 15:38:53 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,17 @@ void	print_opt_a(t_env *e)
 	{
 		i = -1;
 		if (tmp->label)
-			ft_printf("Label_Position(%4d)", tmp->pos_oct);
+			ft_printf("Label_Position(%4d) | label_name(%s) |\n", tmp->pos_oct, tmp->label);
 		ft_printf("Position(%3d) | size(%2d) | OPC(%2d) | ", tmp->pos_oct, tmp->size, tmp->opc);
 		ft_printf("ODC(%4d) |", tmp->odc);
 		while (tmp->tab[++i])
 			ft_printf(" %s |", tmp->tab[i]->arg);
+		ft_putchar('\n');
+		ft_printf("                         | (%#.2x)  | (%#.2x) | ",
+											tmp->octet[0], tmp->octet[1]);
+		i = 1;
+		while (tmp->octet[++i])
+			ft_printf(" %#.2x |", tmp->octet[i]);
 		ft_putchar('\n');
 		tmp = tmp->next;
 	}

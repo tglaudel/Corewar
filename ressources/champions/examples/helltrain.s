@@ -19,7 +19,7 @@ entry:
 	sti		r1, %:cc2, %1
 	ld		%0, r16
 	fork	%:cc_spawn
-	
+
 wall_prep:
 	ld		%0, r2
 	ld		%0, r16
