@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:24:56 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/26 14:40:16 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/26 18:51:26 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void		init_env(t_env *env)
 	env->cmd_e = NULL;
 	env->pos_rel = 0;
 	env->label_c = NULL;
+	env->cor.magic = COREWAR_EXEC_MAGIC;
 }
 
 int				main(int ac, char **av)
@@ -38,5 +39,6 @@ int				main(int ac, char **av)
 		print_opt_d(&e);
 	if (have_opt('o', e.opt))
 		print_opt_o(&e);
+	create_file(&e.cor, e.cmd_s, &e);
 	return (0);
 }

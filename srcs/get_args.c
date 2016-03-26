@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 15:37:02 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/24 14:50:00 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/26 18:29:45 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ void		get_args(char **av, t_env *e)
 {
 	int i;
 	int fd;
+	int j;
+	char *tmp;
 
+	j = 0;
 	i = 0;
 	while (av[i] && av[i][0] == '-')
 		i++;
@@ -55,4 +58,8 @@ void		get_args(char **av, t_env *e)
 		ft_errors("ERROR : Open file fail.", 1, 0);
 	else if (check_args(fd, e) != 1)
 		ft_errors("ERROR : format cmd.", 1, 0);
+	while (av[i][j] != '.')
+		j++;
+	tmp = ft_strsub(av[i], 0, j);
+	e->name = ft_strjoin(tmp, ".cor");
 }

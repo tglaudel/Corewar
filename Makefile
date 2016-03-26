@@ -6,7 +6,7 @@
 #    By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 08:59:28 by tglaudel          #+#    #+#              #
-#    Updated: 2016/03/25 13:45:11 by tglaudel         ###   ########.fr        #
+#    Updated: 2016/03/26 18:49:26 by tglaudel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC_NAME = main.c \
 		   create_odc.c \
 		   convert_to_octet.c \
 		   is_something.c \
+		   create_file.c \
 		   utils.c \
 		   print.c \
 

@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:25:26 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/26 14:52:39 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/26 18:51:38 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@
 # include "op.h"
 
 # define OPT_STRING "do"
-# define MASK_CHAR	0xff
-# define MASK_DCHAR	0xff00
-# define MASK_TCHAR	0xff0000
-# define MASK_INT	0xff000000
 
 typedef struct		s_arg
 {
@@ -57,6 +53,7 @@ typedef struct		s_env
 	t_label			*label_e;
 	t_cmd			*cmd_s;
 	t_cmd			*cmd_e;
+	char			*name;
 	int				pos_rel; // position relative de la cmd;
 	char			*label_c; // label en cours, variable tmp;
 }					t_env;
@@ -105,5 +102,6 @@ void				print_cmd(t_cmd *start);
 void				print_opt_d(t_env *e);
 void				print_opt_o(t_env *e);
 char				*format_str(char *s);
+void				create_file(t_header *cor, t_cmd *cmd, t_env *e);
 
 #endif
