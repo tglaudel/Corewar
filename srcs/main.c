@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:24:56 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/25 13:34:41 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/26 14:40:16 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ int				main(int ac, char **av)
 	e.opt = get_opt(&av[1], OPT_STRING);
 	get_args(&av[1], &e);
 	convert_to_octet(e.cmd_s);
-	if (have_opt('a', e.opt))
-		print_opt_a(&e);
+	if (have_opt('d', e.opt))
+		print_opt_d(&e);
+	if (have_opt('o', e.opt))
+		print_opt_o(&e);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 14:18:17 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/25 15:38:53 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/26 17:36:04 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	print_cmd(t_cmd *start)
 	}
 }
 
-void	print_opt_a(t_env *e)
+void	print_opt_d(t_env *e)
 {
 	int i;
 	t_cmd *tmp;
@@ -57,7 +57,7 @@ void	print_opt_a(t_env *e)
 	i = 0;
 	ft_printf("Programme size : %d bytes\n", e->pos_rel);
 	ft_printf("Name           : %s\n", e->cor.prog_name);
-	ft_printf("Comment        : %s\n", e->cor.comment);
+	ft_printf("Comment        : %s\n\n", e->cor.comment);
 	while (tmp)
 	{
 		i = -1;
@@ -68,11 +68,30 @@ void	print_opt_a(t_env *e)
 		while (tmp->tab[++i])
 			ft_printf(" %s |", tmp->tab[i]->arg);
 		ft_putchar('\n');
-		ft_printf("                         | (%#.2x)  | (%#.2x) | ",
+		ft_printf("                         | (0x%.2x)  | (0x%.2x)    |",
 											tmp->octet[0], tmp->octet[1]);
-		i = 1;
-		while (tmp->octet[++i])
-			ft_printf(" %#.2x |", tmp->octet[i]);
+		i = 0;
+		if (tmp->odc > 0)
+			i++;
+		while (++i < tmp->size)
+			ft_printf(" 0x%.2x |", tmp->octet[i]);
+		ft_putstr("\n\n");
+		tmp = tmp->next;
+	}
+}
+
+void	print_opt_o(t_env *e)
+{
+	t_cmd	*tmp;
+	int		i;
+
+	tmp = e->cmd_s;
+	while (tmp)
+	{
+		i = -1;
+		ft_putstr("# ");
+		while (++i < tmp->size)
+			ft_printf("0x%.2x ", tmp->octet[i]);
 		ft_putchar('\n');
 		tmp = tmp->next;
 	}

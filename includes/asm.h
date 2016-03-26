@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:25:26 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/25 14:08:10 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/26 14:52:39 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@
 # include "../libft/includes/libft.h"
 # include "op.h"
 
-# define OPT_STRING "av"
+# define OPT_STRING "do"
+# define MASK_CHAR	0xff
+# define MASK_DCHAR	0xff00
+# define MASK_TCHAR	0xff0000
+# define MASK_INT	0xff000000
 
 typedef struct		s_arg
 {
@@ -98,7 +102,8 @@ int					len_tab(char **s);
 int					is_all_num(char *s);
 void				print_label(t_label *start);
 void				print_cmd(t_cmd *start);
-void				print_opt_a(t_env *e);
+void				print_opt_d(t_env *e);
+void				print_opt_o(t_env *e);
 char				*format_str(char *s);
 
 #endif
