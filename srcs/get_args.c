@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 15:37:02 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/26 18:29:45 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/27 16:51:23 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ static int	check_args(int fd, t_env *env)
 
 void		get_args(char **av, t_env *e)
 {
-	int i;
-	int fd;
-	int j;
-	char *tmp;
+	int		i;
+	int		fd;
+	int		j;
+	char	*tmp;
 
 	j = 0;
 	i = 0;

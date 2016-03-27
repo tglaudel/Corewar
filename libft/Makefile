@@ -6,7 +6,7 @@
 #    By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 14:29:20 by tglaudel          #+#    #+#              #
-#    Updated: 2016/03/22 17:21:48 by tglaudel         ###   ########.fr        #
+#    Updated: 2016/03/27 17:55:45 by tglaudel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ SRC_PRINTF_NAME = ft_printf.c \
 				  utils.c \
 				  print_char.c \
 				  print_ptr.c \
+				  push_color.c \
 
 SRC_GNL_NAME = get_next_line.c \
 

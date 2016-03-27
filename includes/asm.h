@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:25:26 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/27 16:06:55 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/27 17:48:03 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ typedef struct		s_env
 	t_cmd			*cmd_s;
 	t_cmd			*cmd_e;
 	char			*name;
-	int				pos_rel; // position relative de la cmd;
-	char			*label_c; // label en cours, variable tmp;
+	int				pos_rel;
+	char			*label_c;
 }					t_env;
 
 /*
@@ -71,6 +71,12 @@ int					have_opt(char o, int opt);
 
 void				get_args(char **av, t_env *e);
 char				create_odc(int opc, t_arg **tab);
+int					get_size(t_arg **tab, int odc);
+t_arg				**get_cmd_arg(char *s, int opc);
+int					format_cmd_size(char type, char *s, int n, int opc);
+int					format_cmd_arg(char *s);
+t_cmd				*new_cmd(void);
+void				add_cmd(t_env *e, char *s, int n);
 
 /*
 ** Check & parsing:
@@ -83,6 +89,7 @@ int					is_cmd(char *s, t_env *e);
 int					is_dir(char *s);
 int					is_reg(char *s);
 int					is_ind(char *s);
+int					check_cmd(char *s, int nb_arg, int op);
 
 /*
 ** Conversion:

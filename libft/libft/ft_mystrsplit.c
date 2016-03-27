@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 17:15:20 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/22 17:23:08 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/27 16:47:59 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int		mylenword(const char *s)
 	int i;
 
 	i = 0;
-	while (s[i] != ' ' && s[i] != '\t' &&s[i] != '\0')
+	while (s[i] != ' ' && s[i] != '\t' && s[i] != '\0')
 		i++;
 	return (i);
 }

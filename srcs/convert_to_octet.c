@@ -6,13 +6,13 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 13:35:07 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/26 17:34:10 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/27 16:54:27 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static int	search_label(t_cmd *start, char *s, int pos)
+static int		search_label(t_cmd *start, char *s, int pos)
 {
 	t_cmd *tmp;
 
@@ -29,8 +29,8 @@ static int	search_label(t_cmd *start, char *s, int pos)
 
 static int		int_to_dir(unsigned char *octet, char *s, int pos, t_cmd *start)
 {
-	unsigned short int i;
-	int n;
+	unsigned short int	i;
+	int					n;
 
 	n = 0;
 	if (s[0] == '%')
@@ -52,8 +52,8 @@ static int		int_to_dir(unsigned char *octet, char *s, int pos, t_cmd *start)
 
 static int		char_to_octet(t_cmd *tmp, t_arg *arg, t_cmd *start, int i)
 {
-	unsigned int x;
-	int n;
+	unsigned int	x;
+	int				n;
 
 	n = 0;
 	if (arg->arg[0] == '%')
@@ -64,10 +64,7 @@ static int		char_to_octet(t_cmd *tmp, t_arg *arg, t_cmd *start, int i)
 		return (1);
 	}
 	if (arg->size == T_DIR)
-	{
-		int_to_dir(&tmp->octet[i], arg->arg, tmp->pos_oct, start);
-		return (2);
-	}
+		return (int_to_dir(&tmp->octet[i], arg->arg, tmp->pos_oct, start));
 	if (arg->size == T_IND)
 	{
 		x = ft_atoi(&arg->arg[1]);
@@ -82,9 +79,9 @@ static int		char_to_octet(t_cmd *tmp, t_arg *arg, t_cmd *start, int i)
 
 void			convert_to_octet(t_cmd *start)
 {
-	t_cmd *tmp;
-	int i;
-	int n;
+	t_cmd	*tmp;
+	int		i;
+	int		n;
 
 	tmp = start;
 	while (tmp)
@@ -96,8 +93,7 @@ void			convert_to_octet(t_cmd *start)
 		if (tmp->odc > 0)
 			tmp->octet[i++] = tmp->odc;
 		while (tmp->tab[++n])
-			 	i += char_to_octet(tmp, tmp->tab[n], start, i);
+			i += char_to_octet(tmp, tmp->tab[n], start, i);
 		tmp = tmp->next;
 	}
-
 }

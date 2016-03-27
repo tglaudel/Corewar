@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/27 13:01:59 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/01/25 17:24:48 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/27 18:28:31 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ int		nprinted(va_list lst, const char *format, int i, int fd)
 	ret = 0;
 	def = (t_def*)malloc(sizeof(t_def));
 	def->fd = fd;
-	while (format[i] != '\0')
+	while (format[++i] != '\0')
 	{
+		(format[i] == '{' && c_col(&format[i])) ? i += p_col(&format[i]) : 0;
 		if (format[i] == '%')
 		{
 			def = ft_def(&format[i + 1], lst, def);
@@ -35,9 +36,8 @@ int		nprinted(va_list lst, const char *format, int i, int fd)
 			ft_putchar_fd(format[i], def->fd);
 			++ret;
 		}
-		++i;
 	}
-	free(def);
+		free(def);
 	return (ret);
 }
 
@@ -48,7 +48,7 @@ int		ft_printf(const char *format, ...)
 
 	ret = 0;
 	va_start(lst, format);
-	ret = nprinted(lst, format, 0, 1);
+	ret = nprinted(lst, format, -1, 1);
 	va_end(lst);
 	return (ret);
 }
@@ -60,7 +60,7 @@ int		ft_printf_fd(int fd, const char *format, ...)
 
 	ret = 0;
 	va_start(lst, format);
-	ret = nprinted(lst, format, 0, fd);
+	ret = nprinted(lst, format, -1, fd);
 	va_end(lst);
 	return (ret);
 }

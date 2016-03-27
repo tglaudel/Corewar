@@ -6,11 +6,29 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 17:30:41 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/24 16:58:10 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/27 18:22:32 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+int			invert(int n)
+{
+	unsigned char tmp1;
+	unsigned char tmp2;
+	unsigned char tmp3;
+	unsigned char tmp4;
+
+	tmp1 = n >> 24;
+	tmp2 = n >> 16;
+	tmp3 = n >> 8;
+	tmp4 = n;
+	n = tmp4 << 8;
+	n = (n | tmp3) << 8;
+	n = (n | tmp2) << 8;
+	n = n | tmp1;
+	return (n);
+}
 
 int			is_all_num(char *s)
 {

@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 11:03:33 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/25 11:57:21 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/27 16:51:02 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 char	create_odc(int opc, t_arg **tab)
 {
-	char	tmp;
+	char			tmp;
 	unsigned char	res;
-	int		i;
-	int		n;
+	int				i;
+	int				n;
 
 	if (opc == 1 || opc == 9 || opc == 15 || opc == 12)
 		return (0);

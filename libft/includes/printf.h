@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/27 13:38:14 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/01/25 17:17:02 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/27 18:26:00 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,20 @@
 # define M4 0xF0
 # define M5 0x3F
 # define M6 0x1F
+
+# define C_RED		"\033[31m"
+# define C_RED2		"\033[1;31m"
+# define C_GREEN	"\033[32m"
+# define C_GREEN2	"\033[1;32m"
+# define C_YELLOW	"\033[33m"
+# define C_YELLOW2	"\033[1;33m"
+# define C_BLUE		"\033[34m"
+# define C_BLUE2	"\033[1;34m"
+# define C_MAGENTA	"\033[35m"
+# define C_CYAN		"\033[36m"
+# define C_GRAY		"\033[37m"
+# define C_BLACK	"\033[30m"
+# define C_NONE		"\033[0m"
 
 typedef struct		s_def
 {
@@ -42,6 +56,13 @@ typedef struct		s_def
 	const char	*digits;
 }					t_def;
 
+typedef struct		s_col
+{
+	int				n;
+	char			*name;
+	char			*color;
+}					t_col;
+
 int					ft_printf(const char *format, ...);
 int					ft_printf_fd(int fd, const char *format, ...);
 int					ft_istype(const char *s, va_list lst, t_def *def);
@@ -59,5 +80,7 @@ t_def				*init_def(t_def *def);
 unsigned long long	print_signed(va_list lst, t_def *def, int capitals);
 unsigned long long	print_unsigned(va_list lst, t_def *def, int n,\
 	int capitals);
+int					c_col(const char *s);
+int					p_col(const char *s);
 
 #endif
