@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/26 18:16:36 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/26 18:54:36 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/27 16:06:35 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,13 @@ void		create_file(t_header *cor, t_cmd *cmd, t_env *e)
 	int i;
 
 	tmp = cmd;
-	ft_putstr(e->name);
+	(void)e;
+	(void)cor;
 	if ((fd = open("test.cor", O_CREAT | O_RDWR, 0664)) == -1)
 		ft_errors("ERROR : Files .cor not create.", 1, 0);
-	ft_putchar_fd(cor->magic >> 24, fd);
-	ft_putchar_fd(cor->magic >> 16, fd);
-	ft_putchar_fd(cor->magic >> 8, fd);
-	ft_putchar_fd(cor->magic, fd);
-	ft_putstr_fd(cor->prog_name, fd);
-	ft_putchar_fd(cor->prog_size >> 24, fd);
-	ft_putchar_fd(cor->prog_size >> 16, fd);
-	ft_putchar_fd(cor->prog_size >> 8, fd);
-	ft_putchar_fd(cor->prog_size, fd);
-	ft_putstr_fd(cor->comment, fd);
+	cor->prog_size = invert(e->pos_rel);
+	write(fd, cor, PROG_NAME_LENGTH + COMMENT_LENGTH + 2 + 8);
+	write(fd, "\0\0\0\0\0\0", 6);
 	while (tmp)
 	{
 		i = -1;

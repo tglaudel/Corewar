@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:25:26 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/26 18:51:38 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/27 16:06:55 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int					is_ind(char *s);
 */
 
 void				convert_to_octet(t_cmd *start);
+int					invert(int n);
 
 /*
 ** Utils & print:

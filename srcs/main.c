@@ -6,12 +6,30 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:24:56 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/26 18:51:26 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/27 16:06:41 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "op.h"
 #include "asm.h"
+
+int		invert(int n)
+{
+	unsigned char tmp1;
+	unsigned char tmp2;
+	unsigned char tmp3;
+	unsigned char tmp4;
+
+	tmp1 = n >> 24;
+	tmp2 = n >> 16;
+	tmp3 = n >> 8;
+	tmp4 = n;
+	n = tmp4 << 8;
+	n = (n | tmp3) << 8;
+	n = (n | tmp2) << 8;
+	n = n | tmp1;
+	return (n);
+}
 
 static void		init_env(t_env *env)
 {
@@ -22,7 +40,9 @@ static void		init_env(t_env *env)
 	env->cmd_e = NULL;
 	env->pos_rel = 0;
 	env->label_c = NULL;
-	env->cor.magic = COREWAR_EXEC_MAGIC;
+	env->cor.magic = invert(COREWAR_EXEC_MAGIC);
+	ft_bzero(env->cor.prog_name, PROG_NAME_LENGTH + 1);
+	ft_bzero(env->cor.comment, COMMENT_LENGTH + 1);
 }
 
 int				main(int ac, char **av)
