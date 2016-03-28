@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 10:42:59 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/24 11:39:18 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/28 17:08:53 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,12 @@ static int	format_name(char *s, int n, t_header *cor)
 
 int			is_comment(char *s, t_header *cor)
 {
-	if (in_str(s[0], COMMENT_CHAR))
+	int i;
+
+	i = 0;
+	while (s[i] == '\t' || s[i] == ' ')
+		i++;
+	if (in_str(s[i], COMMENT_CHAR))
 		return (1);
 	if (ft_strncmp(s, NAME_CMD_STRING, NAME_CMD_STRING_LENGTH) == 0)
 	{

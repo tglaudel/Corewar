@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 13:35:21 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/28 14:45:18 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/28 16:47:59 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ static void		add_label(t_env *e, char *s, int n)
 	if (e->label_s == NULL)
 		e->label_s = new;
 	new->name = ft_strsub(s, 0, n);
+	new->pos = e->pos_rel;
 	if (e->label_e != NULL)
 		e->label_e->next = new;
 	e->label_e = new;
-	e->label_c = ft_strdup(new->name);
 }
 
 int				is_label(char *s, t_env *e)
