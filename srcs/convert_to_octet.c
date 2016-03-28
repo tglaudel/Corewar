@@ -6,13 +6,13 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 13:35:07 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/28 16:51:23 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/28 18:28:02 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static int		search_label(t_label *start, char *s, int pos)
+static unsigned int		search_label(t_label *start, char *s, int pos)
 {
 	t_label *tmp;
 
@@ -30,29 +30,43 @@ static int		search_label(t_label *start, char *s, int pos)
 static int		int_to_dir(unsigned char *octet, char *s, int pos, t_label *lab)
 {
 	unsigned short int	i;
-	int					n;
+	int				n;
 
 	n = 0;
+	i = 0;
 	if (s[0] == '%')
 		n++;
 	if (s[1] == ':')
-	{
 		i = search_label(lab, &s[2], pos);
-		octet[0] = i >> 8;
-		octet[1] = i;
-	}
 	else if (is_all_num(&s[0 + n]))
-	{
 		i = ft_atoi(&s[0 + n]);
-		octet[0] = i >> 8;
-		octet[1] = i;
-	}
+	octet[0] = i >> 8;
+	octet[1] = i;
 	return (2);
+}
+
+static int		int_to_ind(unsigned char *octet, char *s, int pos, t_label *lab)
+{
+	unsigned int	i;
+	int				n;
+
+	n = 0;
+	i = 0;
+	if (s[0] == '%')
+		n++;
+	if (s[1] == ':')
+		i = search_label(lab, &s[2], pos);
+	else if (is_all_num(&s[0 + n]))
+		i = ft_atoi(&s[0 + n]);
+	octet[0] = i >> 24;
+	octet[1] = i >> 16;
+	octet[2] = i >> 8;
+	octet[3] = i;
+	return (4);
 }
 
 static int		char_to_octet(t_cmd *tmp, t_arg *arg, t_label *lab, int i)
 {
-	unsigned int	x;
 	int				n;
 
 	n = 0;
@@ -66,14 +80,7 @@ static int		char_to_octet(t_cmd *tmp, t_arg *arg, t_label *lab, int i)
 	if (arg->size == T_DIR)
 		return (int_to_dir(&tmp->octet[i], arg->arg, tmp->pos_oct, lab));
 	if (arg->size == T_IND)
-	{
-		x = ft_atoi(&arg->arg[1]);
-		tmp->octet[i] = x >> 24;
-		tmp->octet[i + 1] = x >> 16;
-		tmp->octet[i + 2] = x >> 8;
-		tmp->octet[i + 3] = x;
-		return (4);
-	}
+		return(int_to_ind(&tmp->octet[i], arg->arg, tmp->pos_oct, lab));
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 16:56:36 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/28 16:54:25 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/28 18:59:25 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,16 @@ int				get_size(t_arg **tab, int odc)
 
 int				format_cmd_size(char type, char *s, int n, int opc)
 {
-	if (type == T_DIR && (opc == 9 || opc == 14))
+	if (type == T_DIR && (opc == 9 || opc == 14 || opc == 12 || opc == 15))
 		return (T_DIR);
-	if (type == T_IND && (opc == 3 || (opc == 11 && n == 1) ||\
-	(opc == 13 && n == 0)))
+	if (type == T_DIR && (opc == 2 || opc == 7 || opc == 8 || opc == 6 || opc == 13))
+		return (T_IND);
+	if (type == T_IND && (opc == 10 || opc == 14 || opc == 13))
+		return (T_DIR);
+	if (type == T_DIR && opc == 10)
+		return (T_DIR);
+	if (type == T_IND && (opc == 3 || (opc == 11 && n == 1) \
+	|| opc == 6 || opc == 7 || opc == 8 || opc == 2))
 		return (T_DIR);
 	if (type == T_DIR && opc == 11 && n == 1)
 		return (T_DIR);

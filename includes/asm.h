@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:25:26 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/28 16:53:31 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/28 18:20:55 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct		s_cmd
 {
 	char			opc;
 	unsigned char	odc;
-	int				pos_oct;
+	unsigned int	pos_oct;
 	int				size;
 	t_arg			**tab;
 	struct s_cmd	*next;
@@ -39,7 +39,7 @@ typedef struct		s_cmd
 typedef struct		s_label
 {
 	char			*name;
-	int				pos;
+	unsigned int	pos;
 	struct s_label	*next;
 }					t_label;
 

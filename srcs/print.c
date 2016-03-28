@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 14:18:17 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/28 16:54:56 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/28 18:30:05 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	print_opt_d(t_env *e, int i)
 	t_cmd *tmp;
 
 	tmp = e->cmd_s;
+	e->name != NULL ? print_comment(e): 0;
 	while (tmp)
 	{
 		i = -1;
