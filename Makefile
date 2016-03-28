@@ -6,7 +6,7 @@
 #    By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 08:59:28 by tglaudel          #+#    #+#              #
-#    Updated: 2016/03/27 17:07:57 by tglaudel         ###   ########.fr        #
+#    Updated: 2016/03/28 10:45:35 by tglaudel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC_NAME = main.c \
 		   create_file.c \
 		   utils.c \
 		   print.c \
+		   print_help.c \
 
 OBJ = $(SRC:.c=.o)
 

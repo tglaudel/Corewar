@@ -1,0 +1,40 @@
+############################################################################
+#  _____                                     _          _                  #
+# /  __ \                                   | |        | |                 #
+# | /  \/ ___  _ __ _____      ____ _ _ __  | |__   ___| |_ __   ___ _ __  #
+# | |    / _ \| '__/ _ \ \ /\ / / _` | '__| | '_ \ / _ \ | '_ \ / _ \ '__| #
+# | \__/\ (_) | | |  __/\ V  V / (_| | |    | | | |  __/ | |_) |  __/ |    #
+#  \____/\___/|_|  \___| \_/\_/ \__,_|_|    |_| |_|\___|_| .__/ \___|_|    #
+#                                                      | |                 #
+#                                                      |_|                 #
+############################################################################
+
+ASM USAGE : ./asm [-odfh] <sourcefile.s>
+
+            -o : Instead of creating a .cor file, outputs a hexadecimal
+                 representation of cmd.
+            ------------------------------------
+            # 0x02 0x90 0x00 0x00 0x00 0x00 0x10
+            # 0x09 0x00 0x03
+            # 0x03 0x70 0x02 0x00 0x0f
+            # 0x03 0x70 0x03 0xff 0xff
+            # 0x01 0x00 0x00 0x00 0x00
+            ------------------------------------
+            -d : Instead of creating a .cor file, outputs a stripped and
+                 annotated version of the code to the standard output.
+
+position(in octet) | size(in octet) | Op-code() | encoding code() | cmd_param
+
+            ------------------------------------
+Label_Position(   0) | label_name(l2) |
+Position(  0) | size( 7) | OPC(11) | ODC( 104) | r1 | %:live | %1 |
+                         | (0x0b)  | (0x68)    | 0x01 | 0x00 | 0x0f | ...
+
+Position(  7) | size( 8) | OPC( 6) | ODC( 100) | r1 | %0 | r1 |
+                         | (0x06)  | (0x64)    | 0x01 | 0x00 | 0x00 | ...
+            ------------------------------------
+            -f : With option -od, force the creating a .cor file.
+
+            -h : helper.
+
+############################################################################

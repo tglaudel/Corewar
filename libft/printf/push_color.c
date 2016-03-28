@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 17:38:16 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/27 18:26:35 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/28 11:16:24 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ int		p_col(const char *s)
 
 int		c_col(const char *s)
 {
-	int i;
-	int n;
+	unsigned long	i;
+	int				n;
 
 	i = 0;
 	n = -1;
@@ -64,8 +64,9 @@ int		c_col(const char *s)
 	{
 		while (g_col[++n].n < 12)
 		{
-			if (ft_strncmp(&s[1], g_col[n].name, i - 1) == 0)
-				return (1);
+			if (i - 1 == ft_strlen(g_col[n].name))
+				if (ft_strncmp(&s[1], g_col[n].name, i - 1) == 0)
+					return (1);
 		}
 	}
 	return (0);

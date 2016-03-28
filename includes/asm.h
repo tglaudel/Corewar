@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:25:26 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/27 17:48:03 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/28 11:19:10 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../libft/includes/libft.h"
 # include "op.h"
 
-# define OPT_STRING "do"
+# define OPT_STRING "dofh"
 
 typedef struct		s_arg
 {
@@ -107,8 +107,9 @@ int					len_tab(char **s);
 int					is_all_num(char *s);
 void				print_label(t_label *start);
 void				print_cmd(t_cmd *start);
-void				print_opt_d(t_env *e);
+void				print_opt_d(t_env *e, int i);
 void				print_opt_o(t_env *e);
+int					print_help(void);
 char				*format_str(char *s);
 void				create_file(t_header *cor, t_cmd *cmd, t_env *e);
 
