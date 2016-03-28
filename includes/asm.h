@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:25:26 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/28 11:19:10 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/28 14:01:12 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef struct		s_label
 {
 	char			*name;
 	int				pos;
-	t_cmd			*cmd;
 	struct s_label	*next;
 }					t_label;
 
@@ -112,5 +111,8 @@ void				print_opt_o(t_env *e);
 int					print_help(void);
 char				*format_str(char *s);
 void				create_file(t_header *cor, t_cmd *cmd, t_env *e);
+void				free_all(t_env *e);
+void 				free_label(t_label *label);
+void				free_cmd(t_cmd *cmd);
 
 #endif

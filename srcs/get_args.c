@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 15:37:02 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/27 16:51:23 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/28 12:11:27 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static int	check_asm(char *s)
 	int i;
 
 	i = ft_strlen(s);
-	if (s[i - 2] != '.' && s[i - 1] != 's')
-		return (0);
-	return (1);
+	if (s[i - 2] == '.' && s[i - 1] == 's')
+		return (1);
+	return (0);
 }
 
 static int	check_args(int fd, t_env *env)
@@ -54,7 +54,7 @@ void		get_args(char **av, t_env *e)
 		ft_errors("ERROR : No args.", 1, 0);
 	else if (check_asm(av[i]) != 1)
 		ft_errors("ERROR : format file.", 1, 0);
-	else if ((fd = open(av[i], O_RDONLY)) == -1)
+	else if ((fd = open(av[i], O_RDWR)) == -1)
 		ft_errors("ERROR : Open file fail.", 1, 0);
 	else if (check_args(fd, e) != 1)
 		ft_errors("ERROR : format cmd.", 1, 0);
