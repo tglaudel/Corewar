@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 13:52:42 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/28 14:51:54 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/28 15:12:32 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void		free_cmd(t_cmd *cmd)
 		{
 			ft_strdel(&cmd->tab[i]->arg);
 			free(cmd->tab[i]);
+			cmd->tab[i] = NULL;
 			i++;
 		}
 		free(cmd->tab);
@@ -72,4 +73,5 @@ void		free_all(t_env *e)
 	ft_strdel(&e->name);
 	ft_strdel(&e->label_c);
 	ft_bzero(e->cor.prog_name, PROG_NAME_LENGTH + 1);
+	ft_bzero(e->cor.comment, COMMENT_LENGTH + 1);
 }
