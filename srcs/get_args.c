@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 15:37:02 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/28 12:11:27 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/28 14:49:58 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ static int	check_args(int fd, t_env *env)
 	line = NULL;
 	while (get_next_line(fd, &line) == 1)
 	{
-		if (is_good_format(line, &env->cor, env))
+		if (ft_strcmp(line, "\0") != 0 && \
+		is_good_format(line, &env->cor, env) != 1)
 		{
-			continue ;
+			ft_strdel(&line);
+			ft_errors("ERROR : invalide line in .s", 1, 0);
 		}
 		ft_strdel(&line);
 	}
@@ -62,4 +64,5 @@ void		get_args(char **av, t_env *e)
 		j++;
 	tmp = ft_strsub(av[i], 0, j);
 	e->name = ft_strjoin(tmp, ".cor");
+	ft_strdel(&tmp);
 }

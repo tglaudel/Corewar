@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:24:56 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/28 14:03:51 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/28 14:50:19 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 static void		init_env(t_env *env)
 {
-
 	env->label_s = NULL;
 	env->label_e = NULL;
 	env->cmd_s = NULL;
@@ -37,7 +36,6 @@ int				main(int ac, char **av)
 		ft_errors("ERROR : No args.", 1, 0);
 	}
 	e.opt = get_opt(&av[1], OPT_STRING);
-	//boucle//
 	init_env(&e);
 	if (have_opt('h', e.opt))
 		return (print_help());
@@ -51,7 +49,6 @@ int				main(int ac, char **av)
 		return (0);
 	create_file(&e.cor, e.cmd_s, &e);
 	free_all(&e);
-	//sort boucle//
 	sleep(50);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 15:04:20 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/27 18:30:34 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/28 14:29:51 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int				check_cmd(char *s, int nb_arg, int op)
 	int		n;
 	char	**arg;
 
-	(void)op;
 	n = 0;
 	i = 0;
 	while (s[i] == ' ' || s[i] == '\t')
@@ -50,9 +49,13 @@ int				check_cmd(char *s, int nb_arg, int op)
 	while (nb_arg--)
 	{
 		if ((format_cmd_arg(arg[n]) & g_op_tab[op].i[n]) == 0)
+		{
+			free_tab(arg);
 			return (0);
+		}
 		n++;
 	}
+	free_tab(arg);
 	return (1);
 }
 
@@ -97,6 +100,7 @@ t_arg			**get_cmd_arg(char *s, int opc)
 		i++;
 	}
 	tab[i] = NULL;
+	free_tab(arg);
 	return (tab);
 }
 

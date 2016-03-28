@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 10:40:14 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/28 11:16:40 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/28 14:27:12 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int			print_help(void)
 		ft_strdel(&line);
 		line = NULL;
 	}
+	ft_strdel(&line);
 	return (0);
 }
