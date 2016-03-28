@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 15:37:02 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/28 16:57:49 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/28 17:21:53 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int			get_args(char *av, t_env *e)
 	char	*tmp;
 
 	j = 0;
-	while (av && av[0] == '-')
+	if (av && av[0] == '-')
 		return (1);
 	if (av == NULL || check_asm(av) != 1 || (fd = open(av, O_RDWR)) == -1)
 	{
@@ -61,8 +61,7 @@ int			get_args(char *av, t_env *e)
 		ft_errors("ERROR : bad format cmd.", 0, 0);
 		return (-1);
 	}
-	if (av[j] == '.')
-		j++;
+	av[j] == '.' ? j++ : 0;
 	while (av[j] != '.')
 		j++;
 	tmp = ft_strsub(av, 0, j);

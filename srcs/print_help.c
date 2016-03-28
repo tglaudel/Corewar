@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/28 10:40:14 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/28 14:27:12 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/28 17:18:02 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ int			print_help(void)
 		line = NULL;
 	}
 	ft_strdel(&line);
+	if (close(fd) == -1)
+		ft_errors("ERROR : Close help.txt", 1, 0);
 	return (0);
 }
