@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 13:35:07 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/28 18:28:02 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/29 12:00:54 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ static unsigned int		search_label(t_label *start, char *s, int pos)
 	return (0);
 }
 
-static int		int_to_dir(unsigned char *octet, char *s, int pos, t_label *lab)
+static int				int_to_dir(unsigned char *octet, char *s, int pos,\
+	t_label *lab)
 {
 	unsigned short int	i;
-	int				n;
+	int					n;
 
 	n = 0;
 	i = 0;
@@ -45,7 +46,8 @@ static int		int_to_dir(unsigned char *octet, char *s, int pos, t_label *lab)
 	return (2);
 }
 
-static int		int_to_ind(unsigned char *octet, char *s, int pos, t_label *lab)
+static int				int_to_ind(unsigned char *octet, char *s, int pos,\
+	t_label *lab)
 {
 	unsigned int	i;
 	int				n;
@@ -65,7 +67,8 @@ static int		int_to_ind(unsigned char *octet, char *s, int pos, t_label *lab)
 	return (4);
 }
 
-static int		char_to_octet(t_cmd *tmp, t_arg *arg, t_label *lab, int i)
+static int				char_to_octet(t_cmd *tmp, t_arg *arg, t_label *lab,\
+	int i)
 {
 	int				n;
 
@@ -80,11 +83,11 @@ static int		char_to_octet(t_cmd *tmp, t_arg *arg, t_label *lab, int i)
 	if (arg->size == T_DIR)
 		return (int_to_dir(&tmp->octet[i], arg->arg, tmp->pos_oct, lab));
 	if (arg->size == T_IND)
-		return(int_to_ind(&tmp->octet[i], arg->arg, tmp->pos_oct, lab));
+		return (int_to_ind(&tmp->octet[i], arg->arg, tmp->pos_oct, lab));
 	return (0);
 }
 
-void			convert_to_octet(t_cmd *start, t_label *lab)
+void					convert_to_octet(t_cmd *start, t_label *lab)
 {
 	t_cmd	*tmp;
 	int		i;

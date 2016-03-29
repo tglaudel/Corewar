@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:24:56 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/28 17:38:52 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/03/29 12:01:45 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ static int		asm_loop(t_env *e, char *av)
 		print_opt_d(e, 0);
 	if (have_opt('o', e->opt))
 		print_opt_o(e);
-	if ((have_opt('o', e->opt) || have_opt('d', e->opt)) && !have_opt('f', e->opt))
+	if ((have_opt('o', e->opt) || have_opt('d', e->opt)) && !have_opt('f',\
+	e->opt))
 		return (0);
 	create_file(&e->cor, e->cmd_s, e);
 	free_all(e);
