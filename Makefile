@@ -6,41 +6,45 @@
 #    By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 08:59:28 by tglaudel          #+#    #+#              #
-#    Updated: 2016/04/26 13:30:33 by tglaudel         ###   ########.fr        #
+#    Updated: 2016/04/26 18:13:49 by tglaudel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_PATH_ASM = srcs/asm
 
-SRC_PATH_COR = srcs/cor
+SRC_PATH_COR = srcs/corewar
 
 SRC_NAME_ASM = main.c \
-		   get_opt.c \
-		   get_args.c \
-		   check_format.c \
-		   format_comment_name.c \
-		   format_label.c \
-		   format_cmd.c \
-		   get_cmd.c \
-		   create_odc.c \
-		   convert_to_octet.c \
-		   is_something.c \
-		   create_file.c \
-		   utils.c \
-		   print.c \
-		   print_help.c \
-		   free_all.c \
+			   get_opt.c \
+			   get_args.c \
+			   check_format.c \
+			   format_comment_name.c \
+			   format_label.c \
+			   format_cmd.c \
+			   get_cmd.c \
+			   create_odc.c \
+			   convert_to_octet.c \
+			   is_something.c \
+			   create_file.c \
+			   utils.c \
+			   print.c \
+			   print_help.c \
+			   free_all.c \
 
 SRC_NAME_COR = main.c \
-		   get_opt.c \
+			   get_opt.c \
+			   print_help.c \
+			   is_something.c \
+			   get_champ.c \
 
-OBJ_ASM = $(SRC_ASM:.c=.o)
-
-OBJ_COR = $(SRC_COR:.c=.o)
 
 SRC_ASM = $(addprefix $(SRC_PATH_ASM)/,$(SRC_NAME_ASM))
 
 SRC_COR = $(addprefix $(SRC_PATH_COR)/,$(SRC_NAME_COR))
+
+OBJ_ASM = $(SRC_ASM:.c=.o)
+
+OBJ_COR = $(SRC_COR:.c=.o)
 
 NAME_ASM = asm
 
