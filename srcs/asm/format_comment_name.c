@@ -6,13 +6,13 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 10:42:59 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/28 17:08:53 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/26 13:56:23 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static int	format_name(char *s, int n, t_header *cor)
+static int	format_name(char *s, int n, header_t *cor)
 {
 	int i;
 	int j;
@@ -41,7 +41,7 @@ static int	format_name(char *s, int n, t_header *cor)
 	return (1);
 }
 
-int			is_comment(char *s, t_header *cor)
+int			is_comment(char *s, header_t *cor)
 {
 	int i;
 

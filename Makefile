@@ -6,13 +6,15 @@
 #    By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 08:59:28 by tglaudel          #+#    #+#              #
-#    Updated: 2016/03/28 14:00:30 by tglaudel         ###   ########.fr        #
+#    Updated: 2016/04/26 13:30:33 by tglaudel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC_PATH = srcs
+SRC_PATH_ASM = srcs/asm
 
-SRC_NAME = main.c \
+SRC_PATH_COR = srcs/cor
+
+SRC_NAME_ASM = main.c \
 		   get_opt.c \
 		   get_args.c \
 		   check_format.c \
@@ -29,11 +31,20 @@ SRC_NAME = main.c \
 		   print_help.c \
 		   free_all.c \
 
-OBJ = $(SRC:.c=.o)
+SRC_NAME_COR = main.c \
+		   get_opt.c \
 
-SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
+OBJ_ASM = $(SRC_ASM:.c=.o)
 
-NAME = asm
+OBJ_COR = $(SRC_COR:.c=.o)
+
+SRC_ASM = $(addprefix $(SRC_PATH_ASM)/,$(SRC_NAME_ASM))
+
+SRC_COR = $(addprefix $(SRC_PATH_COR)/,$(SRC_NAME_COR))
+
+NAME_ASM = asm
+
+NAME_COR = corewar
 
 CC = gcc
 
@@ -41,10 +52,17 @@ LIBFT = libft/libft.a
 
 CFLAGS = -Werror -Wall -Wextra
 
-all: $(NAME)
+all: co as
 
-$(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -Iincludes -o $(NAME)
+co: $(NAME_COR)
+
+as: $(NAME_ASM)
+
+$(NAME_ASM): $(LIBFT) $(OBJ_ASM)
+	$(CC) $(CFLAGS) $(OBJ_ASM) $(LIBFT) -Iincludes -o $(NAME_ASM)
+
+$(NAME_COR): $(LIBFT) $(OBJ_COR)
+	$(CC) $(CFLAGS) $(OBJ_COR) $(LIBFT) -Iincludes -o $(NAME_COR)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -Iincludes -o $@
@@ -53,13 +71,13 @@ $(LIBFT):
 	make -C libft
 
 clean:
-	rm -rf $(OBJ)
+	rm -rf $(OBJ_COR) $(OBJ_ASM)
 	make -C libft/ clean
 
 fclean: clean
-	rm -rf $(NAME)
+	rm -rf $(NAME_COR) $(NAME_ASM)
 	make -C libft/ fclean
 
 re: fclean all
 
-.PHONY: all re clean fclean
+.PHONY: all re clean fclean as cor

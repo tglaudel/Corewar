@@ -6,13 +6,13 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/26 18:16:36 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/28 12:12:55 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/26 14:45:07 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void		create_file(t_header *cor, t_cmd *cmd, t_env *e)
+void		create_file(header_t *cor, t_cmd *cmd, t_env *e)
 {
 	t_cmd	*tmp;
 	int		fd;

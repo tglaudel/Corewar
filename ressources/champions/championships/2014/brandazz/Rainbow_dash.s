@@ -5,6 +5,6 @@
 
 loop:
 	st r1, 6
-	live %0
+	live %42
 	ld %0, r2
 	zjmp %:loop

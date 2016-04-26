@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 11:03:33 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/27 16:51:02 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/26 14:44:51 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ char	create_odc(int opc, t_arg **tab)
 	while (tab[++i])
 	{
 		if (tab[i]->type == T_REG)
-			tmp = REG_OPC;
+			tmp = REG_CODE;
 		else if (tab[i]->type == T_DIR)
-			tmp = DIR_OPC;
+			tmp = DIR_CODE;
 		else if (tab[i]->type == T_IND)
-			tmp = IND_OPC;
+			tmp = IND_CODE;
 		res = res | tmp;
 		res = res << 2;
 		n += 2;
