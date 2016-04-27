@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 17:52:24 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/27 18:39:59 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/27 20:18:33 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ void		add_to_champ_lst(t_env *env, int nb, int width, char *file)
 
 	if (!(tmp = (t_champ*)malloc(sizeof(t_champ))))
 		ft_errors("ERROR : Error malloc", 1, 0);
+	tmp->next = NULL;
+	if (env->champ_start != NULL)
+		tmp->next = env->champ_start;
 	env->champ_start = tmp;
 	tmp->nb_champ = nb;
 	s = get_champ_file(file, width);
@@ -45,7 +48,6 @@ void		add_to_champ_lst(t_env *env, int nb, int width, char *file)
 	tmp->name = ft_strsub(s, 4, PROG_NAME_LENGTH);
 	tmp->comment = ft_strsub(s, 12 + PROG_NAME_LENGTH, COMMENT_LENGTH);
 	tmp->code = my_strsub(s, COMMENT_NAME_MAGIC, width);
-	tmp->next = NULL;
 }
 
 char		*get_champ_file(char *file, int width)

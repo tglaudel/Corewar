@@ -6,11 +6,11 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 11:13:48 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/24 11:35:14 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/27 19:04:03 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "cor.h"
 
 static int		add_opt(int pos, int opt)
 {

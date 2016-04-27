@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 16:31:37 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/27 18:02:31 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/27 20:19:22 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void				insert_in_memory(t_env *e)
 		i = -1;
 		while (++i < tmp->width)
 			e->mem[n + i] = tmp->code[i];
-		n += MEM_SIZE / 4;
+		n += MEM_SIZE / e->nb_player;
 		tmp = tmp->next;
 	}
 	print_memory(e->mem);
