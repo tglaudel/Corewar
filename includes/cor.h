@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cor.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/27 18:20:17 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/27 18:33:10 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../libft/includes/libft.h"
 # include "op.h"
 
-# define OPT_STRING "tes"
+# define OPT_STRING "n"
 # define COMMENT_NAME_MAGIC		(PROG_NAME_LENGTH + COMMENT_LENGTH + 16)
 
 typedef struct		s_proc
@@ -51,6 +51,12 @@ typedef struct		s_env
 
 int					get_opt(char **av, char *l_opt);
 int					have_opt(char o, int opt);
+
+/*
+** Ncurses :
+*/
+
+int 				init_ncurses(void);
 
 /*
 **
