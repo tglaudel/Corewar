@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 17:52:24 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/27 18:17:58 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/27 18:39:59 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void		add_to_champ_lst(t_env *env, int nb, int width, char *file)
 	if (!(tmp = (t_champ*)malloc(sizeof(t_champ))))
 		ft_errors("ERROR : Error malloc", 1, 0);
 	env->champ_start = tmp;
-	tmp->reg[0] = nb;
+	tmp->nb_champ = nb;
 	s = get_champ_file(file, width);
 	tmp->width = width;
 	tmp->name = ft_strsub(s, 4, PROG_NAME_LENGTH);

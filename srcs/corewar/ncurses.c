@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ncurses.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 13:48:05 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/04/27 17:52:41 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/04/27 18:41:53 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
+#include <ncurses.h>
 
 int		init_ncurses(void)
 {

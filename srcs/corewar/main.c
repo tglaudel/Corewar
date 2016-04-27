@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:46:57 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/27 18:32:33 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/04/27 18:40:36 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int				main(int ac, char **av)
 	e.opt = get_opt(&av[1], OPT_STRING);
 	if (have_opt('h', e.opt))
 		return (print_help());
-	if (have_opt('n'), e.opt)
+	if (have_opt('n', e.opt))
 		init_ncurses();
 	init_cor(&e, &av[1]);
 }
