@@ -1,16 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_champ.c                                        :+:      :+:    :+:   */
+/*   champ.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 17:52:24 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/26 18:54:00 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/27 18:17:58 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
+
+static char	*my_strsub(char const *s, unsigned int start, size_t len)
+{
+	char	*str;
+	size_t	i;
+
+	i = 0;
+	str = ft_strnew(len + 1);
+	if (str == NULL)
+		return (NULL);
+	while (i < len)
+	{
+		str[i] = s[i + start];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+	return (NULL);
+}
+
+void		add_to_champ_lst(t_env *env, int nb, int width, char *file)
+{
+	t_champ *tmp;
+	char *s;
+
+	if (!(tmp = (t_champ*)malloc(sizeof(t_champ))))
+		ft_errors("ERROR : Error malloc", 1, 0);
+	env->champ_start = tmp;
+	tmp->reg[0] = nb;
+	s = get_champ_file(file, width);
+	tmp->width = width;
+	tmp->name = ft_strsub(s, 4, PROG_NAME_LENGTH);
+	tmp->comment = ft_strsub(s, 12 + PROG_NAME_LENGTH, COMMENT_LENGTH);
+	tmp->code = my_strsub(s, COMMENT_NAME_MAGIC, width);
+	tmp->next = NULL;
+}
 
 char		*get_champ_file(char *file, int width)
 {

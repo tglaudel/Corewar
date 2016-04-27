@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 16:13:42 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/26 18:17:59 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/27 11:15:32 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int		check_octet(char *s)
 	int fd;
 	char buf[PROG_NAME_LENGTH + 12];
 	int i;
-	int n;
+	long int n;
 	int ret;
 
 	i = -1;
@@ -31,7 +31,7 @@ static int		check_octet(char *s)
 		n = n << 8;
 	}
 	close(fd);
-	return (n >> 8);
+	return ((int)(n >> 8));
 }
 
 int				is_champ(char *s)

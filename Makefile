@@ -6,7 +6,7 @@
 #    By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 08:59:28 by tglaudel          #+#    #+#              #
-#    Updated: 2016/04/26 18:13:49 by tglaudel         ###   ########.fr        #
+#    Updated: 2016/04/27 18:24:49 by tglaudel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,9 @@ SRC_NAME_COR = main.c \
 			   get_opt.c \
 			   print_help.c \
 			   is_something.c \
-			   get_champ.c \
+			   champ.c \
+			   memory.c \
+			   init.c \
 
 
 SRC_ASM = $(addprefix $(SRC_PATH_ASM)/,$(SRC_NAME_ASM))
@@ -66,7 +68,7 @@ $(NAME_ASM): $(LIBFT) $(OBJ_ASM)
 	$(CC) $(CFLAGS) $(OBJ_ASM) $(LIBFT) -Iincludes -o $(NAME_ASM)
 
 $(NAME_COR): $(LIBFT) $(OBJ_COR)
-	$(CC) $(CFLAGS) $(OBJ_COR) $(LIBFT) -Iincludes -o $(NAME_COR)
+	$(CC) $(CFLAGS) $(OBJ_COR) $(LIBFT) -Iincludes -lncurses -o $(NAME_COR)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -Iincludes -o $@
