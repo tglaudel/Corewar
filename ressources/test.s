@@ -1,4 +1,4 @@
 .name "test"
 .comment "test"
 
-aff r1
+sti		r1, %1, %1
