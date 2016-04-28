@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/28 21:21:05 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/28 22:26:52 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ unsigned int			dir_to_int(char *mem, int pos) // 2
 {
 	unsigned int dir;
 
-	ft_putendl("salut je rentre ici");
+	//ft_printf("%3.2x", mem[pos]);
 	dir = 0;
 	dir = (dir | mem[pos]) << 8;
 	dir = dir | mem[(pos + 1) % MEM_SIZE];
@@ -55,6 +55,7 @@ unsigned int			ind_to_int(char *mem, int pos) // 4
 {
 	unsigned int ind;
 
+	//ft_printf("%3.2x", mem[pos]);
 	ind = 0;
 	ind = (ind | mem[pos]) << 8;
 	ind = (ind | mem[(pos + 1) % MEM_SIZE]) << 8;
@@ -63,19 +64,13 @@ unsigned int			ind_to_int(char *mem, int pos) // 4
 	return (ind);
 }
 
-int				parsing_argument(t_proc *proc, char *mem)
+int				parsing_argument(t_proc *proc, char *mem, int i)
 {
 	int a;
 	int pos_mem;
-	int i = -1;
 
 	pos_mem = 1;
 	a = -1;
-	while (++i < 10)
-	{
-		ft_printf("%3.2x", mem[proc->pos + i]);
-	}
-	ft_putchar('\n');
 	if (proc->inst.odc)
 	{
 		++pos_mem;
@@ -83,21 +78,25 @@ int				parsing_argument(t_proc *proc, char *mem)
 			proc->inst.arg[0] = mem[(proc->pos + 2) % MEM_SIZE];
 		else
 		{
-			while (++a < 3)
+			while (++a < op_tab[i].nb_arg)
 			{
-				if ((proc->inst.odc >> (a * 2 + 2) & IND_CODE) == IND_CODE)
+				if ((proc->inst.odc >> (6 - a * 2) & IND_CODE) == IND_CODE)
 				{
-					proc->inst.arg[a] = ind_to_int(mem, proc->pos);
+					ft_putnbr(a);
+					ft_putchar('\n');
+					proc->inst.arg[a] = ind_to_int(mem, proc->pos + pos_mem);
 					pos_mem += 4;
 				}
-				else if ((proc->inst.odc >> (a * 2 + 2) & DIR_CODE) == DIR_CODE)
+				else if ((proc->inst.odc >> (6 - a * 2) & DIR_CODE) == DIR_CODE)
 				{
-					proc->inst.arg[a] = dir_to_int(mem, proc->pos);
+					ft_putnbr(a);
+					ft_putchar('\n');
+					proc->inst.arg[a] = dir_to_int(mem, proc->pos + pos_mem);
 					pos_mem += 2;
 				}
-				else if ((proc->inst.odc >> (a * 2 + 2) & REG_CODE) == REG_CODE)
+				else if ((proc->inst.odc >> (6 - a * 2) & REG_CODE) == REG_CODE)
 				{
-					proc->inst.arg[a] = mem[proc->pos];
+					proc->inst.arg[a] = proc->r[(int)mem[proc->pos + pos_mem]];
 					pos_mem += 1;
 				}
 			}
@@ -119,7 +118,7 @@ int			parsing_instruction(t_proc *proc, char *mem)
 			proc->inst.opc = (int)mem[proc->pos];
 			if (op_tab[i].codage_code == 1)
 				proc->inst.odc = mem[(proc->pos + 1) % MEM_SIZE];
-			if (parsing_argument(proc, mem))
+			if (parsing_argument(proc, mem, i))
 			{
 				proc->wait_cycle = op_tab[i].wait_before_exe - 1;
 				return (1);
@@ -158,7 +157,10 @@ static void		proc_loop(int nb_cycle, t_proc *start, char *mem)
 		else if (tmp->wait_cycle == 0 && tmp->inst.opc != 0)
 		{
 			if (tmp->inst.opc != 0)
+			{
+				tmp->inst.opc = 0;
 				ft_printf("C'est ok !");
+			}
 				//exe_instruction(tmp, mem);
 		}
 		else

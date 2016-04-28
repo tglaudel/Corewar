@@ -1,4 +1,5 @@
 .name "test"
 .comment "test"
 
-sti		r1, %1, %1
+sti		r2, %50, %18
+ld	%0, r4

@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 10:01:32 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/28 17:34:57 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/28 22:10:22 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void		new_processus(t_env *e, int nb, int pos)
 	tmp->r[0] = nb;
 	tmp->pos = pos;
 	tmp->index = e->nb_proc;
+	tmp->inst.arg = (unsigned int*)malloc(sizeof(unsigned int) * 3);
 	tmp->inst.opc = 0;
 	tmp->inst.odc = 0;
 	tmp->inst.arg[0] = 0;

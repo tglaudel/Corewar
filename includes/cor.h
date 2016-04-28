@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/28 17:33:41 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/28 22:04:24 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct		s_inst
 {
 	char			opc;
 	char			odc;
-	unsigned int	arg[3];
+	unsigned int	*arg;
 }					t_inst;
 
 typedef struct		s_proc
