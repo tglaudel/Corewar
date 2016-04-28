@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:46:57 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/27 20:15:18 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/28 11:04:09 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ int				main(int ac, char **av)
 	if (have_opt('n', e.opt))
 		init_ncurses();
 	init_cor(&e, &av[1]);
+	game_loop(&e);
 }
