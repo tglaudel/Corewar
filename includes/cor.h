@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/28 22:04:24 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/29 14:05:06 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 typedef struct		s_inst
 {
 	char			opc;
-	char			odc;
+	unsigned char			odc;
 	unsigned int	*arg;
 }					t_inst;
 
@@ -52,7 +52,7 @@ typedef struct		s_champ
 
 typedef struct		s_env
 {
-	char			mem[MEM_SIZE];
+	unsigned char	mem[MEM_SIZE];
 	int				nb_cycle;
 	int				nb_cycle_max;
 	int				opt;
@@ -117,7 +117,7 @@ void				game_loop(t_env *e);
 */
 
 void				insert_in_memory(t_env *e);
-void				print_memory(char *s, t_proc *start);
+void				print_memory(unsigned char *s, t_proc *start);
 
 /*
 ** Initialisation :

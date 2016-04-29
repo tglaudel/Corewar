@@ -6,13 +6,13 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 16:31:37 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/28 11:49:11 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/29 14:04:46 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
 
-void				print_memory(char *s, t_proc *start)
+void				print_memory(unsigned char *s, t_proc *start)
 {
 	int x;
 	int y;
