@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/29 14:05:06 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/29 15:59:18 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,11 @@ typedef struct		s_champ
 
 typedef struct		s_env
 {
+	int				opt;
+	int				verbose;
 	unsigned char	mem[MEM_SIZE];
 	int				nb_cycle;
 	int				nb_cycle_max;
-	int				opt;
 	int				nb_player;
 	int				champ_in_life;
 	int				proc_in_life;
