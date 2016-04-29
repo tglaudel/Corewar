@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:46:57 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/28 11:04:09 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/29 14:44:47 by fgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,11 @@ int				main(int ac, char **av)
 	if (have_opt('h', e.opt))
 		return (print_help());
 	if (have_opt('n', e.opt))
-		init_ncurses();
+		init_ncurses(&e);
 	init_cor(&e, &av[1]);
 	game_loop(&e);
+	endwin();
+	free(e.curse.principal);
+	free(e.curse.secondary_2);
+	free(e.curse.secondary_1);
 }

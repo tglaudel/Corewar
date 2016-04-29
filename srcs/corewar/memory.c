@@ -6,13 +6,13 @@
 /*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 16:31:37 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/29 15:38:42 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/04/29 15:49:07 by fgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
 
-void				print_memory(t_env *e, char *s, t_proc *start)
+void				print_memory(t_env *e, unsigned char *s, t_proc *start)
 {
 	int x;
 	int x2;

@@ -6,7 +6,7 @@
 /*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/29 14:56:26 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/04/29 15:50:04 by fgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 typedef struct		s_inst
 {
 	char			opc;
-	char			odc;
-	unsigned int	arg[3];
+	unsigned char			odc;
+	unsigned int	*arg;
 }					t_inst;
 
 typedef struct		s_proc
@@ -61,8 +61,8 @@ typedef struct		s_curse
 
 typedef struct		s_env
 {
-	t_curse		curse;
-	char			mem[MEM_SIZE];
+	t_curse			curse;
+	unsigned char	mem[MEM_SIZE];
 	int				nb_cycle;
 	int				nb_cycle_max;
 	int				opt;
