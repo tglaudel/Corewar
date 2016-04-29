@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/28 21:21:05 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/29 15:35:48 by fgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ unsigned int			dir_to_int(char *mem, int pos) // 2
 {
 	unsigned int dir;
 
-	ft_putendl("salut je rentre ici");
+	// ft_putendl("salut je rentre ici");
 	dir = 0;
 	dir = (dir | mem[pos]) << 8;
 	dir = dir | mem[(pos + 1) % MEM_SIZE];
@@ -73,9 +73,9 @@ int				parsing_argument(t_proc *proc, char *mem)
 	a = -1;
 	while (++i < 10)
 	{
-		ft_printf("%3.2x", mem[proc->pos + i]);
+		// ft_printf("%3.2x", mem[proc->pos + i]);
 	}
-	ft_putchar('\n');
+	// ft_putchar('\n');
 	if (proc->inst.odc)
 	{
 		++pos_mem;
@@ -139,8 +139,8 @@ void		define_instruction(t_proc *proc, char *mem)
 	}
 	else
 	{
-		ft_printf("P %d | opc : %d, arg1 : %d, arg2 : %d, arg3 : %d\n",\
-		proc->index, proc->inst.opc, proc->inst.arg[0], proc->inst.arg[1], proc->inst.arg[2]);
+		// ft_printf("P %d | opc : %d, arg1 : %d, arg2 : %d, arg3 : %d\n",
+		// proc->index, proc->inst.opc, proc->inst.arg[0], proc->inst.arg[1], proc->inst.arg[2]);
 	}
 }
 
@@ -158,7 +158,10 @@ static void		proc_loop(int nb_cycle, t_proc *start, char *mem)
 		else if (tmp->wait_cycle == 0 && tmp->inst.opc != 0)
 		{
 			if (tmp->inst.opc != 0)
-				ft_printf("C'est ok !");
+			{
+
+			}
+				// ft_printf("C'est ok !");
 				//exe_instruction(tmp, mem);
 		}
 		else
@@ -175,11 +178,14 @@ void		game_loop(t_env *e)
 	while (e->champ_in_life > 0 && e->proc_in_life > 0 &&\
 	e->nb_cycle < e->nb_cycle_max)
 	{
-		proc_loop(e->nb_cycle, e->proc_start, e->mem);
-		++e->nb_cycle;
-		ft_printf("It is now cycle %d\n", e->nb_cycle);
-		//system("clear");
-		//print_memory(e->mem, e->proc_start);
-		//usleep(20000);
+		if ((e->curse.key = getch()) == 27)
+			return ;
+			proc_loop(e->nb_cycle, e->proc_start, e->mem);
+			++e->nb_cycle;
+			// ft_printf("It is now cycle %d\n", e->nb_cycle);
+			//system("clear");
+			print_memory(e, e->mem, e->proc_start);
+			//usleep(20000);
+			wrefresh(e->curse.principal);
 	}
 }

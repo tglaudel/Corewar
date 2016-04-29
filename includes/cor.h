@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cor.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/28 17:33:41 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/29 14:56:26 by fgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libft/includes/libft.h"
 # include "op.h"
+# include <ncurses.h>
 
 # define OPT_STRING "n"
 # define COMMENT_NAME_MAGIC		(PROG_NAME_LENGTH + COMMENT_LENGTH + 16)
@@ -50,8 +51,17 @@ typedef struct		s_champ
 	struct s_champ	*next;
 }					t_champ;
 
+typedef struct		s_curse
+{
+	WINDOW			*principal;
+	WINDOW			*secondary_1;
+	WINDOW			*secondary_2;
+	int				key;
+}					t_curse;
+
 typedef struct		s_env
 {
+	t_curse		curse;
 	char			mem[MEM_SIZE];
 	int				nb_cycle;
 	int				nb_cycle_max;
@@ -89,7 +99,7 @@ int					have_opt(char o, int opt);
 ** Ncurses :
 */
 
-int 				init_ncurses(void);
+void 				init_ncurses(t_env *e);
 
 /*
 ** Champ :
@@ -117,7 +127,7 @@ void				game_loop(t_env *e);
 */
 
 void				insert_in_memory(t_env *e);
-void				print_memory(char *s, t_proc *start);
+void				print_memory(t_env *e, char *s, t_proc *start);
 
 /*
 ** Initialisation :
