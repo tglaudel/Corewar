@@ -6,7 +6,7 @@
 /*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/29 15:50:04 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/04/29 16:00:55 by fgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void				game_loop(t_env *e);
 */
 
 void				insert_in_memory(t_env *e);
-void				print_memory(t_env *e, char *s, t_proc *start);
+void				print_memory(t_env *e, unsigned char *s, t_proc *start);
 
 /*
 ** Initialisation :
