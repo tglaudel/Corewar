@@ -6,7 +6,7 @@
 #    By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 08:59:28 by tglaudel          #+#    #+#              #
-#    Updated: 2016/04/28 11:41:11 by tglaudel         ###   ########.fr        #
+#    Updated: 2016/04/29 18:32:57 by tglaudel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRC_NAME_COR = main.c \
 			   ncurses.c \
 			   processus.c \
 			   game_loop.c \
+			   print.c \
 
 
 SRC_ASM = $(addprefix $(SRC_PATH_ASM)/,$(SRC_NAME_ASM))

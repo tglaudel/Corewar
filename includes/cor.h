@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/29 15:59:18 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/29 18:33:02 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,15 @@
 
 # include "../libft/includes/libft.h"
 # include "op.h"
+# include <ncurses.h>
 
-# define OPT_STRING "n"
+# define OPT_STRING "nvd"
 # define COMMENT_NAME_MAGIC		(PROG_NAME_LENGTH + COMMENT_LENGTH + 16)
+# define VERBOSE_LIVE 1
+# define VERBOSE_CYCLE 2
+# define VERBOSE_OP 4
+# define VERBOSE_DIE 8
+# define VERBOSE_PC 16
 
 typedef struct		s_inst
 {
@@ -50,6 +56,14 @@ typedef struct		s_champ
 	struct s_champ	*next;
 }					t_champ;
 
+typedef struct		s_curse
+{
+	WINDOW			*principal;
+	WINDOW			*secondary_1;
+	WINDOW			*secondary_2;
+	int				key;
+}					t_curse;
+
 typedef struct		s_env
 {
 	int				opt;
@@ -64,6 +78,7 @@ typedef struct		s_env
 	t_champ			*champ_start;
 	t_champ			*champ_end;
 	t_proc			*proc_start;
+	t_curse			curse;
 }					t_env;
 
 typedef struct		s_op
@@ -85,12 +100,14 @@ typedef struct		s_op
 
 int					get_opt(char **av, char *l_opt);
 int					have_opt(char o, int opt);
+int					get_verbose(char **av);
+int					get_ncycle(char **av);
 
 /*
 ** Ncurses :
 */
 
-int 				init_ncurses(void);
+void 				init_ncurses(t_env *e);
 
 /*
 ** Champ :
@@ -118,7 +135,7 @@ void				game_loop(t_env *e);
 */
 
 void				insert_in_memory(t_env *e);
-void				print_memory(unsigned char *s, t_proc *start);
+void				print_memory(t_env *e, unsigned char *s, t_proc *start);
 
 /*
 ** Initialisation :
@@ -132,5 +149,6 @@ void				init_env(t_env *e);
 */
 
 int					print_help(void);
+void				print_op(t_proc *proc, int i);
 
 #endif

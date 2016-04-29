@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/29 14:50:05 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/29 18:58:12 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,19 @@ t_op    op_tab[17] =
 	{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0, 0},
 	{0, 0, {0}, 0, 0, 0, 0, 0, 0}
 };
+
+void		print_op(t_proc *proc, int i)
+{
+	if (op_tab[i].nb_arg == 1)
+		ft_printf("P %5d| %s %d\n", proc->index, op_tab[i].name,\
+		proc->inst.arg[0]);
+	else if (op_tab[i].nb_arg == 2)
+		ft_printf("P %5d| %s %d %d\n", proc->index, op_tab[i].name,\
+		proc->inst.arg[0], proc->inst.arg[1]);
+	else if (op_tab[i].nb_arg == 3)
+		ft_printf("P %5d| %s %d %d %d\n", proc->index, op_tab[i].name,\
+		proc->inst.arg[0], proc->inst.arg[1], proc->inst.arg[2]);
+}
 
 unsigned int			dir_to_int(unsigned char *mem, int pos)
 {
@@ -152,18 +165,18 @@ int			parsing_instruction(t_proc *proc, unsigned char *mem)
 	return (-1);
 }
 
-static int 		define_instruction(t_proc *proc, unsigned char *mem)
+static int 		define_instruction(t_env *e, t_proc *proc, unsigned char *mem)
 {
 	int size;
 
 	if ((size = parsing_instruction(proc, mem)) == -1)
 	{
-		++proc->pos;
+		proc->pos = ++proc->pos % MEM_SIZE;
 	}
 	else
 	{
-		//ft_printf("P %d | opc : %d, arg1 : %d, arg2 : %d, arg3 : %d\n",\
-		//proc->index, proc->inst.opc, proc->inst.arg[0], proc->inst.arg[1], proc->inst.arg[2]);
+		if (e->verbose & VERBOSE_OP)
+			print_op(proc, proc->inst.opc - 1);
 		return (size);
 	}
 	return (-1);
@@ -171,7 +184,6 @@ static int 		define_instruction(t_proc *proc, unsigned char *mem)
 
 static void		exe_instruction(t_proc *proc)
 {
-	//ft_printf("P %d -> opc : %d\n", proc->index, proc->inst.opc);
 	proc->pos = proc->pc;
 	proc->pc = 0;
 	proc->inst.opc = 0;
@@ -198,10 +210,10 @@ static void		proc_loop(t_env *e)
 			if (proc->inst.opc == 12)
 				new_processus(e, e->nb_proc, proc->pos + 5);
 			exe_instruction(proc);
-			if ((size = define_instruction(proc, e->mem)))
+			if ((size = define_instruction(e, proc, e->mem)))
 				proc->pc = (proc->pos + size) % MEM_SIZE;
 		}
-		else if ((size = define_instruction(proc, e->mem)))
+		else if ((size = define_instruction(e, proc, e->mem)))
 		{
 			proc->pc = (proc->pos + size) % MEM_SIZE;
 		}
@@ -217,11 +229,14 @@ void		game_loop(t_env *e)
 	while (e->champ_in_life > 0 && e->proc_in_life > 0 &&\
 	e->nb_cycle < e->nb_cycle_max)
 	{
-		proc_loop(e);
-		++e->nb_cycle;
-		ft_printf("It is now cycle %d, %d\n", e->nb_cycle, e->nb_proc);
-		//system("clear");
-		//print_memory(e->mem, e->proc_start);
-		//usleep(20000);
+	//	if ((e->curse.key = getch()) == 27)
+	//		return ;
+			proc_loop(e);
+			++e->nb_cycle;
+			if (e->verbose & VERBOSE_CYCLE)
+				ft_printf("It is now cycle %d -> %d \n", e->nb_cycle, e->nb_proc);
+			//system("clear");
+			//print_memory(e, e->mem, e->proc_start);
+			//usleep(25000);
 	}
 }
