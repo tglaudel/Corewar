@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/29 18:58:12 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/30 19:10:53 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ unsigned int			dir_to_int(unsigned char *mem, int pos)
 {
 	unsigned int dir;
 
-	// ft_printf("%3.2x", mem[pos]);
+	// ft_pri6ntf("%3.2x", mem[pos]);
 	// ft_printf("%3.2x \n", mem[pos + 1]);
 	dir = 0;
 	dir = (dir | mem[pos]) << 8;
@@ -235,8 +235,13 @@ void		game_loop(t_env *e)
 			++e->nb_cycle;
 			if (e->verbose & VERBOSE_CYCLE)
 				ft_printf("It is now cycle %d -> %d \n", e->nb_cycle, e->nb_proc);
-			//system("clear");
-			//print_memory(e, e->mem, e->proc_start);
-			//usleep(25000);
+			// system("clear");
+			// print_memory(e, e->mem, e->proc_start);
+			// usleep(25000);
+			if (have_opt('n', e->opt))
+			{
+				print_board(e);
+				usleep(10000);
+			}
 	}
 }

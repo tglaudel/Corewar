@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 16:31:37 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/29 16:11:50 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/30 19:10:32 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,18 +72,19 @@ void				print_memory(t_env *e, unsigned char *s, t_proc *start)
 void				insert_in_memory(t_env *e)
 {
 	int i;
-	t_champ *tmp;
+	t_champ *champ;
 	int n;
 
 	n = 0;
-	tmp = e->champ_start;
-	while (tmp)
+	champ = e->champ_start;
+	while (champ)
 	{
 		i = -1;
-		while (++i < tmp->width)
-			e->mem[n + i] = tmp->code[i];
-		new_processus(e, tmp->nb_champ, n);
+		while (++i < champ->width)
+			e->mem[n + i] = champ->code[i];
+		new_processus(e, champ->nb_champ, n);
+		//first_print(e, champ->nb_champ, n, champ->width);
 		n += MEM_SIZE / e->nb_player;
-		tmp = tmp->next;
+		champ = champ->next;
 	}
 }

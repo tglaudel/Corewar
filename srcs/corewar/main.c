@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:46:57 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/29 18:34:50 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/30 17:10:45 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ int				main(int ac, char **av)
 	if (have_opt('h', e.opt))
 		return (print_help());
 	if (have_opt('n', e.opt))
-		init_ncurses(&e);
+		init_ncurses2();
 	init_cor(&e, &av[1]);
 	game_loop(&e);
+	print_board(&e);
 	// endwin();
 	// free(e.curse.principal);
 	// free(e.curse.secondary_2);

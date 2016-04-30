@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 17:59:20 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/29 17:23:31 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/30 13:43:47 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void		init_env(t_env *e)
 	e->champ_start = NULL;
 	e->champ_end = NULL;
 	e->proc_start = NULL;
-	e->nb_cycle = 0;
+	if (e->nb_cycle_max == -1)
+		e->nb_cycle_max = 2147483647;
 	e->nb_player = 0;
 	e->champ_in_life = 4;
 	e->proc_in_life = 4;

@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/29 18:33:02 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/04/30 19:10:26 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define VERBOSE_OP 4
 # define VERBOSE_DIE 8
 # define VERBOSE_PC 16
+# define BASE_HEXA "0123456789abcdef"
 
 typedef struct		s_inst
 {
@@ -108,6 +109,8 @@ int					get_ncycle(char **av);
 */
 
 void 				init_ncurses(t_env *e);
+void 				init_ncurses2(void);
+//void				first_print(t_env *e, int nb_champ, int pos, int size);
 
 /*
 ** Champ :
@@ -150,5 +153,6 @@ void				init_env(t_env *e);
 
 int					print_help(void);
 void				print_op(t_proc *proc, int i);
+void				print_board(t_env *env);
 
 #endif
