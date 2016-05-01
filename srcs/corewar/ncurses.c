@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 13:48:05 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/04/30 19:13:00 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/01 13:04:30 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void				print_board(t_env *e)
 	{
 		i = -1;
 		u = e->mem[pos];
-		while (++i < 2)
+		while (++i < 2) // itoa_base 16 u = case_mem;
 		{
 			mem_hexa[i] = BASE_HEXA[u % 16];
 			u /= 16;

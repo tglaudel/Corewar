@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 16:31:37 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/30 19:10:32 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/01 18:20:00 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void				insert_in_memory(t_env *e)
 			e->mem[n + i] = champ->code[i];
 		new_processus(e, champ->nb_champ, n);
 		//first_print(e, champ->nb_champ, n, champ->width);
-		n += MEM_SIZE / e->nb_player;
+		n += MEM_SIZE / e->nb_champ;
 		champ = champ->next;
 	}
 }

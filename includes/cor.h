@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/30 19:10:26 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/01 18:58:26 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 typedef struct		s_inst
 {
 	char			opc;
-	unsigned char			odc;
-	unsigned int	*arg;
+	unsigned char	odc;
+	unsigned int	arg[3];
 }					t_inst;
 
 typedef struct		s_proc
@@ -41,6 +41,7 @@ typedef struct		s_proc
 	int				carry;
 	int				r[REG_NUMBER];
 	int				wait_cycle;
+	int				live_exec;
 	t_inst			inst;
 	struct s_proc	*next;
 }					t_proc;
@@ -72,10 +73,10 @@ typedef struct		s_env
 	unsigned char	mem[MEM_SIZE];
 	int				nb_cycle;
 	int				nb_cycle_max;
-	int				nb_player;
-	int				champ_in_life;
-	int				proc_in_life;
+	int				nb_champ;
 	int				nb_proc;
+	int				c_to_die;
+	int				nb_check_td;
 	t_champ			*champ_start;
 	t_champ			*champ_end;
 	t_proc			*proc_start;
@@ -95,6 +96,8 @@ typedef struct		s_op
 	int				label_size;
 }					t_op;
 
+extern t_op g_op_tab[17];
+
 /*
 ** Options & env :
 */
@@ -108,9 +111,8 @@ int					get_ncycle(char **av);
 ** Ncurses :
 */
 
-void 				init_ncurses(t_env *e);
-void 				init_ncurses2(void);
-//void				first_print(t_env *e, int nb_champ, int pos, int size);
+void				init_ncurses(t_env *e);
+void				init_ncurses2(void);
 
 /*
 ** Champ :
@@ -126,12 +128,19 @@ int					is_champ(char *s);
 
 void				new_processus(t_env *e, int nb, int pos);
 int					is_prog_pos(t_proc *start, int x, int y);
+void				check_proc_cycle(t_env *e);
 
 /*
 ** Game :
 */
 
 void				game_loop(t_env *e);
+unsigned int		ind_to_int(unsigned char *mem, int pos);
+unsigned int		dir_to_int(unsigned char *mem, int pos);
+int					have_odc_arg(int a, unsigned char *mem, t_proc *proc,\
+					int i);
+int					parsing_instruction(t_proc *proc, unsigned char *mem);
+int					parsing_argument(t_proc *proc, unsigned char *mem, int i);
 
 /*
 ** Memory :
@@ -146,13 +155,14 @@ void				print_memory(t_env *e, unsigned char *s, t_proc *start);
 
 void				init_cor(t_env *e, char **av);
 void				init_env(t_env *e);
+void				re_init_proc(t_proc *start);
 
 /*
 ** Print :
 */
 
 int					print_help(void);
-void				print_op(t_proc *proc, int i);
 void				print_board(t_env *env);
+void				print_op(t_proc *proc, int i, int cycle);
 
 #endif

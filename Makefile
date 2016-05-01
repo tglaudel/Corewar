@@ -6,7 +6,7 @@
 #    By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 08:59:28 by tglaudel          #+#    #+#              #
-#    Updated: 2016/04/29 18:32:57 by tglaudel         ###   ########.fr        #
+#    Updated: 2016/05/01 14:29:38 by tglaudel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ SRC_NAME_ASM = main.c \
 			   print_help.c \
 			   free_all.c \
 
-SRC_NAME_COR = main.c \
+SRC_NAME_COR = op.c \
+			   main.c \
 			   get_opt.c \
 			   print_help.c \
 			   is_something.c \
@@ -42,6 +43,9 @@ SRC_NAME_COR = main.c \
 			   processus.c \
 			   game_loop.c \
 			   print.c \
+			   conversion.c \
+			   parsing_instruction.c \
+			   check_proc_cycle.c \
 
 
 SRC_ASM = $(addprefix $(SRC_PATH_ASM)/,$(SRC_NAME_ASM))
