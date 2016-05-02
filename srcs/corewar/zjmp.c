@@ -3,15 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   zjmp.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:42:16 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/04/28 11:44:39 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/02 21:46:09 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	zjmp(struct process, int val)
+#include "cor.h"
+
+int		zjmp(t_env *e, t_proc *proc)
 {
-	if (process->carry == 1)
-		process->i = process->i + val;
+	(void)e;
+	if (proc->carry == 1) // si test enlever le carry c'est plutot pas mal, pd
+	{
+		proc->pos += ((int)proc->inst.arg[0] - 1)% MEM_SIZE;
+		if (proc->pos < 0)
+			proc->pos = MEM_SIZE + proc->pos;
+		proc->pc = proc->pos;
+		return (1);
+	}
+	return (0);
 }

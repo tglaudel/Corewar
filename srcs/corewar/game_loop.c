@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/02 19:01:40 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/02 21:43:05 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ static void		exe_instruction(t_proc *proc, t_env *e)
 {
 	if (proc->inst.opc == 1)
 		live(e, proc);
+	else if (proc->inst.opc == 9)
+		zjmp(e, proc);
 	else if (proc->inst.opc == 12)
 		new_processus(e, e->nb_proc, proc->pos + 5, proc);
 	proc->pos = proc->pc;
-	ft_putnbr(e->global_live);
 	init_proc(proc);
 }
 
@@ -77,9 +78,9 @@ void		game_loop(t_env *e)
 		++before_check_die;
 		if (e->verbose & VERBOSE_CYCLE)
 			ft_printf("It is now cycle %d -> %d \n", e->nb_cycle, e->nb_proc);
-		// system("clear");
-		// print_memory(e, e->mem, e->proc_start);
-		// usleep(10000);
+		system("clear");
+		print_memory(e, e->mem, e->proc_start);
+		usleep(20000);
 		if (have_opt('n', e->opt))
 			print_board(e);
 		if (before_check_die == e->c_to_die)
@@ -87,6 +88,8 @@ void		game_loop(t_env *e)
 			check_proc_cycle(e);
 			re_init_proc(e->proc_start);
 			before_check_die = 0;
+			if (e->c_to_die <= 0)
+				break ;
 		}
 	}
 }

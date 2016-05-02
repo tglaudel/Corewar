@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/02 18:58:18 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/02 21:22:54 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,8 @@ void				init_proc(t_proc *proc);
 ** OP :
 */
 
-int					live(t_env *e, t_proc *proc);
+int					live(t_env *e, t_proc *proc);//		1
+int					zjmp(t_env *e, t_proc *proc);//		9
 
 /*
 ** Print :
