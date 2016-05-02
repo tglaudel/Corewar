@@ -6,7 +6,7 @@
 #    By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 08:59:28 by tglaudel          #+#    #+#              #
-#    Updated: 2016/05/01 14:29:38 by tglaudel         ###   ########.fr        #
+#    Updated: 2016/05/02 16:18:42 by tglaudel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRC_NAME_COR = op.c \
 			   conversion.c \
 			   parsing_instruction.c \
 			   check_proc_cycle.c \
+			   live.c \
 
 
 SRC_ASM = $(addprefix $(SRC_PATH_ASM)/,$(SRC_NAME_ASM))

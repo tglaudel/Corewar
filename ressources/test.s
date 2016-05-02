@@ -45,3 +45,13 @@ MAX_CHECKS = le nombre de verification max avant que le CYCLE_TO_DIE diminue
 CYCLE_DELTA = le  nombre de decrement a faire sur le CYCLE_TO_DIE.
 
 NBR_LIVE = si un proc arrive a NBR_LIVE on decremente CYCLE_TO_DIE de CYCLE_DELTA
+
+typedef struct		s_winst
+{
+	char			pos;
+	char			taille;
+	char			color;
+	struct s_winst	*next;
+}					t_winst
+
+fonction(pos, taile ecriture, color)

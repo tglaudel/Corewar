@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/01 09:46:44 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/01 13:20:01 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/02 18:11:08 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,25 @@ int				have_odc_arg(int a, unsigned char *mem, t_proc *proc, int i)
 	pos_mem = 2;
 	while (++a < g_op_tab[i].nb_arg)
 	{
-		if ((proc->inst.odc >> (6 - a * 2) & IND_CODE) == IND_CODE ||\
-		(proc->inst.odc >> (6 - a * 2) & DIR_CODE) == DIR_CODE)
+		if ((proc->inst.odc >> (6 - a * 2) & IND_CODE) == IND_CODE)
 		{
-			if (g_op_tab[i].label_size == 4)
+			if (g_op_tab[i].ind_size == 4)
 			{
 				proc->inst.arg[a] = ind_to_int(mem, proc->pos + pos_mem);
 				pos_mem += 2;
 			}
-			else if (g_op_tab[i].label_size == 2)
+			else if (g_op_tab[i].ind_size == 2)
+				proc->inst.arg[a] = dir_to_int(mem, proc->pos + pos_mem);
+			pos_mem += 2;
+		}
+		else if ((proc->inst.odc >> (6 - a * 2) & DIR_CODE) == DIR_CODE)
+		{
+			if (g_op_tab[i].dir_size == 4)
+			{
+				proc->inst.arg[a] = ind_to_int(mem, proc->pos + pos_mem);
+				pos_mem += 2;
+			}
+			else if (g_op_tab[i].dir_size == 2)
 				proc->inst.arg[a] = dir_to_int(mem, proc->pos + pos_mem);
 			pos_mem += 2;
 		}

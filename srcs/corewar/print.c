@@ -6,11 +6,27 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/29 18:00:08 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/01 18:57:00 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/02 14:24:18 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
+
+void print_processus_debug(t_proc *start, int nb_cycle)
+{
+	t_proc *proc;
+
+	proc = start;
+	ft_putstr("proc list : ");
+	while (proc)
+	{
+		ft_putnbr(proc->index);
+		ft_putchar(' ');
+		proc = proc->next;
+	}
+	ft_printf(" ->cycle : %d", nb_cycle);
+	ft_putchar('\n');
+}
 
 void		print_op(t_proc *proc, int i, int cycle)
 {

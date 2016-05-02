@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 17:59:20 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/01 18:45:28 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/02 18:57:11 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@ void		re_init_proc(t_proc *start)
 	}
 }
 
+void init_proc(t_proc *proc)
+{
+	proc->pc = 0;
+	proc->inst.opc = 0;
+	proc->inst.odc = 0;
+	proc->inst.arg[0] = 0;
+	proc->inst.arg[1] = 0;
+	proc->inst.arg[2] = 0;
+}
+
 void		init_env(t_env *e)
 {
 	e->champ_start = NULL;
@@ -35,6 +45,8 @@ void		init_env(t_env *e)
 	e->nb_champ = 0;
 	e->c_to_die = CYCLE_TO_DIE;
 	e->nb_proc = 0;
+	e->nb_check_td = 0;
+	e->global_live = 0;
 	bzero(e->mem, MEM_SIZE + 1);
 }
 
@@ -48,7 +60,7 @@ void		init_cor(t_env *e, char **av)
 	i = -1;
 	init_env(e);
 	while (av[++i])
-		if ((width = is_champ(av[i])) > 0)
+		if ((width = is_champ(av[i])) > 0) // pas fini
 		{
 			nb++;
 			if (nb > 4)

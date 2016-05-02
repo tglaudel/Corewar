@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/01 18:58:26 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/02 18:58:18 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define VERBOSE_OP 4
 # define VERBOSE_DIE 8
 # define VERBOSE_PC 16
+# define VERBOSE_DEBUG 32
 # define BASE_HEXA "0123456789abcdef"
 
 typedef struct		s_inst
@@ -77,6 +78,7 @@ typedef struct		s_env
 	int				nb_proc;
 	int				c_to_die;
 	int				nb_check_td;
+	int				global_live;
 	t_champ			*champ_start;
 	t_champ			*champ_end;
 	t_proc			*proc_start;
@@ -93,7 +95,8 @@ typedef struct		s_op
 	char			*description;
 	int				codage_code;
 	int				carry;
-	int				label_size;
+	int				dir_size;
+	int				ind_size;
 }					t_op;
 
 extern t_op g_op_tab[17];
@@ -126,7 +129,7 @@ int					is_champ(char *s);
 ** Processus :
 */
 
-void				new_processus(t_env *e, int nb, int pos);
+void				new_processus(t_env *e, int nb, int pos, t_proc *papa);
 int					is_prog_pos(t_proc *start, int x, int y);
 void				check_proc_cycle(t_env *e);
 
@@ -156,6 +159,12 @@ void				print_memory(t_env *e, unsigned char *s, t_proc *start);
 void				init_cor(t_env *e, char **av);
 void				init_env(t_env *e);
 void				re_init_proc(t_proc *start);
+void				init_proc(t_proc *proc);
+/*
+** OP :
+*/
+
+int					live(t_env *e, t_proc *proc);
 
 /*
 ** Print :
@@ -164,5 +173,6 @@ void				re_init_proc(t_proc *start);
 int					print_help(void);
 void				print_board(t_env *env);
 void				print_op(t_proc *proc, int i, int cycle);
+void				print_processus_debug(t_proc *start, int nb_cycle);
 
 #endif

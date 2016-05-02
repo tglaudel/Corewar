@@ -3,23 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   live.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 13:41:53 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/04/28 10:37:20 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/02 19:02:53 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		live(struct env, val live)
+#include "cor.h"
+
+int		live(t_env *e, t_proc *proc) // ca a l'air ok
 {
-	if (live >= -4 && <= -1)
+	t_champ *champ;
+
+	++proc->live_exec;
+	champ = e->champ_start;
+	while (champ)
 	{
-		while (env->player != NULL)
+		if (champ->nb_champ == (int)proc->inst.arg[0])
 		{
-			if (env->player->name == live)
-				return (1);
-			env->player = env->player->next;
+			++champ->nb_live;
+			++e->global_live;
+			ft_printf("%d -> live %d\n", champ->nb_champ, champ->nb_live);
+			return (1);
 		}
+		champ = champ->next;
 	}
-	return (-1);
+	return (0);
 }
