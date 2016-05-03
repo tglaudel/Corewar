@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/02 21:43:05 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/03 12:53:26 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,22 @@ static int 		define_instruction(t_env *e, t_proc *proc, unsigned char *mem)
 {
 	int size;
 
+	(void)e;
 	if ((size = parsing_instruction(proc, mem)) == -1)
 	{
 		proc->pos = ++proc->pos % MEM_SIZE;
 	}
 	else
-	{
-		if (e->verbose & VERBOSE_OP)
-			print_op(proc, proc->inst.opc - 1, e->nb_cycle);
 		return (size);
-	}
-	return (-1);
+	return (0);
 }
 
 static void		exe_instruction(t_proc *proc, t_env *e)
 {
 	if (proc->inst.opc == 1)
 		live(e, proc);
+	else if (proc->inst.opc == 2)
+		ld(e, proc);
 	else if (proc->inst.opc == 9)
 		zjmp(e, proc);
 	else if (proc->inst.opc == 12)
@@ -77,12 +76,10 @@ void		game_loop(t_env *e)
 		++e->nb_cycle;
 		++before_check_die;
 		if (e->verbose & VERBOSE_CYCLE)
-			ft_printf("It is now cycle %d -> %d \n", e->nb_cycle, e->nb_proc);
-		system("clear");
-		print_memory(e, e->mem, e->proc_start);
-		usleep(20000);
-		if (have_opt('n', e->opt))
-			print_board(e);
+			ft_printf("It is now cycle %d\n", e->nb_cycle);
+		// system("clear");
+		// print_memory(e, e->mem, e->proc_start);
+		// usleep(20000);
 		if (before_check_die == e->c_to_die)
 		{
 			check_proc_cycle(e);

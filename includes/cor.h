@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/02 21:22:54 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/03 13:01:24 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,6 @@ void				init_ncurses2(void);
 ** Champ :
 */
 
-char				*get_champ_file(char *file, int width);
 void				add_to_champ_lst(t_env *env, int nb, int width, char *file);
 int					is_champ(char *s);
 
@@ -165,6 +164,7 @@ void				init_proc(t_proc *proc);
 */
 
 int					live(t_env *e, t_proc *proc);//		1
+int					ld(t_env *e, t_proc *proc);//		2
 int					zjmp(t_env *e, t_proc *proc);//		9
 
 /*
@@ -173,7 +173,7 @@ int					zjmp(t_env *e, t_proc *proc);//		9
 
 int					print_help(void);
 void				print_board(t_env *env);
-void				print_op(t_proc *proc, int i, int cycle);
+//void				print_op(t_proc *proc, char *function);
 void				print_processus_debug(t_proc *start, int nb_cycle);
 
 #endif

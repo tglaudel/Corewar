@@ -6,13 +6,13 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 17:52:24 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/02 19:04:04 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/03 13:01:04 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
 
-static char	*my_strsub(char const *s, unsigned int start, size_t len)
+static char		*my_strsub(char const *s, unsigned int start, size_t len)
 {
 	char	*str;
 	size_t	i;
@@ -31,29 +31,7 @@ static char	*my_strsub(char const *s, unsigned int start, size_t len)
 	return (NULL);
 }
 
-void		add_to_champ_lst(t_env *env, int nb, int width, char *file)
-{
-	t_champ *champ;
-	char *s;
-
-	if (!(champ = (t_champ*)malloc(sizeof(t_champ))))
-		ft_errors("ERROR : Error malloc", 1, 0);
-	if (env->champ_start == NULL)
-		env->champ_start = champ;
-	champ->nb_champ = -nb;
-	s = get_champ_file(file, width);
-	champ->width = width;
-	champ->name = ft_strsub(s, 4, PROG_NAME_LENGTH);
-	champ->comment = ft_strsub(s, 12 + PROG_NAME_LENGTH, COMMENT_LENGTH);
-	champ->code = my_strsub(s, COMMENT_NAME_MAGIC, width);
-	champ->next = NULL;
-	champ->nb_live = 0;
-	if (env->champ_end != NULL)
-		env->champ_end->next = champ;
-	env->champ_end = champ;
-}
-
-char		*get_champ_file(char *file, int width)
+static char		*get_champ_file(char *file, int width)
 {
 	int fd;
 	char buf[COMMENT_NAME_MAGIC + width];
@@ -74,4 +52,27 @@ char		*get_champ_file(char *file, int width)
 		s[i] = buf[i];
 	}
 	return (s);
+}
+
+void			add_to_champ_lst(t_env *env, int nb, int width, char *file)
+{
+	t_champ *champ;
+	char *s;
+
+	if (!(champ = (t_champ*)malloc(sizeof(t_champ))))
+		ft_errors("ERROR : Error malloc", 1, 0);
+	if (env->champ_start == NULL)
+		env->champ_start = champ;
+	champ->nb_champ = -nb;
+	s = get_champ_file(file, width);
+	champ->width = width;
+	champ->name = ft_strsub(s, 4, PROG_NAME_LENGTH);
+	champ->comment = ft_strsub(s, 12 + PROG_NAME_LENGTH, COMMENT_LENGTH);
+	champ->code = my_strsub(s, COMMENT_NAME_MAGIC, width);
+	champ->next = NULL;
+	champ->nb_live = 0;
+	ft_printf("* Player %d, weighing %d bytes, %s (%s) !\n", nb, width, champ->name, champ->comment);
+	if (env->champ_end != NULL)
+		env->champ_end->next = champ;
+	env->champ_end = champ;
 }
