@@ -11,13 +11,13 @@ zjmp:
 	live %4294967295
 	live %4294967295
 	live %4294967295
-	ld      %2, r15
+	ld      %0, r15
 	zjmp %:live
 	ld      %15, r14
-	zjmp %:test
+	zjmp %:live
 	live %1
 	live %1
 	live %1
 
 test:
-	live %1
+	live %15

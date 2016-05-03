@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/03 13:01:24 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/03 14:17:52 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define VERBOSE_PC 16
 # define VERBOSE_DEBUG 32
 # define BASE_HEXA "0123456789abcdef"
+# define ABS(x) x > 0 ? x : -x
 
 typedef struct		s_inst
 {
