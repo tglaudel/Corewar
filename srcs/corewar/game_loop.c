@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/04 17:45:16 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/04 18:56:11 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ static void		exe_instruction(t_proc *proc, t_env *e)
 		xor(e, proc);
 	else if (proc->inst.opc == 9)
 		zjmp(e, proc);
+	else if (proc->inst.opc == 10)
+		ldi(e, proc);
 	else if (proc->inst.opc == 12)
 		new_processus(e, e->nb_proc, proc->pos + 5, proc);
 	proc->pos = proc->pc;

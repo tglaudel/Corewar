@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/04 17:17:48 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/04 18:55:30 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,6 +185,7 @@ int					and(t_env *e, t_proc *proc);//		6
 int					or(t_env *e, t_proc *proc);//		7
 int					xor(t_env *e, t_proc *proc);//		8
 int					zjmp(t_env *e, t_proc *proc);//		9
+int					ldi(t_env *e, t_proc *proc);//		10
 
 
 /*

@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 14:20:43 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/04 17:31:45 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/04 18:16:47 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int add(t_env *e, t_proc *proc)
 	(void)e;
 	i = -1;
 	while (++i < 3)
-		if (proc->inst.arg[i] > REG_NUMBER || proc->inst.arg[i] == 0)
+		if (proc->inst.arg[i] > REG_NUMBER || proc->inst.arg[i] <= 0)
 			return (0);
 	d = (proc->r[proc->inst.arg[0] - 1] + proc->r[proc->inst.arg[1] - 1]) % MUI;
 	proc->r[proc->inst.arg[2] - 1] = d;

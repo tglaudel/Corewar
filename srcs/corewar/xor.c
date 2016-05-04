@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 14:32:18 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/04 17:47:17 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/04 18:16:36 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int xor(t_env *e, t_proc *proc)
 {
 	(void)e;
-	if (proc->inst.arg[2] > REG_NUMBER || proc->inst.arg[2] == 0)
+	if (proc->inst.arg[2] > REG_NUMBER || proc->inst.arg[2] <= 0)
 		return (0);
 	proc->r[proc->inst.arg[2] - 1] = proc->inst.arg[0] ^ proc->inst.arg[1];
 	if (proc->r[proc->inst.arg[2] - 1] == 0)
