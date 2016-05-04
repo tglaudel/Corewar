@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/29 18:00:08 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/04 15:44:31 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/04 18:02:55 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@ void print_in_memory(unsigned char *mem, int val, int pos)
 
 	i = -1;
 	while (++i < 4)
-	{
 		mem[(pos + i) % MEM_SIZE] = val >> (24 - (8 * i));
-	}
 }
 
 

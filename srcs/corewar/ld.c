@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 13:49:52 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/04 16:07:09 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/04 18:03:36 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int		ld(t_env *e, t_proc *proc)
 	{
 		pos = proc->pos + (proc->inst.arg[0] % IDX_MOD);
 		proc->r[proc->inst.arg[1] - 1] = ind_to_int(e->mem, pos);
-		ft_putnbr(proc->r[proc->inst.arg[1 - 1]]);
 	}
 	else
 		proc->r[proc->inst.arg[1] - 1] = proc->inst.arg[0];
