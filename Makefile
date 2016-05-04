@@ -6,7 +6,7 @@
 #    By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 08:59:28 by tglaudel          #+#    #+#              #
-#    Updated: 2016/05/03 10:53:33 by tglaudel         ###   ########.fr        #
+#    Updated: 2016/05/04 14:57:18 by tglaudel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ SRC_NAME_COR = op.c \
 			   live.c \
 			   ld.c \
 			   zjmp.c \
+			   st.c \
 
 
 

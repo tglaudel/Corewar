@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 16:31:37 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/02 18:57:07 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/04 10:41:36 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,56 +15,30 @@
 void				print_memory(t_env *e, unsigned char *s, t_proc *start)
 {
 	int x;
-	// int x2;
-	// int y2;
 	int y;
 	int i;
-	// char *s2;
 
 	x = -1;
-	// x2 = 0;
 	i = 0;
 	(void)e;
 	while (++x < 64)
 	{
 		y = -1;
-		// y2 = 0;
 		while (++y < 64)
 		{
 			if (is_prog_pos(start, x, y))
 			{
-				// s2 = ft_itoa_base((unsigned char)s[i], 16);
-				// mvwaddch(e->curse.principal, y2, x2, s2[0]);
-				// y2++;
-				// mvwaddch(e->curse.principal, y2, x2, s2[1]);
-				// y2++;
-				// i++;
 				ft_printf("{blue}%3.2x", (unsigned char)s[i++]);
 				ft_putstr("\033[0m");
 			}
 			else if (s[i] == '\0')
-			{
-				// s2 = ft_itoa_base((unsigned char)s[i], 16);
-				// mvwaddch(e->curse.principal, y2, x2, s2[0]);
-				// y2++;
-				// mvwaddch(e->curse.principal, y2, x2, s2[1]);
-				// y2++;
-				// i++;
 				ft_printf("%3.2x", (unsigned char)s[i++]);
-			}
 			else
 			{
-				// s2 = ft_itoa_base((unsigned char)s[i], 16);
-				// mvwaddch(e->curse.principal, y2, x2, s2[0]);
-				// y2++;
-				// mvwaddch(e->curse.principal, y2, x2, s2[1]);
-				// y2++;
-				// i++;
 				ft_printf("{red}%3.2x", (unsigned char)s[i++]);
 				ft_putstr("\033[0m");
 			}
 		}
-		// x2++;
 		ft_putchar('\n');
 	}
 }

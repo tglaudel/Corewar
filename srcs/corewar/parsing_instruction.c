@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/01 09:46:44 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/03 18:31:25 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/04 10:39:08 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int					have_odc_arg(int a, unsigned char *mem, t_proc *proc, int i)
 	return (pos_mem);
 }
 
-static int			parsing_argument(t_proc *proc, unsigned char *mem, int i)
+int				parsing_argument(t_proc *proc, unsigned char *mem, int i)
 {
 	int a;
 	int pos_mem;
@@ -77,7 +77,7 @@ static int			parsing_argument(t_proc *proc, unsigned char *mem, int i)
 	return (pos_mem == 1 ? 0 : pos_mem);
 }
 
-static int	check_odc(t_proc *proc, int i)
+int				check_odc(t_proc *proc, int i)
 {
 	int n;
 
@@ -86,28 +86,4 @@ static int	check_odc(t_proc *proc, int i)
 		if (proc->inst.odc == g_codage_tab[i].odc[n])
 			return (1);
 	return (0);
-}
-
-int					parsing_instruction(t_proc *proc, unsigned char *mem)
-{
-	int i;
-	int size;
-
-	i = -1;
-	size = 0;
-	while (g_op_tab[++i].op_code != 0)
-		if (g_op_tab[i].op_code == proc->inst.opc)
-			break ;
-	if (g_op_tab[i].codage_code == 1)
-	{
-		proc->inst.odc = mem[(proc->pos + 1) % MEM_SIZE];
-		if (!check_odc(proc, i))
-		{
-			proc->exec = 0;
-			return (2);
-		}
-	}
-	size = parsing_argument(proc, mem, i);
-	proc->exec = 1;
-	return (size);
 }

@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/29 18:00:08 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/03 11:35:59 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/04 15:44:31 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,18 @@ void print_processus_debug(t_proc *start, int nb_cycle)
 	ft_printf(" ->cycle : %d", nb_cycle);
 	ft_putchar('\n');
 }
+
+void print_in_memory(unsigned char *mem, int val, int pos)
+{
+	int i;
+
+	i = -1;
+	while (++i < 4)
+	{
+		mem[(pos + i) % MEM_SIZE] = val >> (24 - (8 * i));
+	}
+}
+
 
 // void		print_op(t_proc *proc, char *function)
 // {
