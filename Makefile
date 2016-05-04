@@ -6,7 +6,7 @@
 #    By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 08:59:28 by tglaudel          #+#    #+#              #
-#    Updated: 2016/05/04 16:08:08 by ale-naou         ###   ########.fr        #
+#    Updated: 2016/05/04 16:16:39 by ale-naou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRC_NAME_COR = main.c \
 			   live.c \
 			   ld.c \
 			   zjmp.c \
+			   st.c \
 
 OBJ_NAME_ASM = $(SRC_NAME_ASM:.c=.o)
 OBJ_NAME_COR = $(SRC_NAME_COR:.c=.o)
