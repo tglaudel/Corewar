@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+         #
+#    By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 08:59:28 by tglaudel          #+#    #+#              #
-#    Updated: 2016/05/03 10:53:33 by tglaudel         ###   ########.fr        #
+#    Updated: 2016/05/04 16:08:08 by ale-naou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC_PATH_ASM = srcs/asm
-
-SRC_PATH_COR = srcs/corewar
+SRC_PATH_ASM = ./srcs/asm/
+SRC_PATH_COR = ./srcs/corewar/
+OBJ_PATH_ASM = ./objasm/
+OBJ_PATH_COR = ./objcor/
 
 SRC_NAME_ASM = main.c \
 			   get_opt.c \
@@ -31,8 +32,8 @@ SRC_NAME_ASM = main.c \
 			   print_help.c \
 			   free_all.c \
 
-SRC_NAME_COR = op.c \
-			   main.c \
+SRC_NAME_COR = main.c \
+			   op.c \
 			   get_opt.c \
 			   print_help.c \
 			   is_something.c \
@@ -50,46 +51,45 @@ SRC_NAME_COR = op.c \
 			   ld.c \
 			   zjmp.c \
 
+OBJ_NAME_ASM = $(SRC_NAME_ASM:.c=.o)
+OBJ_NAME_COR = $(SRC_NAME_COR:.c=.o)
 
-
-SRC_ASM = $(addprefix $(SRC_PATH_ASM)/,$(SRC_NAME_ASM))
-
-SRC_COR = $(addprefix $(SRC_PATH_COR)/,$(SRC_NAME_COR))
-
-OBJ_ASM = $(SRC_ASM:.c=.o)
-
-OBJ_COR = $(SRC_COR:.c=.o)
+SRC_ASM = $(addprefix $(SRC_PATH_ASM), $(SRC_NAME_ASM))
+SRC_COR = $(addprefix $(SRC_PATH_COR), $(SRC_NAME_COR))
+OBJ_ASM = $(addprefix $(OBJ_PATH_ASM), $(OBJ_NAME_ASM))
+OBJ_COR = $(addprefix $(OBJ_PATH_COR), $(OBJ_NAME_COR))
 
 NAME_ASM = asm
-
 NAME_COR = corewar
 
 CC = gcc
-
 LIBFT = libft/libft.a
-
 CFLAGS = -Werror -Wall -Wextra
 
 all: co as
 
 co: $(NAME_COR)
-
 as: $(NAME_ASM)
 
 $(NAME_ASM): $(LIBFT) $(OBJ_ASM)
-	$(CC) $(CFLAGS) $(OBJ_ASM) $(LIBFT) -Iincludes -o $(NAME_ASM)
+	$(CC) $(CFLAGS) $(LIBFT) $(SRC_ASM) -Iincludes -o $(NAME_ASM)
 
 $(NAME_COR): $(LIBFT) $(OBJ_COR)
-	$(CC) $(CFLAGS) $(OBJ_COR) $(LIBFT) -Iincludes -lncurses -o $(NAME_COR)
+	$(CC) $(CFLAGS) $(LIBFT) $(SRC_COR) -Iincludes -lncurses -o $(NAME_COR)
 
-%.o: %.c
+$(OBJ_PATH_ASM)%.o: $(SRC_PATH_ASM)%.c
+	@mkdir $(OBJ_PATH_ASM) 2> /dev/null || true
+	$(CC) $(CFLAGS) -c $< -Iincludes -o $@
+
+$(OBJ_PATH_COR)%.o: $(SRC_PATH_COR)%.c
+	@mkdir $(OBJ_PATH_COR) 2> /dev/null || true
 	$(CC) $(CFLAGS) -c $< -Iincludes -o $@
 
 $(LIBFT):
 	make -C libft
 
 clean:
-	rm -rf $(OBJ_COR) $(OBJ_ASM)
+	rm -rf $(OBJ_PATH_COR) $(OBJ_PATH_ASM)
 	make -C libft/ clean
 
 fclean: clean
