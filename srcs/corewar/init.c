@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 17:59:20 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/02 18:57:11 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/03 20:02:06 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void init_proc(t_proc *proc)
 	proc->inst.arg[0] = 0;
 	proc->inst.arg[1] = 0;
 	proc->inst.arg[2] = 0;
+	proc->exec = 0;
 }
 
 void		init_env(t_env *e)
@@ -63,6 +64,8 @@ void		init_cor(t_env *e, char **av)
 		if ((width = is_champ(av[i])) > 0) // pas fini
 		{
 			nb++;
+			if (nb == 1)
+				ft_putendl("Introducing contestants...");
 			if (nb > 4)
 				ft_errors("ERROR : Nb champs > 4.", 1, 0);
 			add_to_champ_lst(e, nb, width, av[i]);

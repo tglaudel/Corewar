@@ -6,13 +6,13 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/01 09:46:44 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/03 11:36:34 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/03 18:31:25 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
 
-int				have_odc_arg(int a, unsigned char *mem, t_proc *proc, int i)
+int					have_odc_arg(int a, unsigned char *mem, t_proc *proc, int i)
 {
 	int pos_mem;
 
@@ -50,7 +50,7 @@ int				have_odc_arg(int a, unsigned char *mem, t_proc *proc, int i)
 	return (pos_mem);
 }
 
-int				parsing_argument(t_proc *proc, unsigned char *mem, int i)
+static int			parsing_argument(t_proc *proc, unsigned char *mem, int i)
 {
 	int a;
 	int pos_mem;
@@ -77,27 +77,37 @@ int				parsing_argument(t_proc *proc, unsigned char *mem, int i)
 	return (pos_mem == 1 ? 0 : pos_mem);
 }
 
-int			parsing_instruction(t_proc *proc, unsigned char *mem)
+static int	check_odc(t_proc *proc, int i)
+{
+	int n;
+
+	n = -1;
+	while (g_codage_tab[i].odc[++n] != 0)
+		if (proc->inst.odc == g_codage_tab[i].odc[n])
+			return (1);
+	return (0);
+}
+
+int					parsing_instruction(t_proc *proc, unsigned char *mem)
 {
 	int i;
 	int size;
 
 	i = -1;
+	size = 0;
 	while (g_op_tab[++i].op_code != 0)
+		if (g_op_tab[i].op_code == proc->inst.opc)
+			break ;
+	if (g_op_tab[i].codage_code == 1)
 	{
-		if (g_op_tab[i].op_code == mem[proc->pos])
+		proc->inst.odc = mem[(proc->pos + 1) % MEM_SIZE];
+		if (!check_odc(proc, i))
 		{
-			proc->inst.opc = (int)mem[proc->pos];
-			if (g_op_tab[i].codage_code == 1)
-				proc->inst.odc = mem[(proc->pos + 1) % MEM_SIZE];
-			if ((size = parsing_argument(proc, mem, i)))
-			{
-				proc->wait_cycle = g_op_tab[i].wait_before_exe - 1;
-				return (size);
-			}
-			else
-				return (-1);
+			proc->exec = 0;
+			return (2);
 		}
 	}
-	return (-1);
+	size = parsing_argument(proc, mem, i);
+	proc->exec = 1;
+	return (size);
 }
