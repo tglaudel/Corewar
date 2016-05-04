@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/03 14:17:52 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/03 18:29:56 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct		s_proc
 	int				r[REG_NUMBER];
 	int				wait_cycle;
 	int				live_exec;
+	char			exec;
 	t_inst			inst;
 	struct s_proc	*next;
 }					t_proc;
@@ -100,7 +101,14 @@ typedef struct		s_op
 	int				ind_size;
 }					t_op;
 
+typedef struct		s_od
+{
+	int				op_code;
+	unsigned char	odc[9];
+}					t_od;
+
 extern t_op g_op_tab[17];
+extern t_od g_codage_tab[17];
 
 /*
 ** Options & env :
@@ -143,7 +151,6 @@ unsigned int		dir_to_int(unsigned char *mem, int pos);
 int					have_odc_arg(int a, unsigned char *mem, t_proc *proc,\
 					int i);
 int					parsing_instruction(t_proc *proc, unsigned char *mem);
-int					parsing_argument(t_proc *proc, unsigned char *mem, int i);
 
 /*
 ** Memory :

@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/01 14:16:05 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/02 15:55:08 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/03 20:46:48 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,21 +57,22 @@ int					del_proc(t_proc *start, t_env *e)
 void				check_proc_cycle(t_env *e)
 {
 	del_proc(e->proc_start, e);
-	if (e->global_live == NBR_LIVE)
+	if (e->global_live >= NBR_LIVE)
 	{
-		e->c_to_die = e->c_to_die - CYCLE_DELTA;
-		e->nb_check_td = 0;
+		e->c_to_die -= CYCLE_DELTA;
+		ft_printf("Cycle to die is now %d\n", e->c_to_die);
+		//e->nb_check_td = 0;
 	}
 	else
 	{
+		e->nb_check_td++;
 		if (e->nb_check_td == MAX_CHECKS)
 		{
-			e->c_to_die = e->c_to_die - CYCLE_DELTA;
+			e->c_to_die -= CYCLE_DELTA;
 			e->nb_check_td = 0;
+			ft_printf("Cycle to die is now %d\n", e->c_to_die);
 		}
-		e->nb_check_td++;
 	}
-
 	if (e->verbose & VERBOSE_DEBUG)
 		print_processus_debug(e->proc_start, e->nb_cycle);
 }

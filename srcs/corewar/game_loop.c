@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/03 14:33:24 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/03 20:42:03 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,23 @@ static void		exe_instruction(t_proc *proc, t_env *e)
 	else if (proc->inst.opc == 12)
 		new_processus(e, e->nb_proc, proc->pos + 5, proc);
 	proc->pos = proc->pc;
-	init_proc(proc);
+}
+
+static int		define_opc(t_proc *proc, unsigned char *mem)
+{
+	int i;
+
+	i = -1;
+	while (g_op_tab[++i].op_code != 0)
+	{
+		if (g_op_tab[i].op_code == mem[proc->pos])
+		{
+			proc->wait_cycle = g_op_tab[i].wait_before_exe - 1;
+			proc->inst.opc = g_op_tab[i].op_code;
+			return (1);
+		}
+	}
+	return (0);
 }
 
 static void		proc_loop(t_env *e)
@@ -49,17 +65,20 @@ static void		proc_loop(t_env *e)
 	proc = e->proc_start;
 	while (proc)
 	{
+		//ft_printf("%d %d\n", proc->index, proc->inst.opc);
 		size = -1;
 		if (proc->wait_cycle > 0)
 			--proc->wait_cycle;
 		else if (proc->wait_cycle == 0 && proc->inst.opc != 0)
 		{
-			exe_instruction(proc, e);
-			if ((size = define_instruction(e, proc, e->mem)))
+			if ((size = define_instruction(e, proc, e->mem)) != -1)
 				proc->pc = (proc->pos + size) % MEM_SIZE;
+			if (proc->exec == 1)
+				exe_instruction(proc, e);
+			init_proc(proc);
 		}
-		else if ((size = define_instruction(e, proc, e->mem)))
-			proc->pc = (proc->pos + size) % MEM_SIZE;
+		else if (!define_opc(proc, e->mem))
+			proc->pos = ++proc->pos % MEM_SIZE;
 		proc = proc->next;
 	}
 }
@@ -70,13 +89,10 @@ void		game_loop(t_env *e)
 
 	before_check_die = 0;
 	while (e->nb_champ > 0 && e->nb_proc > 0 &&\
-	e->nb_cycle < e->nb_cycle_max)
+	e->nb_cycle < e->nb_cycle_max && e->c_to_die > 0)
 	{
 		proc_loop(e);
 		++e->nb_cycle;
-		++before_check_die;
-		if (e->verbose & VERBOSE_CYCLE)
-			ft_printf("It is now cycle %d\n", e->nb_cycle);
 		// system("clear");
 		// print_memory(e, e->mem, e->proc_start);
 		// usleep(20000);
@@ -85,8 +101,11 @@ void		game_loop(t_env *e)
 			check_proc_cycle(e);
 			re_init_proc(e->proc_start);
 			before_check_die = 0;
-			if (e->c_to_die <= 0)
-				break ;
+			e->global_live = 0;
 		}
+		++before_check_die;
+		if (e->verbose & VERBOSE_CYCLE)
+			ft_printf("It is now cycle %d\n", e->nb_cycle);
 	}
+
 }
