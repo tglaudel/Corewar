@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 13:49:52 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/04 15:27:44 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/04 16:07:09 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		ld(t_env *e, t_proc *proc)
 {
 	int pos;
 
-	if (proc->inst.arg[1] >= REG_NUMBER || proc->inst.arg[1] == 0)
+	if (proc->inst.arg[1] > REG_NUMBER || proc->inst.arg[1] == 0)
 		return (0);
 	if (((proc->inst.odc >> 6) & IND_CODE) == IND_CODE)
 	{

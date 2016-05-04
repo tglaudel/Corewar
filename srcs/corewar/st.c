@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 14:05:10 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/04 16:01:58 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/04 16:06:34 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		st(t_env *e, t_proc *proc)
 {
 	int pos;
 
-	if (proc->inst.arg[0] >= REG_NUMBER || proc->inst.arg[0] == 0)
+	if (proc->inst.arg[0] > REG_NUMBER || proc->inst.arg[0] == 0)
 		return (0);
 	if (((proc->inst.odc >> 4) & IND_CODE) == IND_CODE)
 	{
@@ -32,7 +32,7 @@ int		st(t_env *e, t_proc *proc)
 	}
 	else
 	{
-		if (proc->inst.arg[1] >= REG_NUMBER || proc->inst.arg[1] == 0)
+		if (proc->inst.arg[1] > REG_NUMBER || proc->inst.arg[1] == 0)
 			return (0);
 		proc->r[proc->inst.arg[1] - 1] = proc->r[proc->inst.arg[0] - 1];
 	}
