@@ -6,17 +6,30 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 14:20:43 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/04 16:06:27 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/04 17:31:45 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// il prendre en parametre {REG, REG, REG}
-//
-// il va donc prendre trois registres et additionne les valeurs des deux
-// premiers et stockera le resultat dans le troisieme. Il modifiera le carry.
+#include "cor.h"
 
 int add(t_env *e, t_proc *proc)
 {
-	if (proc->inst.arg[0] > REG_NUMBER)
+	int i;
+	unsigned int d;
 
+	(void)e;
+	i = -1;
+	while (++i < 3)
+		if (proc->inst.arg[i] > REG_NUMBER || proc->inst.arg[i] == 0)
+			return (0);
+	d = (proc->r[proc->inst.arg[0] - 1] + proc->r[proc->inst.arg[1] - 1]) % MUI;
+	proc->r[proc->inst.arg[2] - 1] = d;
+	if (d == 0)
+		proc->carry = 1;
+	else
+		proc->carry = 0;
+	if (e->verbose & VERBOSE_OP)
+		ft_printf("P %4d | %s r%d r%d r%d\n", proc->index, "add",\
+		proc->inst.arg[0], proc->inst.arg[1], proc->inst.arg[2]);
+	return (1);
 }

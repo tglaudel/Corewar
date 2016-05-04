@@ -3,15 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   xor.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 14:32:18 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/04/28 11:42:01 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/04 17:47:17 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	and(process, val1, val2, *reg)
+#include "cor.h"
+
+int xor(t_env *e, t_proc *proc)
 {
-	reg = val1 ^ val2;
-	process->carry = 1;
+	(void)e;
+	if (proc->inst.arg[2] > REG_NUMBER || proc->inst.arg[2] == 0)
+		return (0);
+	proc->r[proc->inst.arg[2] - 1] = proc->inst.arg[0] ^ proc->inst.arg[1];
+	if (proc->r[proc->inst.arg[2] - 1] == 0)
+		proc->carry = 1;
+	else
+		proc->carry = 0;
+	if (e->verbose & VERBOSE_OP)
+		ft_printf("P %4d | %s %d %d r%d\n", proc->index, "xor",\
+		proc->inst.arg[0], proc->inst.arg[1], proc->inst.arg[2]);
+	return (1);
 }

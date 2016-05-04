@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/04 15:25:11 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/04 17:45:16 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,16 @@ static void		exe_instruction(t_proc *proc, t_env *e)
 		ld(e, proc);
 	else if (proc->inst.opc == 3)
 		st(e, proc);
+	else if (proc->inst.opc == 4)
+		add(e, proc);
+	else if (proc->inst.opc == 5)
+		sub(e, proc);
+	else if (proc->inst.opc == 6)
+		and(e, proc);
+	else if (proc->inst.opc == 7)
+		or(e, proc);
+	else if (proc->inst.opc == 8)
+		xor(e, proc);
 	else if (proc->inst.opc == 9)
 		zjmp(e, proc);
 	else if (proc->inst.opc == 12)

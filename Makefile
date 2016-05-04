@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+         #
+#    By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 08:59:28 by tglaudel          #+#    #+#              #
-#    Updated: 2016/05/04 16:16:39 by ale-naou         ###   ########.fr        #
+#    Updated: 2016/05/04 17:46:29 by tglaudel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,8 +49,13 @@ SRC_NAME_COR = main.c \
 			   check_proc_cycle.c \
 			   live.c \
 			   ld.c \
-			   zjmp.c \
 			   st.c \
+			   add.c \
+			   sub.c \
+			   and.c \
+			   or.c \
+			   xor.c \
+			   zjmp.c \
 
 OBJ_NAME_ASM = $(SRC_NAME_ASM:.c=.o)
 OBJ_NAME_COR = $(SRC_NAME_COR:.c=.o)

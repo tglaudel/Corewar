@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/04 14:59:36 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/04 17:17:48 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,16 @@
 
 # define OPT_STRING "nvd"
 # define COMMENT_NAME_MAGIC		(PROG_NAME_LENGTH + COMMENT_LENGTH + 16)
+# define BASE_HEXA "0123456789abcdef"
+# define MUI 4294967295
+
 # define VERBOSE_LIVE 1
 # define VERBOSE_CYCLE 2
 # define VERBOSE_OP 4
 # define VERBOSE_DIE 8
 # define VERBOSE_PC 16
 # define VERBOSE_DEBUG 32
-# define BASE_HEXA "0123456789abcdef"
+
 # define ABS(x) x > 0 ? x : -x
 
 typedef struct		s_inst
@@ -168,6 +171,7 @@ void				init_cor(t_env *e, char **av);
 void				init_env(t_env *e);
 void				re_init_proc(t_proc *start);
 void				init_proc(t_proc *proc);
+
 /*
 ** OP :
 */
@@ -175,7 +179,13 @@ void				init_proc(t_proc *proc);
 int					live(t_env *e, t_proc *proc);//		1
 int					ld(t_env *e, t_proc *proc);//		2
 int					st(t_env *e, t_proc *proc);//		3
+int					add(t_env *e, t_proc *proc);//		4
+int					sub(t_env *e, t_proc *proc);//		5
+int					and(t_env *e, t_proc *proc);//		6
+int					or(t_env *e, t_proc *proc);//		7
+int					xor(t_env *e, t_proc *proc);//		8
 int					zjmp(t_env *e, t_proc *proc);//		9
+
 
 /*
 ** Print :
