@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   add.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 14:20:43 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/04/28 11:37:22 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/04 16:06:27 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	add(struct process, addr, val1, val2)
+// il prendre en parametre {REG, REG, REG}
+//
+// il va donc prendre trois registres et additionne les valeurs des deux
+// premiers et stockera le resultat dans le troisieme. Il modifiera le carry.
+
+int add(t_env *e, t_proc *proc)
 {
-	addr->val = val1 + val2;
-	process->carry = 1;
+	if (proc->inst.arg[0] > REG_NUMBER)
+
 }

@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/03 18:29:56 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/04 14:59:36 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,8 @@ unsigned int		ind_to_int(unsigned char *mem, int pos);
 unsigned int		dir_to_int(unsigned char *mem, int pos);
 int					have_odc_arg(int a, unsigned char *mem, t_proc *proc,\
 					int i);
-int					parsing_instruction(t_proc *proc, unsigned char *mem);
+int					check_odc(t_proc *proc, int i);
+int					parsing_argument(t_proc *proc, unsigned char *mem, int i);
 
 /*
 ** Memory :
@@ -173,6 +174,7 @@ void				init_proc(t_proc *proc);
 
 int					live(t_env *e, t_proc *proc);//		1
 int					ld(t_env *e, t_proc *proc);//		2
+int					st(t_env *e, t_proc *proc);//		3
 int					zjmp(t_env *e, t_proc *proc);//		9
 
 /*
@@ -183,5 +185,6 @@ int					print_help(void);
 void				print_board(t_env *env);
 //void				print_op(t_proc *proc, char *function);
 void				print_processus_debug(t_proc *start, int nb_cycle);
+void				print_in_memory(unsigned char *mem, int val, int pos);
 
 #endif
