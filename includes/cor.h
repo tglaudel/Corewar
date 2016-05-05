@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cor.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/05 14:02:54 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/05 14:47:05 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,19 +178,20 @@ void				init_proc(t_proc *proc);
 
 int					recup_value(unsigned char *mem, t_proc *proc, int i, int n);
 
-int					live(t_env *e, t_proc *proc);//		1
-int					ld(t_env *e, t_proc *proc);//		2
-int					st(t_env *e, t_proc *proc);//		3
-int					add(t_env *e, t_proc *proc);//		4
-int					sub(t_env *e, t_proc *proc);//		5
-int					and(t_env *e, t_proc *proc);//		6
-int					or(t_env *e, t_proc *proc);//		7
-int					xor(t_env *e, t_proc *proc);//		8
-int					zjmp(t_env *e, t_proc *proc);//		9
-int					ldi(t_env *e, t_proc *proc);//		10
-int					sti(t_env *e, t_proc *proc);//		11
-int					fork_cor(t_env *e, t_proc *proc);//	12
-int					aff(t_env *e, t_proc *proc);//		16
+int					live(t_env *e, t_proc *proc);//			1
+int					ld(t_env *e, t_proc *proc);//			2
+int					st(t_env *e, t_proc *proc);//			3
+int					add(t_env *e, t_proc *proc);//			4
+int					sub(t_env *e, t_proc *proc);//			5
+int					and(t_env *e, t_proc *proc);//			6
+int					or(t_env *e, t_proc *proc);//			7
+int					xor(t_env *e, t_proc *proc);//			8
+int					zjmp(t_env *e, t_proc *proc);//			9
+int					ldi(t_env *e, t_proc *proc);//			10
+int					sti(t_env *e, t_proc *proc);//			11
+int					fork_cor(t_env *e, t_proc *proc);//		12
+int					lfork_cor(t_env *e, t_proc *proc);//	15
+int					aff(t_env *e, t_proc *proc);//			16
 
 
 /*

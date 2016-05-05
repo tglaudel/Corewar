@@ -6,7 +6,7 @@
 /*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/05 14:04:40 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/05/05 15:00:21 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,11 @@ static void		exe_instruction(t_proc *proc, t_env *e)
 	{
 		mvchgat(proc->pos / 64, proc->pos % 64 * 3, 2, A_BLINK, 10, NULL);
 		fork_cor(e, proc);
+	}
+	else if (proc->inst.opc == 15)
+	{
+		mvchgat(proc->pos / 64, proc->pos % 64 * 3, 2, A_BLINK, 10, NULL);
+		lfork_cor(e, proc);
 	}
 	else if (proc->inst.opc == 16)
 		aff(e, proc);
@@ -124,9 +129,9 @@ void		game_loop(t_env *e)
 	{
 		proc_loop(e);
 		++e->nb_cycle;
-		system("clear");
-		print_memory(e, e->mem, e->proc_start);
-		usleep(10000);
+		// system("clear");
+		// print_memory(e, e->mem, e->proc_start);
+		usleep(20000);
 		if (before_check_die == e->c_to_die)
 		{
 			check_proc_cycle(e);
