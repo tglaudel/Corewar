@@ -1,4 +1,4 @@
-############################################################################
+t############################################################################
 #  _____                                                                   #
 # /  __ \                                                                  #
 # | /  \/ ___  _ __ _____      ____ _ _ __                                 #
@@ -35,7 +35,7 @@ Elle représente N octet en mémoire.
 
 Les instructions sont diverses et peuvent notamment créer de nouveaux processus.
 Une instruction peut agir sur la memoire de la VM ainsi que sur les
-regitres dont sont composé chaque processus.
+regitres dont sont composés chaque processus.
 
 -------------------------------------------------------------------------------
 
@@ -56,47 +56,52 @@ Cet espace est défini arbitrairement à MEM_SIZE / 6 octets.
 
 3) Les processus
 
-Un processus est un "mini programme" ou "curseur". En debut de partie chaque
-champions a un processus qui lui est **"propre" (a prendre avec nuance vous
-comprendrez par la suite). Ce curseur va parcourir la memoire et contiendra
-un certains nombre d'informations qu'on decoupera ainsi:
- 	- les registres
-	- le pc (program counter)
-	- le carry
+Un processus est un "mini programme" se deplacant, à chaque cycle, sur l'octet
+suivant dans la memoire.
+En début de partie, un processus est crée sur la première instruction de chaque
+champion, par souci d'équité, afin qu'il puisse effectuer leurs instructions
+"simultanément". Ceci empêchant le premier champion chargé de "déployer" toute
+sa stratégie, avant que les champions suivants n'ai pu faire quoique ce soit.
+Un processus est composée :
+ 	- de registres;
+	- d'un PC (program counter);
+	- d'un carry.
 
 
-		a) Les registres
+	a) Les registres
 
-Les registres sont la memoire interne du programme. Ils sont de taille
-REG_NUMBER initialises a 0 sauf le r1 qui lui aura la valeur du champion. chaque
-registre est de taille REG_SIZE, pour ma part se sera 4 octets.
+Chaque processus a une mémoire qui lui est propre, les registres.
+Ils sont au nombre de REG_NUMBER. Et initialisés à 0,
+à l'expection du premier (r1) qui aura comme valeur le numéro du champion
+lors de son chargement dans la mémoire.
+Chaque registre est de taille REG_SIZE.
+Un registre permettra, par exemple, de pouvoir stocker des valeurs dans
+la memoire, de les modifier et de les réécrire ailleurs dans la mémoire.
 
-Il permettra par exemple de pouvoir stocker des valeur de la memoire les
-modifier afin de les ecrire ailleurs dans la memoire.
+		b) Le PC (program counter)
 
-		b) Le pc (program counter)
-
-Le PC, est un pointeur vers la prochaine instruction a executer, le prochain
-octet de la memoire ou devra aller le "curseur"
+Le PC est un pointeur vers la prochaine instruction à executer :
+l'addresse du prochain octet de la memoire sur lequel le processus devra se
+rendre, une fois l'instruction en cours éxécutée.
 
 		c) Le carry
 
-le flag carry est une valeur initialise a 0 dans chaque processus. Il permet de
-savoir si le resultat de la derniere instruction modifie le carry a 1 ou non.
-seul certaines instructions modifie le carry :
- - lld
- - ld
- - add
- - sub
- - lldi
- - and
- - or
- - xor
-Ces instructions feront passer le carry a 1 si le resultat de l'operation est 0.
+Le "flag" carry aura une valeur de 0 ou 1 dans chaque processus. Et est
+initialisé à zéro.
+Il permet la validation de l'exectution de l'instruction 'zjmp', si le carry a
+été changé à 1.
+Il peut être modifié par les instructions suivantes :
+	 - ld;
+	 - lld;
+	 - lldi;
+	 - add;
+	 - sub;
+	 - and;
+	 - or;
+	 - xor.
+Il ne vaut 1 que lorsqu'une de ces instructions (opérations) a un résultat de 0.
 
-le changement du carry a 1 interesse seulement l'instruction zjmp.
-
-A savoir que se sera la derniere operation de qui sera pris en compte dans la
+A savoir que se sera la derniere operation qui sera pris en compte dans la
 modification du carry.
 
 -------------------------------------------------------------------------------
