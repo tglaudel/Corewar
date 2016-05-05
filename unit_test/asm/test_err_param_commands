@@ -1,0 +1,11 @@
+
+##toutes les commandes ici doivent renvoyer une erreur
+
+les options en compte sur l'asm de notre corewar ./asm [-odfh]
+
+./asm
+./asm -p existe.s (option invalide)
+./asm existepas.s (champion non existant)
+./asm existemaispaslesdroits.s (champion pas les droits sur fichie)
+./asm dossierpaslesdroits/existe.s (champion non accessible car pas les droits sur le dossier)
+./asm existe (champion ok mais pas un .s)

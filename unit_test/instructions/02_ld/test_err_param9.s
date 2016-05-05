@@ -3,4 +3,5 @@
 
 #l'assembleur doit afficher une erreur
 
-ld r5, %6
+
+ld %5 r3
