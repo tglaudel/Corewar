@@ -2,5 +2,6 @@
 .comment "aff"
 
 ld %102, r2
-aff r2
 fork %128
+live %1
+lfork %128

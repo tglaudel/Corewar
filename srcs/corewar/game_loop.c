@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/05 15:53:37 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/05 15:57:06 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ static void		exe_instruction(t_proc *proc, t_env *e)
 		lldi(e, proc);
 	else if (proc->inst.opc == 14)
 		fork_cor(e, proc);
+	else if (proc->inst.opc == 15)
+		lfork_cor(e, proc);
 	else if (proc->inst.opc == 16)
 		aff(e, proc);
 	mvchgat(proc->pos / 64, proc->pos % 64 * 3, 2, A_BLINK, 10, NULL);
@@ -128,7 +130,11 @@ void		game_loop(t_env *e)
 		++e->nb_cycle;
 		// system("clear");
 		// print_memory(e, e->mem, e->proc_start);
+<<<<<<< HEAD
 		usleep(10000);
+=======
+		usleep(20000);
+>>>>>>> 01bb737bdc0728108d636f3bb7113f5fc99012f1
 		if (before_check_die == e->c_to_die)
 		{
 			check_proc_cycle(e);
