@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/04 18:55:30 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/05 11:39:18 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,8 @@ void				init_proc(t_proc *proc);
 ** OP :
 */
 
+int					recup_value(unsigned char *mem, t_proc *proc, int i, int n);
+
 int					live(t_env *e, t_proc *proc);//		1
 int					ld(t_env *e, t_proc *proc);//		2
 int					st(t_env *e, t_proc *proc);//		3
@@ -186,6 +188,7 @@ int					or(t_env *e, t_proc *proc);//		7
 int					xor(t_env *e, t_proc *proc);//		8
 int					zjmp(t_env *e, t_proc *proc);//		9
 int					ldi(t_env *e, t_proc *proc);//		10
+int					sti(t_env *e, t_proc *proc);//		11
 
 
 /*
@@ -196,6 +199,7 @@ int					print_help(void);
 void				print_board(t_env *env);
 //void				print_op(t_proc *proc, char *function);
 void				print_processus_debug(t_proc *start, int nb_cycle);
-void				print_in_memory(unsigned char *mem, int val, int pos);
+void				print_in_memory(t_env *e, int val, int pos);
+void				print_processus(t_proc *start);
 
 #endif

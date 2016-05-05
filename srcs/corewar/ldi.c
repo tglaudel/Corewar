@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:45:02 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/04 18:57:36 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/05 09:29:18 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,6 @@
 // ldi : Au lieu de ça, ca prend 2 index et 1 registre, additionne les 2 premiers,
 // traite ca comme une adresse, y lit une valeur de la taille d’un registre et
 // la met dans le 3eme.
-
-static int	recup_value(unsigned char *mem, t_proc *proc, int i, int n)
-{
-	int val;
-
-	val = 0;
-	if (((proc->inst.odc >> i) & IND_CODE) == IND_CODE)
-		val = ind_to_int(mem, proc->inst.arg[n]);
-	else if (((proc->inst.odc >> i) & DIR_CODE) == DIR_CODE)
-		val = proc->inst.arg[n];
-	else
-		val = proc->r[proc->inst.arg[n] - 1];
-	return (val);
-}
 
 int ldi(t_env *e, t_proc *proc)
 {

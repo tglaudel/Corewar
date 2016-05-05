@@ -6,7 +6,7 @@
 #    By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 08:59:28 by tglaudel          #+#    #+#              #
-#    Updated: 2016/05/04 18:56:26 by tglaudel         ###   ########.fr        #
+#    Updated: 2016/05/05 10:11:39 by tglaudel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SRC_NAME_COR = main.c \
 			   conversion.c \
 			   parsing_instruction.c \
 			   check_proc_cycle.c \
+			   recup_value.c \
 			   live.c \
 			   ld.c \
 			   st.c \
@@ -57,6 +58,7 @@ SRC_NAME_COR = main.c \
 			   xor.c \
 			   zjmp.c \
 			   ldi.c \
+			   sti.c \
 
 OBJ_NAME_ASM = $(SRC_NAME_ASM:.c=.o)
 OBJ_NAME_COR = $(SRC_NAME_COR:.c=.o)

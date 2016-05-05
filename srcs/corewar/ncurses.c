@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 13:48:05 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/05/02 18:51:32 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/05 11:42:58 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,15 @@
 void				print_processus(t_proc *start)
 {
 	t_proc	*proc;
+	int last_pos;
 
 	proc = start;
 	while (proc)
 	{
+		last_pos = proc->pos - 1;
+		if (last_pos < 0)
+			last_pos = 4095;
+		mvchgat(last_pos / 64, last_pos % 64 * 3, 2, A_BLINK, 10, NULL);
 		mvchgat(proc->pos / 64, proc->pos % 64 * 3, 2, A_BLINK, -proc->r[0], NULL);
 		proc = proc->next;
 	}

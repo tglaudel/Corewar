@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 10:01:32 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/03 15:56:45 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/05 11:57:18 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void copie_proc(t_proc *new, t_proc *papa)
 	i = -1;
 	while (++i < REG_NUMBER)
 		new->r[i] = papa->r[i];
-	new->pos = papa->inst.arg[0]; // attention au % MEM_SIZE et au signe
+	new->pos = papa->pos + 5;//papa->inst.arg[0]; // attention au % MEM_SIZE et au signe
 	new->wait_cycle = 0;
 	new->carry = papa->carry;
 	new->live_exec = papa->live_exec;
@@ -50,13 +50,13 @@ void		new_processus(t_env *e, int nb, int pos, t_proc *papa)
 	if (e->proc_start != NULL)
 		proc->next = e->proc_start;
 	e->proc_start = proc;
-	bzero(proc->r, REG_NUMBER);
 	if (e->verbose & VERBOSE_DEBUG)
 		ft_printf("creation proc : %d -> cycle %d\n", e->nb_proc, e->nb_cycle);
 	if (papa)
 		copie_proc(proc, papa);
 	else
 	{
+		bzero(proc->r, REG_NUMBER);
 		proc->r[0] = nb;
 		proc->pos = pos;
 		proc->index = e->nb_proc;

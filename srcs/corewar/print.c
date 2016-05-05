@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/29 18:00:08 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/04 18:02:55 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/05 11:50:10 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,31 @@ void print_processus_debug(t_proc *start, int nb_cycle)
 	ft_putchar('\n');
 }
 
-void print_in_memory(unsigned char *mem, int val, int pos)
+void print_in_memory(t_env *e, int val, int pos)
 {
 	int i;
+	int j;
+	unsigned int u;
+	char mem_hexa[2];
 
 	i = -1;
 	while (++i < 4)
-		mem[(pos + i) % MEM_SIZE] = val >> (24 - (8 * i));
+	{
+		u = val >> (24 - (8 * i));
+		e->mem[(pos + i) % MEM_SIZE] = u;
+		if (have_opt('n', e->opt))
+		{
+			j = -1;
+			while (++j < 2) // itoa_base 16 u = case_mem;
+			{
+				mem_hexa[j] = BASE_HEXA[u % 16];
+				u /= 16;
+			}
+			mvaddch((pos + i) / 64, ((pos + i) % 64) * 3, mem_hexa[1]);
+			mvaddch((pos + i) / 64, ((pos + i) % 64) * 3 + 1, mem_hexa[0]);
+			mvaddch((pos + i) / 64, ((pos + i) % 64) * 3 + 2, ' ');
+		}
+	}
 }
 
 

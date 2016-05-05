@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 14:05:10 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/04 18:16:15 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/05 10:08:49 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		st(t_env *e, t_proc *proc)
 		pos = pos % MEM_SIZE;
 		if (pos < 0)
 			pos = MEM_SIZE - pos;
-		print_in_memory(e->mem, proc->r[proc->inst.arg[0] - 1], pos);
+		print_in_memory(e, proc->r[proc->inst.arg[0] - 1], pos);
 	}
 	else
 	{
