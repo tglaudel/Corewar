@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/04 18:56:11 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/05 13:47:07 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,9 @@ static void		exe_instruction(t_proc *proc, t_env *e)
 	else if (proc->inst.opc == 10)
 		ldi(e, proc);
 	else if (proc->inst.opc == 12)
-		new_processus(e, e->nb_proc, proc->pos + 5, proc);
+		fork_cor(e, proc);
+	else if (proc->inst.opc == 16)
+		aff(e, proc);
 	proc->pos = proc->pc;
 }
 
@@ -118,7 +120,7 @@ void		game_loop(t_env *e)
 		++e->nb_cycle;
 		system("clear");
 		print_memory(e, e->mem, e->proc_start);
-		usleep(80000);
+		usleep(10000);
 		if (before_check_die == e->c_to_die)
 		{
 			check_proc_cycle(e);

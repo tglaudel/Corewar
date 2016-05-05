@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cor.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/04 18:55:30 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/05 13:34:57 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,8 @@ int					or(t_env *e, t_proc *proc);//		7
 int					xor(t_env *e, t_proc *proc);//		8
 int					zjmp(t_env *e, t_proc *proc);//		9
 int					ldi(t_env *e, t_proc *proc);//		10
+int					fork_cor(t_env *e, t_proc *proc);//		12
+int					aff(t_env *e, t_proc *proc);//		16
 
 
 /*
