@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/05 14:02:59 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/05 14:04:40 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,13 +124,8 @@ void		game_loop(t_env *e)
 	{
 		proc_loop(e);
 		++e->nb_cycle;
-<<<<<<< HEAD
-		// system("clear");
-		// print_memory(e, e->mem, e->proc_start);
-=======
 		system("clear");
 		print_memory(e, e->mem, e->proc_start);
->>>>>>> 090a48acb2f17080f161d0844d2bb12dccfba2b9
 		usleep(10000);
 		if (before_check_die == e->c_to_die)
 		{
