@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/05 15:55:55 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/05 17:48:18 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct		s_inst
 {
 	char			opc;
 	unsigned char	odc;
-	unsigned int	arg[3];
+	int				arg[3];
 }					t_inst;
 
 typedef struct		s_proc
@@ -59,6 +59,7 @@ typedef struct		s_champ
 	char			*code;
 	int				width;
 	int				nb_live;
+	int				pos;
 	int				last_cycle_live;
 	int				nb_champ;
 	struct s_champ	*next;
@@ -107,7 +108,7 @@ typedef struct		s_op
 typedef struct		s_od
 {
 	int				op_code;
-	unsigned char	odc[9];
+	unsigned char	odc[10];
 }					t_od;
 
 extern t_op g_op_tab[17];
@@ -149,8 +150,8 @@ void				check_proc_cycle(t_env *e);
 */
 
 void				game_loop(t_env *e);
-unsigned int		ind_to_int(unsigned char *mem, int pos);
-unsigned int		dir_to_int(unsigned char *mem, int pos);
+int					ind_to_int(unsigned char *mem, int pos);
+short int					dir_to_int(unsigned char *mem, int pos);
 int					have_odc_arg(int a, unsigned char *mem, t_proc *proc,\
 					int i);
 int					check_odc(t_proc *proc, int i);

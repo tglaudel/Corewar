@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:18:38 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/03 17:12:41 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/05 17:05:40 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@
 # define REG_SIZE				4
 # define DIR_SIZE				REG_SIZE
 
-
 # define REG_CODE				1
 # define DIR_CODE				2
 # define IND_CODE				3
-
 
 # define MAX_ARGS_NUMBER		4
 # define MAX_PLAYERS			4

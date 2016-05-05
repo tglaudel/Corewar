@@ -6,25 +6,29 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 14:05:10 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/05 10:08:49 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/05 18:02:14 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
 
-// st : Prend un registre et un registre ou un indirect, et stocke la valeur du registre
-// vers le second paramètre. Son opcode est 0x03. Par exemple, st r1, 42 stocke la
-// valeur de r1 à l’adresse (PC + (42 % IDX_MOD))
-
 int		st(t_env *e, t_proc *proc)
 {
 	int pos;
+//	short int new;
 
+	// new = 0;
 	if (proc->inst.arg[0] > REG_NUMBER || proc->inst.arg[0] <= 0)
 		return (0);
 	if (((proc->inst.odc >> 4) & IND_CODE) == IND_CODE)
 	{
-		pos = proc->pc + proc->inst.arg[1] % IDX_MOD;
+		// ft_putnbr(proc->inst.arg[1]);
+		// ft_putchar(' ');
+		// new = new | (short)proc->inst.arg[1];
+		// ft_putnbr(new);
+		// ft_putchar('\n');
+
+		pos = proc->pos + (proc->inst.arg[1] % IDX_MOD);
 		pos = pos % MEM_SIZE;
 		if (pos < 0)
 			pos = MEM_SIZE - pos;

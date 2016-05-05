@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 17:52:24 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/05 11:16:14 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/05 16:10:55 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void			add_to_champ_lst(t_env *env, int nb, int width, char *file)
 	champ->code = my_strsub(s, COMMENT_NAME_MAGIC, width);
 	champ->next = NULL;
 	champ->nb_live = 0;
+	champ->pos = 0;
 	if (!have_opt('n', env->opt))
 		ft_printf("* Player %d, weighing %d bytes, %s (%s) !\n", nb, width, champ->name, champ->comment);
 	if (env->champ_end != NULL)

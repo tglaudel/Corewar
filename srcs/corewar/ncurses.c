@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 13:48:05 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/05/05 14:32:12 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/05 16:17:05 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void				print_board(t_env *e)
 	char	*mem_hexa;
 	int		u;
 	int		i;
+	//int		color;
 
 	mem_hexa = (char*)malloc(sizeof(char) * 3);
 	pos = -1;
@@ -84,6 +85,8 @@ void				print_board(t_env *e)
 	{
 		i = -1;
 		u = e->mem[pos];
+		// if (!(color = in_champ(pos))
+		// 	color = 0;
 		while (++i < 2) // itoa_base 16 u = case_mem;
 		{
 			mem_hexa[i] = BASE_HEXA[u % 16];

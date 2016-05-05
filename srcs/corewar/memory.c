@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 16:31:37 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/04 10:41:36 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/05 16:11:24 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void				insert_in_memory(t_env *e)
 	while (champ)
 	{
 		i = -1;
+		champ->pos = n;
 		while (++i < champ->width)
 			e->mem[n + i] = champ->code[i];
 		new_processus(e, champ->nb_champ, n, NULL);

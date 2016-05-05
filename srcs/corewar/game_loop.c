@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/05 15:57:49 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/05 16:36:51 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ static void		proc_loop(t_env *e)
 	proc = e->proc_start;
 	while (proc)
 	{
-		//ft_printf("%d %d\n", proc->index, proc->inst.opc);
 		size = -1;
 		if (proc->wait_cycle > 0)
 			--proc->wait_cycle;
@@ -109,6 +108,8 @@ static void		proc_loop(t_env *e)
 				proc->pc = (proc->pos + size) % MEM_SIZE;
 			if (proc->exec == 1)
 				exe_instruction(proc, e);
+			else
+				proc->pos = (proc->pos + size) % MEM_SIZE;
 			init_proc(proc);
 		}
 		else if (!define_opc(proc, e->mem))
