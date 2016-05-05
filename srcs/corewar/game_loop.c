@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/05 13:20:45 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/05 14:02:59 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,15 @@ static void		exe_instruction(t_proc *proc, t_env *e)
 		zjmp(e, proc);
 	else if (proc->inst.opc == 10)
 		ldi(e, proc);
+	else if (proc->inst.opc == 11)
+		sti(e, proc);
 	else if (proc->inst.opc == 12)
-		new_processus(e, e->nb_proc, proc->pos + 5, proc);
-	mvchgat(proc->pos / 64, proc->pos % 64 * 3, 2, A_BLINK, 10, NULL);
+	{
+		mvchgat(proc->pos / 64, proc->pos % 64 * 3, 2, A_BLINK, 10, NULL);
+		fork_cor(e, proc);
+	}
+	else if (proc->inst.opc == 16)
+		aff(e, proc);
 	proc->pos = proc->pc;
 }
 
@@ -118,8 +124,13 @@ void		game_loop(t_env *e)
 	{
 		proc_loop(e);
 		++e->nb_cycle;
+<<<<<<< HEAD
 		// system("clear");
 		// print_memory(e, e->mem, e->proc_start);
+=======
+		system("clear");
+		print_memory(e, e->mem, e->proc_start);
+>>>>>>> 090a48acb2f17080f161d0844d2bb12dccfba2b9
 		usleep(10000);
 		if (before_check_die == e->c_to_die)
 		{

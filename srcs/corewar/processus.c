@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 10:01:32 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/05 11:57:18 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/05 14:03:17 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ int			is_prog_pos(t_proc *start, int x, int y)
 	return (0);
 }
 
-static void copie_proc(t_proc *new, t_proc *papa)
+static void copie_proc(t_proc *new, t_proc *papa, int pos)
 {
 	int i;
 
 	i = -1;
 	while (++i < REG_NUMBER)
 		new->r[i] = papa->r[i];
-	new->pos = papa->pos + 5;//papa->inst.arg[0]; // attention au % MEM_SIZE et au signe
+	new->pos = pos;
 	new->wait_cycle = 0;
 	new->carry = papa->carry;
 	new->live_exec = papa->live_exec;
@@ -53,17 +53,17 @@ void		new_processus(t_env *e, int nb, int pos, t_proc *papa)
 	if (e->verbose & VERBOSE_DEBUG)
 		ft_printf("creation proc : %d -> cycle %d\n", e->nb_proc, e->nb_cycle);
 	if (papa)
-		copie_proc(proc, papa);
+		copie_proc(proc, papa, pos);
 	else
 	{
 		bzero(proc->r, REG_NUMBER);
 		proc->r[0] = nb;
 		proc->pos = pos;
-		proc->index = e->nb_proc;
 		proc->wait_cycle = 0;
 		proc->carry = 0;
 		proc->live_exec = 0;
 	}
+	proc->index = e->nb_proc;
 	proc->exec = 0;
 	init_proc(proc);
 }

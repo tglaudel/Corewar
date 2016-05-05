@@ -6,7 +6,7 @@
 #    By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 08:59:28 by tglaudel          #+#    #+#              #
-#    Updated: 2016/05/05 10:11:39 by tglaudel         ###   ########.fr        #
+#    Updated: 2016/05/05 13:59:09 by tglaudel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,8 @@ SRC_NAME_COR = main.c \
 			   zjmp.c \
 			   ldi.c \
 			   sti.c \
+			   fork.c \
+			   aff.c \
 
 OBJ_NAME_ASM = $(SRC_NAME_ASM:.c=.o)
 OBJ_NAME_COR = $(SRC_NAME_COR:.c=.o)
