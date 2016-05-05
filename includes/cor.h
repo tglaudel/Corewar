@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/05 14:02:54 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/05 15:52:50 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,8 @@ int					zjmp(t_env *e, t_proc *proc);//		9
 int					ldi(t_env *e, t_proc *proc);//		10
 int					sti(t_env *e, t_proc *proc);//		11
 int					fork_cor(t_env *e, t_proc *proc);//	12
+int					lld(t_env *e, t_proc *proc);//		13
+int					lldi(t_env *e, t_proc *proc);//		14
 int					aff(t_env *e, t_proc *proc);//		16
 
 

@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 13:48:05 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/05/05 11:42:58 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/05 14:32:12 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ void				print_board(t_env *e)
 			mem_hexa[i] = BASE_HEXA[u % 16];
 			u /= 16;
 		}
-		mvaddch(pos / 64, (pos % 64) * 3, mem_hexa[0]);
-		mvaddch(pos / 64, (pos % 64) * 3 + 1, mem_hexa[1]);
+		mvaddch(pos / 64, (pos % 64) * 3, mem_hexa[1]);
+		mvaddch(pos / 64, (pos % 64) * 3 + 1, mem_hexa[0]);
 		mvaddch(pos / 64, (pos % 64) * 3 + 2, ' ');
 	}
 	usleep(10000);

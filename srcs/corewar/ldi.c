@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:45:02 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/05 09:29:18 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/05 15:51:52 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int ldi(t_env *e, t_proc *proc)
 
 	if (proc->inst.arg[2] > REG_NUMBER || proc->inst.arg[2] <= 0)
 		return (0);
-	val1 = recup_value(e->mem, proc, 6, 0);
+	if (((proc->inst.odc >> 6 ) & IND_CODE) == IND_CODE)
+		val1 = recup_value(e->mem, proc, 6, 0) % IDX_MOD;
+	else
+		val1 = recup_value(e->mem, proc, 6, 0);
 	val2 = recup_value(e->mem, proc, 4, 1);
 	pos = (val1 + val2) % MEM_SIZE;
 	if (pos < 0)

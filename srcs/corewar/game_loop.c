@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/05 14:04:40 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/05/05 15:53:37 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,14 @@ static void		exe_instruction(t_proc *proc, t_env *e)
 	else if (proc->inst.opc == 11)
 		sti(e, proc);
 	else if (proc->inst.opc == 12)
-	{
-		mvchgat(proc->pos / 64, proc->pos % 64 * 3, 2, A_BLINK, 10, NULL);
+		lld(e, proc);
+	else if (proc->inst.opc == 13)
+		lldi(e, proc);
+	else if (proc->inst.opc == 14)
 		fork_cor(e, proc);
-	}
 	else if (proc->inst.opc == 16)
 		aff(e, proc);
+	mvchgat(proc->pos / 64, proc->pos % 64 * 3, 2, A_BLINK, 10, NULL);
 	proc->pos = proc->pc;
 }
 
@@ -124,8 +126,8 @@ void		game_loop(t_env *e)
 	{
 		proc_loop(e);
 		++e->nb_cycle;
-		system("clear");
-		print_memory(e, e->mem, e->proc_start);
+		// system("clear");
+		// print_memory(e, e->mem, e->proc_start);
 		usleep(10000);
 		if (before_check_die == e->c_to_die)
 		{
