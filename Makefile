@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+         #
+#    By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 08:59:28 by tglaudel          #+#    #+#              #
-#    Updated: 2016/05/05 14:59:11 by ale-naou         ###   ########.fr        #
+#    Updated: 2016/05/05 15:58:14 by tglaudel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,8 @@ SRC_NAME_COR = main.c \
 			   xor.c \
 			   zjmp.c \
 			   ldi.c \
+			   lld.c \
+			   lldi.c \
 			   sti.c \
 			   fork.c \
 			   lfork.c \
