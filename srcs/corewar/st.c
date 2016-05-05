@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 14:05:10 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/05 18:02:14 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/05 18:58:49 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,6 @@ int		st(t_env *e, t_proc *proc)
 		return (0);
 	if (((proc->inst.odc >> 4) & IND_CODE) == IND_CODE)
 	{
-		// ft_putnbr(proc->inst.arg[1]);
-		// ft_putchar(' ');
-		// new = new | (short)proc->inst.arg[1];
-		// ft_putnbr(new);
-		// ft_putchar('\n');
-
 		pos = proc->pos + (proc->inst.arg[1] % IDX_MOD);
 		pos = pos % MEM_SIZE;
 		if (pos < 0)

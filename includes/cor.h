@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/05 17:48:18 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/05 18:58:37 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ void				check_proc_cycle(t_env *e);
 
 void				game_loop(t_env *e);
 int					ind_to_int(unsigned char *mem, int pos);
-short int					dir_to_int(unsigned char *mem, int pos);
+short int			dir_to_int(unsigned char *mem, int pos);
 int					have_odc_arg(int a, unsigned char *mem, t_proc *proc,\
 					int i);
 int					check_odc(t_proc *proc, int i);
