@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/06 10:33:40 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/06 12:00:25 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,5 +206,7 @@ void				print_board(t_env *env);
 void				print_processus_debug(t_proc *start, int nb_cycle);
 void				print_in_memory(t_env *e, int val, int pos);
 void				print_processus(t_proc *start);
+void				print_info(t_env *e);
+void				print_champ(t_env *e);
 
 #endif

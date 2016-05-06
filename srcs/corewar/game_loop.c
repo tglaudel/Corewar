@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/06 11:11:28 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/06 12:00:53 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,6 @@ void		game_loop(t_env *e)
 		++e->nb_cycle;
 		// system("clear");
 		// print_memory(e, e->mem, e->proc_start);
-		// usleep(6000);
 		if (before_check_die == e->c_to_die)
 		{
 			check_proc_cycle(e);
@@ -144,6 +143,9 @@ void		game_loop(t_env *e)
 			ft_printf("It is now cycle %d\n", e->nb_cycle);
 		if (have_opt('n', e->opt))
 		{
+			usleep(6000);
+			print_info(e);
+			print_champ(e);
 			print_processus(e->proc_start);
 			refresh();
 		}

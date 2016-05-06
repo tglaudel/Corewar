@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 13:48:05 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/05/05 16:17:05 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/06 12:03:18 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,31 @@ void				print_processus(t_proc *start)
 // stocker la couleur ou je ne sais quoi...
 // }
 
+void print_champ(t_env *e)
+{
+	t_champ *champ;
+	int pos;
+
+	champ = e->champ_start;
+	pos = 10;
+	while (champ)
+	{
+		mvprintw(pos, 200, "%s : %s\n", "Name", champ->name);
+		mvprintw(pos + 1, 200, "%s : %d\n", "last_live", champ->last_cycle_live);
+		mvprintw(pos + 2, 200, "%s : %d\n", "nb_live", champ->nb_live);
+		champ = champ->next;
+		pos += 5;
+	}
+}
+
+void print_info(t_env *e)
+{
+	mvprintw(29, 200, "%s : %d\n", "NB_CYCLE", e->nb_cycle);
+	mvprintw(30, 200, "%s : %d\n", "CYCLE_TO_DIE", e->c_to_die);
+	mvprintw(31, 200, "%s : %d\n", "MAX_CHECKS", MAX_CHECKS);
+	mvprintw(32, 200, "%s : %d\n", "NBR_LIVE", NBR_LIVE);
+}
+
 void				print_board(t_env *e)
 {
 	int		pos;
@@ -85,9 +110,7 @@ void				print_board(t_env *e)
 	{
 		i = -1;
 		u = e->mem[pos];
-		// if (!(color = in_champ(pos))
-		// 	color = 0;
-		while (++i < 2) // itoa_base 16 u = case_mem;
+		while (++i < 2)
 		{
 			mem_hexa[i] = BASE_HEXA[u % 16];
 			u /= 16;
