@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/06 12:00:53 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/06 13:15:30 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +129,6 @@ void		game_loop(t_env *e)
 	{
 		proc_loop(e);
 		++e->nb_cycle;
-		// system("clear");
-		// print_memory(e, e->mem, e->proc_start);
 		if (before_check_die == e->c_to_die)
 		{
 			check_proc_cycle(e);
