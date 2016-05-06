@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/06 13:15:30 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/06 18:58:54 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void		exe_instruction(t_proc *proc, t_env *e)
 		lfork_cor(e, proc);
 	else if (proc->inst.opc == 16)
 		aff(e, proc);
-	mvchgat(proc->pos / 64, proc->pos % 64 * 3, 2, A_BLINK, 10, NULL);
+	mvchgat(proc->pos / 64, proc->pos % 64 * 3, 2, A_NORMAL, proc->champ_color, NULL);
 	proc->pos = proc->pc;
 }
 
@@ -107,7 +107,9 @@ static void		proc_loop(t_env *e)
 			if ((size = parsing_instruction(proc, e->mem)) != -1)
 				proc->pc = (proc->pos + size) % MEM_SIZE;
 			if (proc->exec == 1)
+			{
 				exe_instruction(proc, e);
+			}
 			else
 				proc->pos = (proc->pos + size) % MEM_SIZE;
 			init_proc(proc);
@@ -129,6 +131,9 @@ void		game_loop(t_env *e)
 	{
 		proc_loop(e);
 		++e->nb_cycle;
+		// system("clear");
+		// print_memory(e, e->mem, e->proc_start);
+		// usleep(10000);
 		if (before_check_die == e->c_to_die)
 		{
 			check_proc_cycle(e);
@@ -141,11 +146,12 @@ void		game_loop(t_env *e)
 			ft_printf("It is now cycle %d\n", e->nb_cycle);
 		if (have_opt('n', e->opt))
 		{
-			usleep(6000);
+			usleep(100000);
 			print_info(e);
 			print_champ(e);
-			print_processus(e->proc_start);
+			print_processus(e->proc_start, e);
 			refresh();
 		}
 	}
+	print_memory(e, e->mem, e->proc_start);
 }

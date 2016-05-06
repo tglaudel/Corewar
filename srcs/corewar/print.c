@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/29 18:00:08 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/05 14:31:36 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/06 18:57:16 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,16 @@ void print_processus_debug(t_proc *start, int nb_cycle)
 	ft_putchar('\n');
 }
 
-void print_in_memory(t_env *e, int val, int pos)
+void print_in_memory(t_env *e, int val, int pos, t_proc *proc)
 {
 	int i;
 	int j;
-	unsigned int u;
+	unsigned char u;
 	char mem_hexa[2];
+	int color;
 
 	i = -1;
+	color = 0;
 	while (++i < 4)
 	{
 		u = val >> (24 - (8 * i));
@@ -48,9 +50,10 @@ void print_in_memory(t_env *e, int val, int pos)
 				mem_hexa[j] = BASE_HEXA[u % 16];
 				u /= 16;
 			}
-			mvaddch((pos + i) / 64, ((pos + i) % 64) * 3, mem_hexa[1]);
-			mvaddch((pos + i) / 64, ((pos + i) % 64) * 3 + 1, mem_hexa[0]);
-			mvaddch((pos + i) / 64, ((pos + i) % 64) * 3 + 2, ' ');
+			mvaddch((pos + i) % MEM_SIZE / 64, ((pos + i) % MEM_SIZE % 64) * 3, mem_hexa[1]);
+			mvaddch((pos + i) % MEM_SIZE / 64, ((pos + i) % MEM_SIZE % 64) * 3 + 1, mem_hexa[0]);
+			mvaddch((pos + i) % MEM_SIZE / 64, ((pos + i) % MEM_SIZE % 64) * 3 + 2, ' ');
+			mvchgat((pos + i) % MEM_SIZE / 64, ((pos + i) % MEM_SIZE % 64) * 3, 2, A_NORMAL, proc->champ_color, NULL);
 		}
 	}
 }

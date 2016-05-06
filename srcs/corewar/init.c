@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 17:59:20 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/06 10:29:38 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/06 17:38:49 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void		init_env(t_env *e)
 	e->nb_check_td = 0;
 	e->global_live = 0;
 	bzero(e->mem, MEM_SIZE + 1);
+	bzero(e->col, MEM_SIZE + 1);
 }
 
 void		init_cor(t_env *e, char **av)

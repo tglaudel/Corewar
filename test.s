@@ -1,20 +1,12 @@
 .name "le petit test"
 .comment "flo la tarlouze"
 
-#24 + (-40 mod IDX_MOD = 472)
+ld		%251883523, r2
+ld		%386101251, r3
+st		r2, 15
+st		r3, -1
 
-player:
-	add r1, r7, r14
-	st 	r14, 6
 
-live:
-	live %:player
-	live %:player
 
-ld %0, r7
-
-wall:
-	st r7, -40
-
-ld %0, r14
-zjmp %:player
+#03 70 03 ff ff 01 ff ff ff ff 03 70 02 00 0f
+#03 70 03 ff ff ff ff 00 00 00 03 70 02 00

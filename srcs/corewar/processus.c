@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 10:01:32 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/06 10:17:37 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/06 14:46:44 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void copie_proc(t_proc *new, t_proc *papa, int pos)
 	new->wait_cycle = 0;
 	new->carry = papa->carry;
 	new->live_exec = papa->live_exec;
+	new->champ_color = papa->champ_color;
 }
 
 void		new_processus(t_env *e, int nb, int pos, t_proc *papa)
@@ -58,6 +59,7 @@ void		new_processus(t_env *e, int nb, int pos, t_proc *papa)
 	{
 		bzero(proc->r, REG_NUMBER);
 		proc->r[0] = nb;
+		proc->champ_color = -nb;
 		proc->pos = pos;
 		proc->wait_cycle = 0;
 		proc->carry = 0;

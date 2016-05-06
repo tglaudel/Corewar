@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/06 12:00:25 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/06 17:46:02 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct		s_proc
 	int				r[REG_NUMBER];
 	int				wait_cycle;
 	int				live_exec;
+	int				champ_color;
 	char			exec;
 	t_inst			inst;
 	struct s_proc	*next;
@@ -78,6 +79,7 @@ typedef struct		s_env
 	int				opt;
 	int				verbose;
 	unsigned char	mem[MEM_SIZE];
+	char			col[MEM_SIZE];
 	int				nb_cycle;
 	int				nb_cycle_max;
 	int				nb_champ;
@@ -202,10 +204,9 @@ int					aff(t_env *e, t_proc *proc);//			16
 
 int					print_help(void);
 void				print_board(t_env *env);
-//void				print_op(t_proc *proc, char *function);
 void				print_processus_debug(t_proc *start, int nb_cycle);
-void				print_in_memory(t_env *e, int val, int pos);
-void				print_processus(t_proc *start);
+void				print_in_memory(t_env *e, int val, int pos, t_proc *proc);
+void				print_processus(t_proc *start, t_env *e);
 void				print_info(t_env *e);
 void				print_champ(t_env *e);
 
