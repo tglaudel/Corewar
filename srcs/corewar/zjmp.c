@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:42:16 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/03 14:32:08 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/06 10:38:33 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		zjmp(t_env *e, t_proc *proc)
 	int tmp;
 
 	tmp = proc->pos;
-	if (proc->carry == 1) // si test enlever le carry c'est plutot pas mal, pd
+	if (proc->carry == 1)
 	{
 		tmp = (short int)proc->inst.arg[0];
 		proc->pos += tmp;

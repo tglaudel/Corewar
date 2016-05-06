@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/05 18:48:24 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/06 11:11:28 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ static void		exe_instruction(t_proc *proc, t_env *e)
 	else if (proc->inst.opc == 11)
 		sti(e, proc);
 	else if (proc->inst.opc == 12)
-		lld(e, proc);
-	else if (proc->inst.opc == 13)
-		lldi(e, proc);
-	else if (proc->inst.opc == 14)
 		fork_cor(e, proc);
+	else if (proc->inst.opc == 13)
+		lld(e, proc);
+	else if (proc->inst.opc == 14)
+		lldi(e, proc);
 	else if (proc->inst.opc == 15)
 		lfork_cor(e, proc);
 	else if (proc->inst.opc == 16)
@@ -131,7 +131,7 @@ void		game_loop(t_env *e)
 		++e->nb_cycle;
 		// system("clear");
 		// print_memory(e, e->mem, e->proc_start);
-		usleep(10000);
+		// usleep(6000);
 		if (before_check_die == e->c_to_die)
 		{
 			check_proc_cycle(e);

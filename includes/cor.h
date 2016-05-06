@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/05 18:58:37 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/06 10:33:40 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,6 @@ int					have_odc_arg(int a, unsigned char *mem, t_proc *proc,\
 					int i);
 int					check_odc(t_proc *proc, int i);
 int					parsing_argument(t_proc *proc, unsigned char *mem, int i);
-
 /*
 ** Memory :
 */
