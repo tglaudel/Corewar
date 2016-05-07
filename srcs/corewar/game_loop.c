@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/06 18:58:54 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/07 14:29:55 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int		parsing_instruction(t_proc *proc, unsigned char *mem)
 		if (!check_odc(proc, i))
 		{
 			proc->exec = 0;
-			return (2);
+			return (error_odc(proc, i));
 		}
 	}
 	size = parsing_argument(proc, mem, i);
@@ -74,7 +74,7 @@ static void		exe_instruction(t_proc *proc, t_env *e)
 	proc->pos = proc->pc;
 }
 
-static int		define_opc(t_proc *proc, unsigned char *mem)
+int		define_opc(t_proc *proc, unsigned char *mem)
 {
 	int i;
 
@@ -113,6 +113,8 @@ static void		proc_loop(t_env *e)
 			else
 				proc->pos = (proc->pos + size) % MEM_SIZE;
 			init_proc(proc);
+			if (!define_opc(proc, e->mem))
+				proc->pos = ++proc->pos % MEM_SIZE;
 		}
 		else if (!define_opc(proc, e->mem))
 			proc->pos = ++proc->pos % MEM_SIZE;
@@ -130,7 +132,6 @@ void		game_loop(t_env *e)
 	e->nb_cycle < e->nb_cycle_max && e->c_to_die > 0)
 	{
 		proc_loop(e);
-		++e->nb_cycle;
 		// system("clear");
 		// print_memory(e, e->mem, e->proc_start);
 		// usleep(10000);
@@ -142,16 +143,18 @@ void		game_loop(t_env *e)
 			e->global_live = 0;
 		}
 		++before_check_die;
-		if (e->verbose & VERBOSE_CYCLE)
-			ft_printf("It is now cycle %d\n", e->nb_cycle);
 		if (have_opt('n', e->opt))
 		{
-			usleep(100000);
+			usleep(10000);
 			print_info(e);
 			print_champ(e);
 			print_processus(e->proc_start, e);
 			refresh();
 		}
+		++e->nb_cycle;
+		if (e->verbose & VERBOSE_CYCLE)
+			ft_printf("It is now cycle %d\n", e->nb_cycle);
 	}
-	print_memory(e, e->mem, e->proc_start);
+	if (!have_opt('n', e->opt))
+		print_memory(e, e->mem, e->proc_start);
 }

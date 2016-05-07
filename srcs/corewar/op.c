@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/01 10:19:31 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/05 16:31:54 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/07 13:51:14 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ t_op    g_op_tab[17] =
 	{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0, 4, 0},
 	{"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load", 1, 0, 4, 2},
 	{"st", 2, {T_REG, T_IND | T_REG}, 3, 5, "store", 1, 0, 0, 2},
-	{"add", 3, {T_REG, T_REG, T_REG}, 4, 10, "addition", 1, 0, 0, 0},
-	{"sub", 3, {T_REG, T_REG, T_REG}, 5, 10, "soustraction", 1, 0, 0, 0},
+	{"add", 3, {T_REG, T_REG, T_REG}, 4, 10, "addition", 1, 0, 4, 2},
+	{"sub", 3, {T_REG, T_REG, T_REG}, 5, 10, "soustraction", 1, 0, 4, 2},
 	{"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}, 6, 6,
 		"et (and  r1, r2, r3   r1&r2 -> r3", 1, 0, 4, 2},
 	{"or", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 7, 6,

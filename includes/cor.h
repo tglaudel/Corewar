@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/06 17:46:02 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/07 14:28:50 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct		s_op
 	int				carry;
 	int				dir_size;
 	int				ind_size;
+//	int				*f;
 }					t_op;
 
 typedef struct		s_od
@@ -158,6 +159,8 @@ int					have_odc_arg(int a, unsigned char *mem, t_proc *proc,\
 					int i);
 int					check_odc(t_proc *proc, int i);
 int					parsing_argument(t_proc *proc, unsigned char *mem, int i);
+int					error_odc(t_proc *proc, int i);
+int					define_opc(t_proc *proc, unsigned char *mem);
 /*
 ** Memory :
 */

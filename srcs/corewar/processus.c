@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 10:01:32 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/06 14:46:44 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/07 14:32:15 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int			is_prog_pos(t_proc *start, int x, int y)
 	return (0);
 }
 
-static void copie_proc(t_proc *new, t_proc *papa, int pos)
+static void copie_proc(t_proc *new, t_proc *papa, int pos, t_env *e)
 {
 	int i;
 
@@ -38,6 +38,7 @@ static void copie_proc(t_proc *new, t_proc *papa, int pos)
 	new->carry = papa->carry;
 	new->live_exec = papa->live_exec;
 	new->champ_color = papa->champ_color;
+	define_opc(new, e->mem);
 }
 
 void		new_processus(t_env *e, int nb, int pos, t_proc *papa)
@@ -54,7 +55,7 @@ void		new_processus(t_env *e, int nb, int pos, t_proc *papa)
 	if (e->verbose & VERBOSE_DEBUG)
 		ft_printf("creation proc : %d -> cycle %d\n", e->nb_proc, e->nb_cycle);
 	if (papa)
-		copie_proc(proc, papa, pos);
+		copie_proc(proc, papa, pos, e);
 	else
 	{
 		bzero(proc->r, REG_NUMBER);
@@ -64,8 +65,8 @@ void		new_processus(t_env *e, int nb, int pos, t_proc *papa)
 		proc->wait_cycle = 0;
 		proc->carry = 0;
 		proc->live_exec = 0;
+		init_proc(proc);
 	}
 	proc->index = e->nb_proc;
 	proc->exec = 0;
-	init_proc(proc);
 }
