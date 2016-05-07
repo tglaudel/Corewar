@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/07 14:29:55 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/07 19:18:14 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void		exe_instruction(t_proc *proc, t_env *e)
 	else if (proc->inst.opc == 16)
 		aff(e, proc);
 	mvchgat(proc->pos / 64, proc->pos % 64 * 3, 2, A_NORMAL, proc->champ_color, NULL);
-	proc->pos = proc->pc;
+	proc->pos = proc->pc % MEM_SIZE;
 }
 
 int		define_opc(t_proc *proc, unsigned char *mem)
@@ -107,9 +107,7 @@ static void		proc_loop(t_env *e)
 			if ((size = parsing_instruction(proc, e->mem)) != -1)
 				proc->pc = (proc->pos + size) % MEM_SIZE;
 			if (proc->exec == 1)
-			{
 				exe_instruction(proc, e);
-			}
 			else
 				proc->pos = (proc->pos + size) % MEM_SIZE;
 			init_proc(proc);
@@ -132,11 +130,9 @@ void		game_loop(t_env *e)
 	e->nb_cycle < e->nb_cycle_max && e->c_to_die > 0)
 	{
 		proc_loop(e);
-		// system("clear");
-		// print_memory(e, e->mem, e->proc_start);
-		// usleep(10000);
 		if (before_check_die == e->c_to_die)
 		{
+			check_champ_cycle(e);
 			check_proc_cycle(e);
 			re_init_proc(e->proc_start);
 			before_check_die = 0;
@@ -144,13 +140,7 @@ void		game_loop(t_env *e)
 		}
 		++before_check_die;
 		if (have_opt('n', e->opt))
-		{
-			usleep(10000);
-			print_info(e);
-			print_champ(e);
-			print_processus(e->proc_start, e);
-			refresh();
-		}
+			ncruses_loop(e);
 		++e->nb_cycle;
 		if (e->verbose & VERBOSE_CYCLE)
 			ft_printf("It is now cycle %d\n", e->nb_cycle);

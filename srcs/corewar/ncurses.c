@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 13:48:05 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/05/06 17:32:30 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/07 18:53:39 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void				print_processus(t_proc *start, t_env *e)
 	}
 }
 
-void print_champ(t_env *e)
+static void print_champ(t_env *e)
 {
 	t_champ *champ;
 	int pos;
@@ -46,12 +46,13 @@ void print_champ(t_env *e)
 	}
 }
 
-void print_info(t_env *e)
+static void print_info(t_env *e)
 {
 	mvprintw(29, 200, "%s : %d\n", "NB_CYCLE", e->nb_cycle);
 	mvprintw(30, 200, "%s : %d\n", "CYCLE_TO_DIE", e->c_to_die);
 	mvprintw(31, 200, "%s : %d\n", "MAX_CHECKS", MAX_CHECKS);
 	mvprintw(32, 200, "%s : %d\n", "NBR_LIVE", NBR_LIVE);
+	mvprintw(32, 200, "%s : %d\n", "NB_PROC_IN_LIFE", e->nb_proc_in_life);
 }
 
 void				print_board(t_env *e)
@@ -60,7 +61,6 @@ void				print_board(t_env *e)
 	char	*mem_hexa;
 	int		u;
 	int		i;
-	//int		color;
 
 	mem_hexa = (char*)malloc(sizeof(char) * 3);
 	pos = -1;
@@ -103,6 +103,16 @@ void	init_ncurses2(void)
 	start_color();
 	init_color_pair();
 }
+
+void	ncruses_loop(t_env *e)
+{
+	usleep(10000);
+	print_info(e);
+	print_champ(e);
+	print_processus(e->proc_start, e);
+	refresh();
+}
+
 
 // void	init_ncurses(t_env *e)
 // {

@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/01 14:16:05 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/06 11:16:32 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/07 19:47:13 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int					del_proc(t_proc *start, t_env *e)
 			ft_printf("del proc : %d -> cycle %d -> live %d\n", proc->index,\
 			e->nb_cycle, proc->live_exec);
 		e->proc_start = proc->next;
-		--e->nb_proc;
+		--e->nb_proc_in_life;
 		free(proc);
 		proc = e->proc_start;
 	}
@@ -48,7 +48,7 @@ int					del_proc(t_proc *start, t_env *e)
 	if ((nb_proc_die = recurse_del_proc(proc, proc->next,\
 		(e->verbose & VERBOSE_DEBUG))) > 1)
 	{
-		e->nb_proc -= nb_proc_die + 1;
+		e->nb_proc_in_life -= nb_proc_die - 1;
 		return (1);
 	}
 	return (0);
@@ -62,7 +62,7 @@ void				check_proc_cycle(t_env *e)
 		e->c_to_die -= CYCLE_DELTA;
 		if (!have_opt('n', e->opt))
 			ft_printf("Cycle to die is now %d\n", e->c_to_die);
-		//e->nb_check_td = 0;
+		e->nb_check_td = 0;
 	}
 	else
 	{

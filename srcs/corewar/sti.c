@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:51:16 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/06 17:43:27 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/07 19:11:59 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int		sti(t_env *e, t_proc *proc)
 	int val1;
 	int val2;
 
+	if (!check_args(proc, 4, 1) || !check_args(proc, 2, 2))
+		return (0);
 	if (proc->inst.arg[0] > REG_NUMBER || proc->inst.arg[0] <= 0)
 		return (0);
 	val1 = recup_value(e->mem, proc, 4, 1);

@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/07 14:28:50 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/07 19:23:15 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct		s_champ
 	int				pos;
 	int				last_cycle_live;
 	int				nb_champ;
+	char			is_alive;
 	struct s_champ	*next;
 }					t_champ;
 
@@ -87,6 +88,7 @@ typedef struct		s_env
 	int				c_to_die;
 	int				nb_check_td;
 	int				global_live;
+	int				nb_proc_in_life;
 	t_champ			*champ_start;
 	t_champ			*champ_end;
 	t_proc			*proc_start;
@@ -132,6 +134,7 @@ int					get_ncycle(char **av);
 
 void				init_ncurses(t_env *e);
 void				init_ncurses2(void);
+void				ncruses_loop(t_env *e);
 
 /*
 ** Champ :
@@ -139,6 +142,7 @@ void				init_ncurses2(void);
 
 void				add_to_champ_lst(t_env *env, int nb, int width, char *file);
 int					is_champ(char *s);
+void				check_champ_cycle(t_env *e);
 
 /*
 ** Processus :
@@ -182,8 +186,8 @@ void				init_proc(t_proc *proc);
 */
 
 int					recup_value(unsigned char *mem, t_proc *proc, int i, int n);
+int 				check_args(t_proc *proc, int i, int n);
 
-int					aff(t_env *e, t_proc *proc);//		16
 int					live(t_env *e, t_proc *proc);//			1
 int					ld(t_env *e, t_proc *proc);//			2
 int					st(t_env *e, t_proc *proc);//			3
@@ -210,7 +214,5 @@ void				print_board(t_env *env);
 void				print_processus_debug(t_proc *start, int nb_cycle);
 void				print_in_memory(t_env *e, int val, int pos, t_proc *proc);
 void				print_processus(t_proc *start, t_env *e);
-void				print_info(t_env *e);
-void				print_champ(t_env *e);
 
 #endif

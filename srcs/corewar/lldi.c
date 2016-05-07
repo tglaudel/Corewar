@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 13:10:17 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/05 15:53:44 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/07 19:13:33 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int lldi(t_env *e, t_proc *proc)
 	int val2;
 	int pos;
 
+	if (!check_args(proc, 6, 0) || !check_args(proc, 4, 1))
+		return (0);
 	if (proc->inst.arg[2] > REG_NUMBER || proc->inst.arg[2] <= 0)
 		return (0);
 	val1 = recup_value(e->mem, proc, 6, 0);

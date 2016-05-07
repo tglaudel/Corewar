@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 10:01:32 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/07 14:32:15 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/07 19:44:26 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,13 @@ static void copie_proc(t_proc *new, t_proc *papa, int pos, t_env *e)
 	new->pos = pos;
 	new->wait_cycle = 0;
 	new->carry = papa->carry;
-	new->live_exec = papa->live_exec;
+	new->live_exec = 0;
 	new->champ_color = papa->champ_color;
+	new->inst.odc = 0;
+	new->inst.arg[0] = 0;
+	new->inst.arg[1] = 0;
+	new->inst.arg[2] = 0;
+	new->exec = 0;
 	define_opc(new, e->mem);
 }
 
@@ -46,6 +51,7 @@ void		new_processus(t_env *e, int nb, int pos, t_proc *papa)
 	t_proc *proc;
 
 	++e->nb_proc;
+	++e->nb_proc_in_life;
 	if (!(proc = (t_proc*)malloc(sizeof(t_proc))))
 		ft_errors("ERROR : Error malloc", 1, 0);
 	proc->next = NULL;
@@ -68,5 +74,4 @@ void		new_processus(t_env *e, int nb, int pos, t_proc *papa)
 		init_proc(proc);
 	}
 	proc->index = e->nb_proc;
-	proc->exec = 0;
 }
