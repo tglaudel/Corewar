@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 13:41:53 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/07 19:22:38 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/08 19:17:45 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		live(t_env *e, t_proc *proc) // ca a l'air ok
 	++proc->live_exec;
 	champ = e->champ_start;
 	if (e->verbose & VERBOSE_OP)
-		ft_printf("P %4d | %s %d\n", proc->index, "live", proc->inst.arg[0]);
+		print_instruction(proc, 1, "live", 0);
 	while (champ)
 	{
 		if (champ->nb_champ == (int)proc->inst.arg[0] && champ->is_alive)

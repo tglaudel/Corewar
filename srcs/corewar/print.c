@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/29 18:00:08 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/07 16:02:25 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/08 10:46:55 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,26 @@ void print_in_memory(t_env *e, int val, int pos, t_proc *proc)
 			3, 2, A_NORMAL, proc->champ_color, NULL);
 		}
 	}
+}
+
+void print_instruction(t_proc * proc, int nb_arg, char *inst, int store)
+{
+	int i;
+
+	i = -1;
+	ft_printf("P %4d | %s", proc->index, inst);
+	while (++i < nb_arg)
+	{
+		if (((proc->inst.odc >> (6 - i * 2)) & IND_CODE) == IND_CODE)
+			ft_printf(" %d", proc->inst.arg[i]);
+		else if (((proc->inst.odc >> (6 - i * 2)) & DIR_CODE) == DIR_CODE)
+			ft_printf(" %d", proc->inst.arg[i]);
+		else if (((proc->inst.odc >> (6 - i * 2)) & REG_CODE) == REG_CODE)
+			ft_printf(" r%d", proc->inst.arg[i]);
+		else if (proc->inst.opc == 1)
+			ft_printf(" %d", proc->inst.arg[i]);
+	}
+	ft_putchar('\n');
+	if (store == 1)
+		ft_putendl("store");
 }

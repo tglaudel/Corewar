@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/07 19:18:14 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/08 16:26:16 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ static void		proc_loop(t_env *e)
 	while (proc)
 	{
 		size = -1;
+
 		if (proc->wait_cycle > 0)
 			--proc->wait_cycle;
 		else if (proc->wait_cycle == 0 && proc->inst.opc != 0)
@@ -145,6 +146,6 @@ void		game_loop(t_env *e)
 		if (e->verbose & VERBOSE_CYCLE)
 			ft_printf("It is now cycle %d\n", e->nb_cycle);
 	}
-	if (!have_opt('n', e->opt))
-		print_memory(e, e->mem, e->proc_start);
+	if (!have_opt('n', e->opt) && have_opt('d', e->opt))
+		print_memory(e->mem);
 }

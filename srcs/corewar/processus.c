@@ -6,25 +6,25 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 10:01:32 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/07 19:44:26 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/08 16:25:29 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
 
-int			is_prog_pos(t_proc *start, int x, int y)
-{
-	t_proc *tmp;
-
-	tmp = start;
-	while (tmp)
-	{
-		if (tmp->pos % 64 == y && tmp->pos / 64 == x)
-			return (1);
-		tmp = tmp->next;
-	}
-	return (0);
-}
+// int			is_prog_pos(t_proc *start, int x, int y)
+// {
+// 	t_proc *tmp;
+//
+// 	tmp = start;
+// 	while (tmp)
+// 	{
+// 		if (tmp->pos % 64 == y && tmp->pos / 64 == x)
+// 			return (1);
+// 		tmp = tmp->next;
+// 	}
+// 	return (0);
+// }
 
 static void copie_proc(t_proc *new, t_proc *papa, int pos, t_env *e)
 {
@@ -39,11 +39,10 @@ static void copie_proc(t_proc *new, t_proc *papa, int pos, t_env *e)
 	new->live_exec = 0;
 	new->champ_color = papa->champ_color;
 	new->inst.odc = 0;
-	new->inst.arg[0] = 0;
-	new->inst.arg[1] = 0;
-	new->inst.arg[2] = 0;
+	bzero(new->inst.arg, 3);
 	new->exec = 0;
-	define_opc(new, e->mem);
+	if (!define_opc(new, e->mem))
+		new->pos = ++new->pos % MEM_SIZE;
 }
 
 void		new_processus(t_env *e, int nb, int pos, t_proc *papa)

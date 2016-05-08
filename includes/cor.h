@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/07 19:23:15 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/08 16:25:08 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ int					define_opc(t_proc *proc, unsigned char *mem);
 */
 
 void				insert_in_memory(t_env *e);
-void				print_memory(t_env *e, unsigned char *s, t_proc *start);
+void				print_memory(unsigned char *s);
 
 /*
 ** Initialisation :
@@ -214,5 +214,6 @@ void				print_board(t_env *env);
 void				print_processus_debug(t_proc *start, int nb_cycle);
 void				print_in_memory(t_env *e, int val, int pos, t_proc *proc);
 void				print_processus(t_proc *start, t_env *e);
+void 				print_instruction(t_proc * proc, int nb_arg, char *inst, int store);
 
 #endif

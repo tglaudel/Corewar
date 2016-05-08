@@ -11,7 +11,7 @@ ld:
 
 st:
 	st r1, r1
-	st r1, 42
+	st r1, 400
 
 add:
 	add r1, r1, r1

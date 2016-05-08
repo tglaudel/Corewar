@@ -6,13 +6,13 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 16:31:37 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/06 17:02:42 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/08 10:38:10 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
 
-void				print_memory(t_env *e, unsigned char *s, t_proc *start)
+void				print_memory(unsigned char *s)
 {
 	int x;
 	int y;
@@ -20,25 +20,12 @@ void				print_memory(t_env *e, unsigned char *s, t_proc *start)
 
 	x = -1;
 	i = 0;
-	(void)e;
 	while (++x < 64)
 	{
+		ft_printf("0x%.4x : ", i);
 		y = -1;
 		while (++y < 64)
-		{
-			if (is_prog_pos(start, x, y))
-			{
-				ft_printf("{blue}%3.2x", (unsigned char)s[i++]);
-				ft_putstr("\033[0m");
-			}
-			else if (s[i] == '\0')
-				ft_printf("%3.2x", (unsigned char)s[i++]);
-			else
-			{
-				ft_printf("{red}%3.2x", (unsigned char)s[i++]);
-				ft_putstr("\033[0m");
-			}
-		}
+			ft_printf("%2.2x ", (unsigned char)s[i++]);
 		ft_putchar('\n');
 	}
 }
