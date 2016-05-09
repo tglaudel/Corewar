@@ -6,13 +6,13 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 13:41:53 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/08 19:17:45 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/09 16:18:50 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
 
-int		live(t_env *e, t_proc *proc) // ca a l'air ok
+int		live(t_env *e, t_proc *proc)
 {
 	t_champ *champ;
 

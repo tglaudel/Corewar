@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/08 16:25:08 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/09 16:20:13 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "op.h"
 # include <ncurses.h>
 
-# define OPT_STRING "nvd"
+# define OPT_STRING "cvd"
 # define COMMENT_NAME_MAGIC		(PROG_NAME_LENGTH + COMMENT_LENGTH + 16)
 # define BASE_HEXA "0123456789abcdef"
 # define MUI 4294967295
@@ -36,6 +36,7 @@ typedef struct		s_inst
 	char			opc;
 	unsigned char	odc;
 	int				arg[3];
+	int				size;
 }					t_inst;
 
 typedef struct		s_proc
@@ -95,6 +96,8 @@ typedef struct		s_env
 	t_curse			curse;
 }					t_env;
 
+typedef int 		(*instruction)(t_env *e, t_proc *proc);
+
 typedef struct		s_op
 {
 	char			*name;
@@ -107,7 +110,7 @@ typedef struct		s_op
 	int				carry;
 	int				dir_size;
 	int				ind_size;
-//	int				*f;
+	instruction		f;
 }					t_op;
 
 typedef struct		s_od
@@ -215,5 +218,6 @@ void				print_processus_debug(t_proc *start, int nb_cycle);
 void				print_in_memory(t_env *e, int val, int pos, t_proc *proc);
 void				print_processus(t_proc *start, t_env *e);
 void 				print_instruction(t_proc * proc, int nb_arg, char *inst, int store);
+void				print_adv(t_proc * proc, t_env *e);
 
 #endif

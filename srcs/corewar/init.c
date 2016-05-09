@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 17:59:20 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/07 18:52:02 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/09 16:16:13 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void init_proc(t_proc *proc)
 	proc->inst.arg[0] = 0;
 	proc->inst.arg[1] = 0;
 	proc->inst.arg[2] = 0;
+	proc->inst.size = 0;
 	proc->exec = 0;
 }
 

@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/08 16:26:16 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/09 16:40:54 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,40 +38,23 @@ static int		parsing_instruction(t_proc *proc, unsigned char *mem)
 
 static void		exe_instruction(t_proc *proc, t_env *e)
 {
-	if (proc->inst.opc == 1)
-		live(e, proc);
-	else if (proc->inst.opc == 2)
-		ld(e, proc);
-	else if (proc->inst.opc == 3)
-		st(e, proc);
-	else if (proc->inst.opc == 4)
-		add(e, proc);
-	else if (proc->inst.opc == 5)
-		sub(e, proc);
-	else if (proc->inst.opc == 6)
-		and(e, proc);
-	else if (proc->inst.opc == 7)
-		or(e, proc);
-	else if (proc->inst.opc == 8)
-		xor(e, proc);
-	else if (proc->inst.opc == 9)
-		zjmp(e, proc);
-	else if (proc->inst.opc == 10)
-		ldi(e, proc);
-	else if (proc->inst.opc == 11)
-		sti(e, proc);
-	else if (proc->inst.opc == 12)
-		fork_cor(e, proc);
-	else if (proc->inst.opc == 13)
-		lld(e, proc);
-	else if (proc->inst.opc == 14)
-		lldi(e, proc);
-	else if (proc->inst.opc == 15)
-		lfork_cor(e, proc);
-	else if (proc->inst.opc == 16)
-		aff(e, proc);
-	mvchgat(proc->pos / 64, proc->pos % 64 * 3, 2, A_NORMAL, proc->champ_color, NULL);
-	proc->pos = proc->pc % MEM_SIZE;
+	int i;
+
+	i = -1;
+	while (g_op_tab[++i].nb_arg)
+	{
+		if (proc->inst.opc == g_op_tab[i].op_code)
+		{
+			g_op_tab[i].f(e, proc);
+			if ((e->verbose & VERBOSE_PC) == VERBOSE_PC)
+				print_adv(proc, e);
+			proc->pos = proc->pc;
+			break ;
+		}
+	}
+	mvchgat(proc->pos / 64, proc->pos % 64 * 3, 2, A_NORMAL,\
+	proc->champ_color, NULL);
+	proc->pos = proc->pc;
 }
 
 int		define_opc(t_proc *proc, unsigned char *mem)
@@ -94,23 +77,20 @@ int		define_opc(t_proc *proc, unsigned char *mem)
 static void		proc_loop(t_env *e)
 {
 	t_proc *proc;
-	int size;
 
 	proc = e->proc_start;
 	while (proc)
 	{
-		size = -1;
-
 		if (proc->wait_cycle > 0)
 			--proc->wait_cycle;
 		else if (proc->wait_cycle == 0 && proc->inst.opc != 0)
 		{
-			if ((size = parsing_instruction(proc, e->mem)) != -1)
-				proc->pc = (proc->pos + size) % MEM_SIZE;
+			if ((proc->inst.size = parsing_instruction(proc, e->mem)) != -1)
+				proc->pc = (proc->pos + proc->inst.size) % MEM_SIZE;
 			if (proc->exec == 1)
 				exe_instruction(proc, e);
 			else
-				proc->pos = (proc->pos + size) % MEM_SIZE;
+				proc->pos = (proc->pos + proc->inst.size) % MEM_SIZE;
 			init_proc(proc);
 			if (!define_opc(proc, e->mem))
 				proc->pos = ++proc->pos % MEM_SIZE;
@@ -140,12 +120,12 @@ void		game_loop(t_env *e)
 			e->global_live = 0;
 		}
 		++before_check_die;
-		if (have_opt('n', e->opt))
+		if (have_opt('c', e->opt))
 			ncruses_loop(e);
 		++e->nb_cycle;
 		if (e->verbose & VERBOSE_CYCLE)
 			ft_printf("It is now cycle %d\n", e->nb_cycle);
 	}
-	if (!have_opt('n', e->opt) && have_opt('d', e->opt))
+	if (!have_opt('c', e->opt) && have_opt('d', e->opt))
 		print_memory(e->mem);
 }

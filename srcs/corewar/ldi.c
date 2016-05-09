@@ -6,15 +6,11 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:45:02 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/09 14:35:29 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/09 16:19:04 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
-
-// ldi : Au lieu de ça, ca prend 2 index et 1 registre, additionne les 2 premiers,
-// traite ca comme une adresse, y lit une valeur de la taille d’un registre et
-// la met dans le 3eme.
 
 int ldi(t_env *e, t_proc *proc)
 {

@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:46:57 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/02 18:37:41 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/09 15:00:33 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int				main(int ac, char **av)
 		e.nb_cycle_max = get_ncycle(&av[1]);
 	if (have_opt('h', e.opt))
 		return (print_help());
-	if (have_opt('n', e.opt))
+	if (have_opt('c', e.opt))
 		init_ncurses2();
 	init_cor(&e, &av[1]);
 	game_loop(&e);

@@ -6,25 +6,11 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 10:01:32 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/09 10:27:51 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/09 16:16:25 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
-
-// int			is_prog_pos(t_proc *start, int x, int y)
-// {
-// 	t_proc *tmp;
-//
-// 	tmp = start;
-// 	while (tmp)
-// 	{
-// 		if (tmp->pos % 64 == y && tmp->pos / 64 == x)
-// 			return (1);
-// 		tmp = tmp->next;
-// 	}
-// 	return (0);
-// }
 
 static void copie_proc(t_proc *new, t_proc *papa, int pos, t_env *e)
 {
@@ -39,6 +25,7 @@ static void copie_proc(t_proc *new, t_proc *papa, int pos, t_env *e)
 	new->live_exec = papa->live_exec;
 	new->champ_color = papa->champ_color;
 	new->inst.odc = 0;
+	new->inst.size = 0;
 	bzero(new->inst.arg, 3);
 	new->exec = 0;
 	if (!define_opc(new, e->mem))

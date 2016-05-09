@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/29 18:00:08 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/08 10:46:55 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/09 17:15:31 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ void print_in_memory(t_env *e, int val, int pos, t_proc *proc)
 	{
 		u = val >> (24 - (8 * i));
 		e->mem[(pos + i) % MEM_SIZE] = u;
-		if (have_opt('n', e->opt))
+		if (have_opt('c', e->opt))
 		{
 			j = -1;
 			e->col[(pos + i) % MEM_SIZE] = proc->champ_color;
-			while (++j < 2) // itoa_base 16 u = case_mem;
+			while (++j < 2)
 			{
 				mem_hexa[j] = BASE_HEXA[u % 16];
 				u /= 16;
@@ -83,4 +83,16 @@ void print_instruction(t_proc * proc, int nb_arg, char *inst, int store)
 	ft_putchar('\n');
 	if (store == 1)
 		ft_putendl("store");
+}
+
+void print_adv(t_proc * proc, t_env *e)
+{
+	int i;
+
+	i = -1;
+	ft_printf("ADV %d (0x%.4x -> 0x%.4x) ", proc->inst.size, proc->pos,\
+	(proc->pos + proc->inst.size) % MEM_SIZE);
+	while (++i < proc->inst.size)
+		ft_printf("%.2x ", e->mem[(proc->pos + i) % MEM_SIZE]);
+	ft_putchar('\n');
 }
