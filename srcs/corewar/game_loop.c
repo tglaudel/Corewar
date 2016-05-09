@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/09 17:41:38 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/09 18:56:12 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,24 +83,27 @@ static void		proc_loop(t_env *e)
 	{
 		if (proc->wait_cycle > 0)
 			--proc->wait_cycle;
-		else if (proc->wait_cycle == 0 && proc->inst.opc != 0)
+		else if (proc->wait_cycle == 0)
 		{
-			if ((proc->inst.size = parsing_instruction(proc, e->mem)) != -1)
-				proc->pc = (proc->pos + proc->inst.size) % MEM_SIZE;
-			if (proc->exec == 1)
-				exe_instruction(proc, e);
-			else
+			if (proc->inst.opc == 0)
+				define_opc(proc, e->mem);
+			if (proc->inst.opc != 0)
 			{
-				if ((e->verbose & VERBOSE_PC) == VERBOSE_PC)
-					print_adv(proc, e);
-				proc->pos = proc->pc;
+				if ((proc->inst.size = parsing_instruction(proc, e->mem)) != -1)
+					proc->pc = (proc->pos + proc->inst.size) % MEM_SIZE;
+				if (proc->exec == 1)
+					exe_instruction(proc, e);
+				else
+				{
+					if ((e->verbose & VERBOSE_PC) == VERBOSE_PC)
+						print_adv(proc, e);
+					proc->pos = proc->pc;
+				}
+				init_proc(proc);
 			}
-			init_proc(proc);
-			if (!define_opc(proc, e->mem))
+			else
 				proc->pos = ++proc->pos % MEM_SIZE;
 		}
-		else if (!define_opc(proc, e->mem))
-			proc->pos = ++proc->pos % MEM_SIZE;
 		proc = proc->next;
 	}
 }
