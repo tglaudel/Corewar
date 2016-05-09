@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/09 19:15:09 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/09 19:41:25 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,27 +83,24 @@ static void		proc_loop(t_env *e)
 	{
 		if (proc->wait_cycle > 0)
 			--proc->wait_cycle;
-		else if (proc->wait_cycle == 0)
+		if (proc->inst.opc == 0)
+			define_opc(proc, e->mem);
+		if (proc->inst.opc != 0 && proc->wait_cycle == 0)
 		{
-			if (proc->inst.opc == 0)
-				define_opc(proc, e->mem);
-			if (proc->inst.opc != 0 && proc->wait_cycle == 0)
-			{
-				if ((proc->inst.size = parsing_instruction(proc, e->mem)) != -1)
-					proc->pc = (proc->pos + proc->inst.size) % MEM_SIZE;
-				if (proc->exec == 1)
-					exe_instruction(proc, e);
-				else
-				{
-					if ((e->verbose & VERBOSE_PC) == VERBOSE_PC)
-						print_adv(proc, e);
-					proc->pos = proc->pc;
-				}
-				init_proc(proc);
-			}
+			if ((proc->inst.size = parsing_instruction(proc, e->mem)) != -1)
+				proc->pc = (proc->pos + proc->inst.size) % MEM_SIZE;
+			if (proc->exec == 1)
+				exe_instruction(proc, e);
 			else
-				proc->pos = ++proc->pos % MEM_SIZE;
+			{
+				if ((e->verbose & VERBOSE_PC) == VERBOSE_PC)
+					print_adv(proc, e);
+				proc->pos = proc->pc;
+			}
+			init_proc(proc);
 		}
+		else if (proc->wait_cycle == 0)
+			proc->pos = ++proc->pos % MEM_SIZE;
 		proc = proc->next;
 	}
 }
@@ -117,7 +114,6 @@ void		game_loop(t_env *e)
 	while (e->nb_champ > 0 && e->nb_proc > 0 &&\
 	e->nb_cycle < e->nb_cycle_max && e->c_to_die > 0)
 	{
-		proc_loop(e);
 		if (before_check_die == e->c_to_die)
 		{
 			check_champ_cycle(e);
@@ -127,11 +123,12 @@ void		game_loop(t_env *e)
 			e->global_live = 0;
 		}
 		++before_check_die;
-		if (have_opt('c', e->opt))
-			ncruses_loop(e);
 		++e->nb_cycle;
 		if (e->verbose & VERBOSE_CYCLE)
 			ft_printf("It is now cycle %d\n", e->nb_cycle);
+		proc_loop(e);
+		if (have_opt('c', e->opt))
+			ncruses_loop(e);
 	}
 	if (!have_opt('c', e->opt) && have_opt('d', e->opt))
 		print_memory(e->mem);
