@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 13:48:05 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/05/07 18:53:39 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/09 10:40:51 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	init_ncurses2(void)
 
 void	ncruses_loop(t_env *e)
 {
-	usleep(10000);
+	//usleep(10000);
 	print_info(e);
 	print_champ(e);
 	print_processus(e->proc_start, e);

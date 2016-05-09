@@ -2,11 +2,11 @@
 .comment "son pere"
 
 ld:
-	ld %1, r2
-	ld %-10, r3
-	ld 0, r4
-	ld %:ld, r5
-	ld -15, r6
+	lld %1, r2
+	lld %1000000, r3
+	lld 50000, r4
+	lld %:ld, r5
+	lld -8000, r6
 	st r2, 100
 	st r3, 100
 	st r4, 100

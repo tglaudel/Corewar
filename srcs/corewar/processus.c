@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 10:01:32 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/08 16:25:29 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/09 10:27:51 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void copie_proc(t_proc *new, t_proc *papa, int pos, t_env *e)
 	new->pos = pos;
 	new->wait_cycle = 0;
 	new->carry = papa->carry;
-	new->live_exec = 0;
+	new->live_exec = papa->live_exec;
 	new->champ_color = papa->champ_color;
 	new->inst.odc = 0;
 	bzero(new->inst.arg, 3);
