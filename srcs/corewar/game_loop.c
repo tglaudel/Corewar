@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/09 18:56:12 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/09 19:15:09 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static void		proc_loop(t_env *e)
 		{
 			if (proc->inst.opc == 0)
 				define_opc(proc, e->mem);
-			if (proc->inst.opc != 0)
+			if (proc->inst.opc != 0 && proc->wait_cycle == 0)
 			{
 				if ((proc->inst.size = parsing_instruction(proc, e->mem)) != -1)
 					proc->pc = (proc->pos + proc->inst.size) % MEM_SIZE;
