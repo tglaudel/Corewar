@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/01 14:16:05 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/09 15:02:22 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/09 17:43:35 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void				check_proc_cycle(t_env *e)
 	if (e->global_live >= NBR_LIVE)
 	{
 		e->c_to_die -= CYCLE_DELTA;
-		if (!have_opt('c', e->opt))
+		if (!have_opt('c', e->opt) && (e->verbose & VERBOSE_CYCLE) == VERBOSE_CYCLE)
 			ft_printf("Cycle to die is now %d\n", e->c_to_die);
 		e->nb_check_td = 0;
 	}
@@ -71,7 +71,8 @@ void				check_proc_cycle(t_env *e)
 		{
 			e->c_to_die -= CYCLE_DELTA;
 			e->nb_check_td = 0;
-			ft_printf("Cycle to die is now %d\n", e->c_to_die);
+			if (!have_opt('c', e->opt) && (e->verbose & VERBOSE_CYCLE) == VERBOSE_CYCLE)
+				ft_printf("Cycle to die is now %d\n", e->c_to_die);
 		}
 	}
 	if (e->verbose & VERBOSE_DEBUG)

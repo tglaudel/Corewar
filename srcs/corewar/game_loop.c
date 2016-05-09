@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/09 16:40:54 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/09 17:41:38 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,11 @@ static void		proc_loop(t_env *e)
 			if (proc->exec == 1)
 				exe_instruction(proc, e);
 			else
-				proc->pos = (proc->pos + proc->inst.size) % MEM_SIZE;
+			{
+				if ((e->verbose & VERBOSE_PC) == VERBOSE_PC)
+					print_adv(proc, e);
+				proc->pos = proc->pc;
+			}
 			init_proc(proc);
 			if (!define_opc(proc, e->mem))
 				proc->pos = ++proc->pos % MEM_SIZE;
