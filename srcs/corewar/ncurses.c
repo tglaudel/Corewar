@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ncurses.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 13:48:05 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/05/10 19:52:40 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/10 20:26:58 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,6 @@ void	ncurses_loop(t_env *e)
 	else if (c == 's')
 		wait_cycle(e);
 	usleep(e->speed);
->>>>>>> df6eb2c531da15aa70f2d5232e6bfa5cd7bb9603
 	print_info(e);
 	print_champ(e);
 	print_processus(e->proc_start, e);
