@@ -6,9 +6,10 @@
 /*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 13:48:05 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/05/09 18:07:45 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/10 19:52:40 by fgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "cor.h"
 
@@ -51,8 +52,9 @@ static void print_info(t_env *e)
 	mvprintw(29, 200, "%s : %d\n", "NB_CYCLE", e->nb_cycle);
 	mvprintw(30, 200, "%s : %d\n", "CYCLE_TO_DIE", e->c_to_die);
 	mvprintw(31, 200, "%s : %d\n", "MAX_CHECKS", MAX_CHECKS);
-	mvprintw(32, 200, "%s : %d\n", "NBR_LIVE", NBR_LIVE);
-	mvprintw(32, 200, "%s : %d\n", "NB_PROC_IN_LIFE", e->nb_proc_in_life);
+	mvprintw(33, 200, "%s : %d\n", "NBR_LIVE", NBR_LIVE);
+	mvprintw(34, 200, "%s : %d\n", "NB_PROC_IN_LIFE", e->nb_proc_in_life);
+	mvprintw(36, 200, "%s : %d\n", "SPEED", e->speed_mult);
 }
 
 void				print_board(t_env *e)
@@ -99,17 +101,72 @@ static void		init_color_pair(void)
 void	init_ncurses2(void)
 {
 	initscr();
+	nodelay (stdscr, TRUE);
 	keypad(stdscr, TRUE);
 	start_color();
 	init_color_pair();
 }
 
-void	ncruses_loop(t_env *e)
+char	get_move(void)
 {
 	usleep(50000);
+	int c;
+	if ((c = getch()))
+	{
+		if (c == KEY_UP)
+			return ('s');
+		if (c == KEY_RIGHT)
+			return ('a');
+		if (c == KEY_LEFT)
+			return ('r');
+	}
+	return (0);
+}
+
+void	change_speed(t_env *e, int n)
+{
+	if (e->speed == 1000)
+		return ;
+	if (e->speed > 1000)
+		e->speed += n;
+	e->speed_mult = -(e->speed / 1000) + 10;
+}
+
+void	wait_cycle(t_env *e)
+{
+	char c;
+
+	while (1)
+	{
+		c = get_move();
+		if (c == 'a')
+			change_speed(e, -1000);
+		else if (c == 'r')
+			change_speed(e, 1000);
+		else if (c == 's')
+			break ;
+		mvprintw(36, 200, "%s : %d\n", "SPEED", e->speed_mult);
+	}
+}
+
+void	ncurses_loop(t_env *e)
+{
+	char c;
+
+	c = get_move();
+	if (c == 'a')
+		change_speed(e, -1000);
+	else if (c == 'r')
+		change_speed(e, 1000);
+	else if (c == 's')
+		wait_cycle(e);
+	usleep(e->speed);
+>>>>>>> df6eb2c531da15aa70f2d5232e6bfa5cd7bb9603
 	print_info(e);
 	print_champ(e);
 	print_processus(e->proc_start, e);
+	if (e->nb_cycle == 1)
+		wait_cycle(e);
 	refresh();
 }
 

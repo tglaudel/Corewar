@@ -6,7 +6,7 @@
 /*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 17:59:20 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/10 17:37:11 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/10 19:53:01 by fgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void		init_env(t_env *e)
 	e->nb_check_td = 0;
 	e->global_live = 0;
 	e->nb_proc_in_life = 0;
+	e->speed = 10000;
+	e->speed_mult = 0;
 	bzero(e->mem, MEM_SIZE + 1);
 	bzero(e->col, MEM_SIZE + 1);
 }

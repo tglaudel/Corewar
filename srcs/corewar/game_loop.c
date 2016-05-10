@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/09 19:41:25 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/10 10:31:51 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void		exe_instruction(t_proc *proc, t_env *e)
 		{
 			g_op_tab[i].f(e, proc);
 			if ((e->verbose & VERBOSE_PC) == VERBOSE_PC)
-				print_adv(proc, e);
+				print_adv(proc, e, 1);
 			proc->pos = proc->pc;
 			break ;
 		}
@@ -94,7 +94,7 @@ static void		proc_loop(t_env *e)
 			else
 			{
 				if ((e->verbose & VERBOSE_PC) == VERBOSE_PC)
-					print_adv(proc, e);
+					print_adv(proc, e, 1);
 				proc->pos = proc->pc;
 			}
 			init_proc(proc);
@@ -128,7 +128,7 @@ void		game_loop(t_env *e)
 			ft_printf("It is now cycle %d\n", e->nb_cycle);
 		proc_loop(e);
 		if (have_opt('c', e->opt))
-			ncruses_loop(e);
+			ncurses_loop(e);
 	}
 	if (!have_opt('c', e->opt) && have_opt('d', e->opt))
 		print_memory(e->mem);

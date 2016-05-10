@@ -6,7 +6,7 @@
 /*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/10 17:35:06 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/10 19:53:32 by fgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ typedef struct		s_env
 	int				nb_check_td;
 	int				global_live;
 	int				nb_proc_in_life;
+	int				speed;
+	int				speed_mult;
 	t_champ			*champ_start;
 	t_champ			*champ_end;
 	t_proc			*proc_start;
@@ -139,7 +141,7 @@ int					get_ncycle(char **av);
 
 void				init_ncurses(t_env *e);
 void				init_ncurses2(void);
-void				ncruses_loop(t_env *e);
+void				ncurses_loop(t_env *e);
 
 /*
 ** Champ :
@@ -170,6 +172,7 @@ int					check_odc(t_proc *proc, int i);
 int					parsing_argument(t_proc *proc, unsigned char *mem, int i);
 int					error_odc(t_proc *proc, int i);
 int					define_opc(t_proc *proc, unsigned char *mem);
+
 /*
 ** Memory :
 */
@@ -220,6 +223,6 @@ void				print_processus_debug(t_proc *start, int nb_cycle);
 void				print_in_memory(t_env *e, int val, int pos, t_proc *proc);
 void				print_processus(t_proc *start, t_env *e);
 void 				print_instruction(t_proc * proc, int nb_arg, char *inst, int store);
-void				print_adv(t_proc * proc, t_env *e);
+void				print_adv(t_proc * proc, t_env *e, int bloque);
 
 #endif
