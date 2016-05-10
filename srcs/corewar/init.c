@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 17:59:20 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/10 19:57:36 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/10 20:35:08 by fgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void		init_cor(t_env *e, char **av)
 		if (is_champ(av[i], e) != -1)
 		{
 			nb++;
-			if (nb == 1 && !have_opt('n', e->opt))
+			if (nb == 1 && !have_opt('c', e->opt))
 				ft_putendl("Introducing contestants...");
 			if (nb > 4)
 				ft_errors("ERROR : Nb champs > 4.", 1, 0);

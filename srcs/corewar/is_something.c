@@ -6,7 +6,7 @@
 /*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 16:13:42 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/10 17:53:57 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/10 20:48:30 by fgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,12 @@ int				is_champ(char *s, t_env *e)
 
 	i = ft_strlen(s);
 	if (ft_strcmp(".cor", &s[i - 4]))
-		return (0);
+		return (-1);
 	if ((e->fd = open(s, O_RDONLY)) == -1)
 		ft_errors("ERROR : Fail open.", 1, 0);
 	if ((e->width = is_header_good(e)) < 0)
 	{
-		//debug
+		// debug
 		// printf("champion header not good\n");
 		return (-1);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   champ.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 17:52:24 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/10 17:47:27 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/05/10 20:31:17 by fgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void			add_to_champ_lst(t_env *env, int nb, int width, char *file)
 	champ->nb_live = 0;
 	champ->is_alive = 1;
 	champ->pos = 0;
-	if (!have_opt('n', env->opt))
+	if (!have_opt('c', env->opt))
 		ft_printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n", nb, width, champ->name, champ->comment);
 	if (env->champ_end != NULL)
 		env->champ_end->next = champ;
