@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 17:59:20 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/10 19:53:01 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/10 19:57:36 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void init_proc(t_proc *proc)
 	proc->inst.arg[2] = 0;
 	proc->inst.size = 0;
 	proc->exec = 0;
+	proc->pc = 0;
 }
 
 void		init_env(t_env *e)

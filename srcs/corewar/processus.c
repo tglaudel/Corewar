@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 10:01:32 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/10 09:35:49 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/10 17:25:52 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void copie_proc(t_proc *new, t_proc *papa, int pos, t_env *e)
 	new->inst.size = 0;
 	bzero(new->inst.arg, 3);
 	new->exec = 0;
+	new->pc = 0;
 }
 
 void		new_processus(t_env *e, int nb, int pos, t_proc *papa)
