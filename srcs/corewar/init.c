@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 17:59:20 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/09 16:16:13 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/10 17:37:11 by fgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,21 +58,24 @@ void		init_cor(t_env *e, char **av)
 {
 	int i;
 	int nb;
-	int width;
 
 	nb = 0;
 	i = -1;
 	init_env(e);
 	while (av[++i])
-		if ((width = is_champ(av[i])) > 0)
+	{
+		if (is_champ(av[i], e) != -1)
 		{
 			nb++;
 			if (nb == 1 && !have_opt('n', e->opt))
 				ft_putendl("Introducing contestants...");
 			if (nb > 4)
 				ft_errors("ERROR : Nb champs > 4.", 1, 0);
-			add_to_champ_lst(e, nb, width, av[i]);
+			add_to_champ_lst(e, nb, e->width, av[i]);
 		}
+		// debug width
+		// printf("%d\n", e->width);
+	}
 	e->nb_champ = nb;
 	insert_in_memory(e);
 }

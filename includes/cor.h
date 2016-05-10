@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cor.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/09 16:20:13 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/10 17:35:06 by fgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ typedef struct		s_curse
 typedef struct		s_env
 {
 	int				opt;
+	int				fd;
+	int				width;
 	int				verbose;
 	unsigned char	mem[MEM_SIZE];
 	char			col[MEM_SIZE];
@@ -144,7 +146,7 @@ void				ncruses_loop(t_env *e);
 */
 
 void				add_to_champ_lst(t_env *env, int nb, int width, char *file);
-int					is_champ(char *s);
+int					is_champ(char *s, t_env *e);
 void				check_champ_cycle(t_env *e);
 
 /*
