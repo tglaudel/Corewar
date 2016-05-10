@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 10:01:32 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/09 16:16:25 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/10 09:35:49 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void copie_proc(t_proc *new, t_proc *papa, int pos, t_env *e)
 	int i;
 
 	i = -1;
+	(void)e;
 	while (++i < REG_NUMBER)
 		new->r[i] = papa->r[i];
 	new->pos = pos;
@@ -28,8 +29,6 @@ static void copie_proc(t_proc *new, t_proc *papa, int pos, t_env *e)
 	new->inst.size = 0;
 	bzero(new->inst.arg, 3);
 	new->exec = 0;
-	if (!define_opc(new, e->mem))
-		new->pos = ++new->pos % MEM_SIZE;
 }
 
 void		new_processus(t_env *e, int nb, int pos, t_proc *papa)
@@ -45,7 +44,7 @@ void		new_processus(t_env *e, int nb, int pos, t_proc *papa)
 		proc->next = e->proc_start;
 	e->proc_start = proc;
 	if (e->verbose & VERBOSE_DEBUG)
-		ft_printf("creation proc : %d -> cycle %d\n", e->nb_proc, e->nb_cycle);
+		printf("creation proc : %d -> cycle %d\n", e->nb_proc, e->nb_cycle);
 	if (papa)
 		copie_proc(proc, papa, pos, e);
 	else
