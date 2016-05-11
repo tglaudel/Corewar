@@ -1,45 +1,35 @@
-P    1 | lldi 0 1 r1
-       | -> load from 0 + 1 = 1 (with pc 185)
-P    1 | lldi 1677787137 1677787137 r1
-       | -> load from 1677787137 + 1677787137 = -939393022 (with pc -939392832)
-P    1 | lldi 1 1 r1
-       | -> load from 1 + 1 = 2 (with pc 197)
-P    1 | lldi 1 65537 r1
-       | -> load from 1 + 65537 = 65538 (with pc 65740)
-P    1 | lldi 251596289 1 r1
-       | -> load from 251596289 + 1 = 251596290 (with pc 251596498)
-P    1 | lldi 0 -216 r1
-       | -> load from 0 + -216 = -216 (with pc 5)
-P    1 | lldi 1 -222 r1
-       | -> load from 1 + -222 = -221 (with pc 6)
-P    1 | lldi -229 0 r1
-       | -> load from -229 + 0 = -229 (with pc 5)
-P    1 | lldi 0 -235 r1
-       | -> load from 0 + -235 = -235 (with pc 5)
-P    1 | lldi -242 -242 r1
-       | -> load from -242 + -242 = -484 (with pc -237)
-P    1 | lldi -249 1 r1
-       | -> load from -249 + 1 = -248 (with pc 6)
-
-P    1 | lldi 0 1 r1
-       | -> load from 0 + 1 = 1 (with pc 1)
-P    1 | lldi 1 1 r1
-       | -> load from 1 + 1 = 2 (with pc 2)
-P    1 | lldi 1 1 r1
-       | -> load from 1 + 1 = 2 (with pc 2)
-P    1 | lldi 1 256 r1
-       | -> load from 1 + 256 = 257 (with pc 257)
-P    1 | lldi 251596289 1 r1
-       | -> load from 251596289 + 1 = 251596290 (with pc 3586)
-P    1 | lldi 0 -216 r1
-       | -> load from 0 + -216 = -216 (with pc -216)
-P    1 | lldi 1 -222 r1
-       | -> load from 1 + -222 = -221 (with pc -221)
-P    1 | lldi -229 0 r1
-       | -> load from -229 + 0 = -229 (with pc -229)
-P    1 | lldi 0 -235 r1
-       | -> load from 0 + -235 = -235 (with pc -235)
-P    1 | lldi -242 -242 r1
-       | -> load from -242 + -242 = -484 (with pc -484)
-P    1 | lldi -249 1 r1
-       | -> load from -249 + 1 = -248 (with pc -248)
+==3175==
+==3175== HEAP SUMMARY:
+==3175==     in use at exit: 174,357 bytes in 1,348 blocks
+==3175==   total heap usage: 2,416 allocs, 1,068 frees, 331,142 bytes allocated
+==3175==
+==3175== 3 bytes in 1 blocks are definitely lost in loss record 1 of 67
+==3175==    at 0x100010AAB: malloc (in /nfs/2015/t/tglaudel/.brew/Cellar/valgrind/3.11.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==3175==    by 0x1000030CA: print_board (in /nfs/2015/t/tglaudel/Documents/NewCorwar/oktamere/corewar)
+==3175==    by 0x100003BEB: game_loop (in /nfs/2015/t/tglaudel/Documents/NewCorwar/oktamere/corewar)
+==3175==    by 0x100001F8F: main (in /nfs/2015/t/tglaudel/Documents/NewCorwar/oktamere/corewar)
+==3175==
+==3175== 3 bytes in 1 blocks are definitely lost in loss record 2 of 67
+==3175==    at 0x100010AAB: malloc (in /nfs/2015/t/tglaudel/.brew/Cellar/valgrind/3.11.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==3175==    by 0x1000030CA: print_board (in /nfs/2015/t/tglaudel/Documents/NewCorwar/oktamere/corewar)
+==3175==    by 0x100001F9B: main (in /nfs/2015/t/tglaudel/Documents/NewCorwar/oktamere/corewar)
+==3175==
+==3175== 148,096 (128 direct, 147,968 indirect) bytes in 1 blocks are definitely lost in loss record 67 of 67
+==3175==    at 0x100010AAB: malloc
+==3175==    by 0x1000038EB: new_processus (in /nfs/2015/t/tglaudel/Documents/NewCorwar/oktamere/corewar)
+==3175==    by 0x100006616: fork_cor (in /nfs/2015/t/tglaudel/Documents/NewCorwar/oktamere/corewar)
+==3175==    by 0x10000409D: exe_instruction (in /nfs/2015/t/tglaudel/Documents/NewCorwar/oktamere/corewar)
+==3175==    by 0x100003E5E: proc_loop (in /nfs/2015/t/tglaudel/Documents/NewCorwar/oktamere/corewar)
+==3175==    by 0x100003CFA: game_loop (in /nfs/2015/t/tglaudel/Documents/NewCorwar/oktamere/corewar)
+==3175==    by 0x100001F8F: main (in /nfs/2015/t/tglaudel/Documents/NewCorwar/oktamere/corewar)
+==3175==
+==3175== LEAK SUMMARY:
+==3175==    definitely lost: 134 bytes in 3 blocks
+==3175==    indirectly lost: 147,968 bytes in 1,156 blocks
+==3175==      possibly lost: 0 bytes in 0 blocks
+==3175==    still reachable: 0 bytes in 0 blocks
+==3175==         suppressed: 26,255 bytes in 189 blocks
+==3175==
+==3175== For counts of detected and suppressed errors, rerun with: -v
+==3175== Use --track-origins=yes to see where uninitialised values come from
+==3175== ERROR SUMMARY: 3109 errors from 19 contexts (suppressed: 17 from 17)

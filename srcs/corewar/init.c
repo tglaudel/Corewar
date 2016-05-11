@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 17:59:20 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/10 20:35:08 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/11 21:58:24 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void		init_env(t_env *e)
 		e->nb_cycle_max = 2147483647;
 	e->nb_cycle = 0;
 	e->nb_champ = 0;
+	e->width = 0;
 	e->c_to_die = CYCLE_TO_DIE;
 	e->nb_proc = 0;
 	e->nb_check_td = 0;
@@ -53,8 +54,8 @@ void		init_env(t_env *e)
 	e->nb_proc_in_life = 0;
 	e->speed = 10000;
 	e->speed_mult = 0;
-	bzero(e->mem, MEM_SIZE + 1);
-	bzero(e->col, MEM_SIZE + 1);
+	ft_bzero(e->mem, MEM_SIZE + 1);
+	ft_bzero(e->col, MEM_SIZE + 1);
 }
 
 void		init_cor(t_env *e, char **av)

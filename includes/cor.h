@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/11 10:11:24 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/11 23:19:02 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct		s_proc
 	int				pos;
 	int				pc;
 	int				carry;
-	int				r[REG_NUMBER];
+	int				*r;
 	int				wait_cycle;
 	int				live_exec;
 	int				champ_color;
@@ -94,6 +94,7 @@ typedef struct		s_env
 	int				nb_proc_in_life;
 	int				speed;
 	int				speed_mult;
+	t_champ			*winner;
 	t_champ			*champ_start;
 	t_champ			*champ_end;
 	t_proc			*proc_start;
@@ -134,6 +135,7 @@ int					get_opt(char **av, char *l_opt);
 int					have_opt(char o, int opt);
 int					get_verbose(char **av);
 int					get_ncycle(char **av);
+void				free_all(t_env *e);
 
 /*
 ** Ncurses :
