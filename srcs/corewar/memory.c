@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 16:31:37 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/08 10:38:10 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/11 09:33:31 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void				print_memory(unsigned char *s)
 	i = 0;
 	while (++x < 64)
 	{
-		ft_printf("0x%.4x : ", i);
+		printf("0x%.4x : ", i);
 		y = -1;
 		while (++y < 64)
-			ft_printf("%2.2x ", (unsigned char)s[i++]);
-		ft_putchar('\n');
+			printf("%2.2x ", (unsigned char)s[i++]);
+		printf("\n");
 	}
 }
 

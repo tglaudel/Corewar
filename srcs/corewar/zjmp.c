@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:42:16 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/10 10:31:01 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/11 09:27:01 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int		zjmp(t_env *e, t_proc *proc)
 		else
 			proc->pc = proc->pos;
 		if (e->verbose & VERBOSE_OP)
-			ft_printf("P %4d | %s %d OK\n", proc->index, "zjmp", tmp);
+			printf("P %4d | %s %d OK\n", proc->index, "zjmp", tmp);
 		return (1);
 	}
 	if (e->verbose & VERBOSE_OP)
-		ft_printf("P %4d | %s %d FAILED\n", proc->index, "zjmp", tmp);
+		printf("P %4d | %s %d FAILED\n", proc->index, "zjmp", tmp);
 	if (e->verbose & VERBOSE_PC)
 		print_adv(proc, e, 0);
 	return (0);

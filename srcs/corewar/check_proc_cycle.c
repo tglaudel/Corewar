@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/01 14:16:05 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/09 17:43:35 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/11 09:27:28 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int			recurse_del_proc(t_proc *prev_proc, t_proc *proc, int verb)
 	if (proc->live_exec == 0)
 	{
 		if (verb)
-			ft_printf("del proc: %d ->live %d\n", proc->index, proc->live_exec);
+			printf("del proc: %d ->live %d\n", proc->index, proc->live_exec);
 		prev_proc->next = proc->next;
 		free(proc);
 		return (recurse_del_proc(prev_proc, proc->next, verb) + 1);
@@ -36,7 +36,7 @@ int					del_proc(t_proc *start, t_env *e)
 	while (e->proc_start && e->proc_start->live_exec == 0)
 	{
 		if (e->verbose & VERBOSE_DEBUG)
-			ft_printf("del proc : %d -> cycle %d -> live %d\n", proc->index,\
+			printf("del proc : %d -> cycle %d -> live %d\n", proc->index,\
 			e->nb_cycle, proc->live_exec);
 		e->proc_start = proc->next;
 		--e->nb_proc_in_life;
@@ -61,7 +61,7 @@ void				check_proc_cycle(t_env *e)
 	{
 		e->c_to_die -= CYCLE_DELTA;
 		if (!have_opt('c', e->opt) && (e->verbose & VERBOSE_CYCLE) == VERBOSE_CYCLE)
-			ft_printf("Cycle to die is now %d\n", e->c_to_die);
+			printf("Cycle to die is now %d\n", e->c_to_die);
 		e->nb_check_td = 0;
 	}
 	else
@@ -72,7 +72,7 @@ void				check_proc_cycle(t_env *e)
 			e->c_to_die -= CYCLE_DELTA;
 			e->nb_check_td = 0;
 			if (!have_opt('c', e->opt) && (e->verbose & VERBOSE_CYCLE) == VERBOSE_CYCLE)
-				ft_printf("Cycle to die is now %d\n", e->c_to_die);
+				printf("Cycle to die is now %d\n", e->c_to_die);
 		}
 	}
 	if (e->verbose & VERBOSE_DEBUG)

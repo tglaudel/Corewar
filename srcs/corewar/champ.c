@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   champ.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 17:52:24 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/10 20:31:17 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/11 09:25:43 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char		*get_champ_file(char *file, int width)
 		ft_errors("ERROR : malloc.", 1, 0);
 	while (++i <= COMMENT_NAME_MAGIC + width)
 	{
-		//ft_printf("%d -> %x -> %c \n", i, (unsigned char)buf[i], buf[i]);
+		//printf("%d -> %x -> %c \n", i, (unsigned char)buf[i], buf[i]);
 		s[i] = buf[i];
 	}
 	return (s);
@@ -74,7 +74,7 @@ void			add_to_champ_lst(t_env *env, int nb, int width, char *file)
 	champ->is_alive = 1;
 	champ->pos = 0;
 	if (!have_opt('c', env->opt))
-		ft_printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n", nb, width, champ->name, champ->comment);
+		printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n", nb, width, champ->name, champ->comment);
 	if (env->champ_end != NULL)
 		env->champ_end->next = champ;
 	env->champ_end = champ;

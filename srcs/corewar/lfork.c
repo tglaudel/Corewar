@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 13:17:51 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/09 14:06:54 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/11 09:26:02 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int			lfork_cor(t_env *e, t_proc *proc)
 		pos_new = MEM_SIZE + pos_new;
 	new_processus(e, 0, pos_new, proc);
 	if (e->verbose & VERBOSE_OP)
-		ft_printf("P %4d | %s %d (%d)\n", proc->index, "lfork", \
+		printf("P %4d | %s %d (%d)\n", proc->index, "lfork", \
 		proc->inst.arg[0], pos);
 	return (1);
 }

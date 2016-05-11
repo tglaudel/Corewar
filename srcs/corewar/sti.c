@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:51:16 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/08 15:36:45 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/11 09:26:49 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int		sti(t_env *e, t_proc *proc)
 	print_in_memory(e, proc->r[proc->inst.arg[0] - 1], pos, proc);
 	if (e->verbose & VERBOSE_OP)
 	{
-		ft_printf("P %4d | %s r%d %d %d\n", proc->index, "sti",\
+		printf("P %4d | %s r%d %d %d\n", proc->index, "sti",\
 		proc->inst.arg[0], val1, val2);
-		ft_printf("       | -> store to %d + %d = %d (with pc and mod %d)\n",\
+		printf("       | -> store to %d + %d = %d (with pc and mod %d)\n",\
 		val1, val2, val1 + val2, pos_in_mem);
 	}
 	return (1);

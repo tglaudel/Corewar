@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 13:41:53 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/09 16:18:50 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/11 09:26:05 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		live(t_env *e, t_proc *proc)
 			++e->global_live;
 			champ->last_cycle_live = e->nb_cycle;
 			if (e->verbose & VERBOSE_LIVE)
-				ft_printf("Player %d (%s) is said to be alive\n", -champ->nb_champ, champ->name);
+				printf("Player %d (%s) is said to be alive\n", -champ->nb_champ, champ->name);
 			return (1);
 		}
 		champ = champ->next;

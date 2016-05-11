@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 13:07:16 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/09 14:35:10 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/11 09:26:08 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		lld(t_env *e, t_proc *proc)
 		proc->carry = 0;
 	proc->r[proc->inst.arg[1] - 1] = val1;
 	if (e->verbose & VERBOSE_OP)
-		ft_printf("P %4d | %s %d r%d\n", proc->index, "lld",\
+		printf("P %4d | %s %d r%d\n", proc->index, "lld",\
 		val1, proc->inst.arg[1]);
 	return (1);
 }

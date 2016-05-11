@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:45:02 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/09 16:19:04 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/11 09:25:58 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int ldi(t_env *e, t_proc *proc)
 	proc->r[proc->inst.arg[2] - 1] = ind_to_int(e->mem, pos);
 	if (e->verbose & VERBOSE_OP)
 	{
-		ft_printf("P %4d | %s %d %d r%d\n", proc->index, "ldi",\
+		printf("P %4d | %s %d %d r%d\n", proc->index, "ldi",\
 		val1, val2, proc->inst.arg[2]);
-		ft_printf("       | -> load from %d + %d = %d (with pc and mod %d)\n",\
+		printf("       | -> load from %d + %d = %d (with pc and mod %d)\n",\
 		val1, val2, val1 + val2, pos_in_mem);
 	}
 	return (1);
