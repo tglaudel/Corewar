@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/01 09:46:44 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/11 19:02:00 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 11:10:39 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int					have_odc_arg(int a, unsigned char *mem, t_proc *proc, int i)
 		}
 		else if ((proc->inst.odc >> (6 - a * 2) & REG_CODE) == REG_CODE)
 		{
-			proc->inst.arg[a] = (int)mem[proc->pos + pos_mem];
+			proc->inst.arg[a] = (int)mem[(proc->pos + pos_mem) % MEM_SIZE];
 			++pos_mem;
 		}
 	}
