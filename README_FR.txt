@@ -9,6 +9,10 @@ t############################################################################
 #                                                                          #
 ############################################################################
 
+COREWAR est un jeu dans lequel des champions essaie de se "détruire" les uns les
+autres dans la mémoire d'une machine virtuelle.
+
+
 VM explication :
 
 ############################################################################
@@ -31,8 +35,6 @@ N'a aucun impact sur la VM.
 	- Instructions :
 Une instruction est une action à effectuer par un processus.
 Elle représente N octet en mémoire.
-
-
 Les instructions sont diverses et peuvent notamment créer de nouveaux processus.
 Une instruction peut agir sur la memoire de la VM ainsi que sur les
 regitres dont sont composés chaque processus.
@@ -50,7 +52,7 @@ Elle est initialisée à 0 : on la remplie de '\0'.
 
 Lors du chargement d'un champion dans la VM, toutes les instructions
 qui le composent sont insérés à la suite dans l'espace qui lui est alloué.
-Cet espace est défini arbitrairement à MEM_SIZE / 6 octets.
+Cet espace est défini arbitrairement à (MEM_SIZE / 6) octets.
 
 -------------------------------------------------------------------------------
 
@@ -62,6 +64,17 @@ En début de partie, un processus est crée sur la première instruction de chaq
 champion, par souci d'équité, afin qu'il puisse effectuer leurs instructions
 "simultanément". Ceci empêchant le premier champion chargé de "déployer" toute
 sa stratégie, avant que les champions suivants n'ai pu faire quoique ce soit.
+Cependant, il y a tout de même une notion de chronologie dans "l'activation"
+de chaque processus : Le dernier crée sera le premier à effectuer une action.
+	ex : Au début de partie, si il y a 3 champions, le premier processus, à
+		 s'activer, sera celui du champion #3, puis celui du #2 et enfin le #1.
+		 Si le champion 2 crée un nouveau processus, alors que les deux autres
+	 	 champions n'en ont toujours qu'un chacun. L'ordre sera :
+		 	- 4 (#2),
+			- 3 (#3),
+			- 2 (#2),
+			- 1 (#1).
+
 Un processus est composée :
  	- de registres;
 	- d'un PC (program counter);
@@ -81,6 +94,8 @@ la memoire, de les modifier et de les réécrire ailleurs dans la mémoire.
 		b) Le PC (program counter)
 
 Le PC est un pointeur vers la prochaine instruction à executer :
+
+
 l'addresse du prochain octet de la memoire sur lequel le processus devra se
 rendre, une fois l'instruction en cours éxécutée.
 
@@ -88,7 +103,7 @@ rendre, une fois l'instruction en cours éxécutée.
 
 Le "flag" carry aura une valeur de 0 ou 1 dans chaque processus. Et est
 initialisé à zéro.
-Il permet la validation de l'exectution de l'instruction 'zjmp', si le carry a
+Il permet la validation de l'execution de l'instruction 'zjmp', si le carry a
 été changé à 1.
 Il peut être modifié par les instructions suivantes :
 	 - ld;
