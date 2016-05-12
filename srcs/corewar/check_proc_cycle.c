@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_proc_cycle.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/01 14:16:05 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 19:02:42 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/05/12 23:03:17 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static int		iter_del_proc(t_proc *start, t_env *e)
 			if (e->verbose & VERBOSE_DIE)
 				printf("Process %d hasn't lived for %d cycles (CTD %d)\n",\
 				proc->index, proc->live_exec, e->c_to_die);
+			mvchgat(proc->pos / 64, proc->pos % 64 * 3, 2, A_NORMAL,\
+			proc->champ_color, NULL);
 			free(proc->r);
 			proc->r = NULL;
 			free(proc);

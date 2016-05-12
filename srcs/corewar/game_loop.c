@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 21:43:47 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 23:14:06 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ static void			exe_instruction(t_proc *proc, t_env *e)
 			g_op_tab[i].f(e, proc);
 			if ((e->verbose & VERBOSE_PC) == VERBOSE_PC)
 				print_adv(proc, e, 1);
+			mvchgat(proc->pos / 64, proc->pos % 64 * 3, 2, A_NORMAL,\
+			proc->champ_color, NULL);
 			proc->pos = proc->pc;
 			break ;
 		}
 	}
-	mvchgat(proc->pos / 64, proc->pos % 64 * 3, 2, A_NORMAL,\
-	proc->champ_color, NULL);
 	proc->pos = proc->pc;
 }
 
