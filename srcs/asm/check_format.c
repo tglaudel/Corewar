@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 17:11:21 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 17:30:08 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 21:07:01 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	is_nothing_john_snow(char *s)
 	return (0);
 }
 
-int			is_good_format(char *s, header_t *cor, t_env *e)
+int			is_good_format(char *s, t_header *cor, t_env *e)
 {
 	if (is_comment(s, cor))
 		return (1);

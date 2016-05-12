@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_instruction.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/01 09:46:44 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 19:39:11 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/05/12 21:53:10 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,7 @@ int				have_odc_arg(int a, unsigned char *mem, t_proc *proc, int i)
 		if ((proc->inst.odc >> (6 - a * 2) & IND_CODE) == IND_CODE)
 		{
 			if (g_op_tab[i].ind_size == 4)
-			{
-				proc->inst.arg[a] = ind_to_int(mem, proc->pos + pos_mem);
-				pos_mem += 2;
-			}
+				pos_mem += pre_int(proc, mem, proc->pos + pos_mem, a);
 			else if (g_op_tab[i].ind_size == 2)
 				proc->inst.arg[a] = dir_to_int(mem, proc->pos + pos_mem);
 			pos_mem += 2;
@@ -69,19 +66,13 @@ int				have_odc_arg(int a, unsigned char *mem, t_proc *proc, int i)
 		else if ((proc->inst.odc >> (6 - a * 2) & DIR_CODE) == DIR_CODE)
 		{
 			if (g_op_tab[i].dir_size == 4)
-			{
-				proc->inst.arg[a] = ind_to_int(mem, proc->pos + pos_mem);
-				pos_mem += 2;
-			}
+				pos_mem += pre_int(proc, mem, proc->pos + pos_mem, a);
 			else if (g_op_tab[i].dir_size == 2)
 				proc->inst.arg[a] = dir_to_int(mem, proc->pos + pos_mem);
 			pos_mem += 2;
 		}
 		else if ((proc->inst.odc >> (6 - a * 2) & REG_CODE) == REG_CODE)
-		{
-			proc->inst.arg[a] = (int)mem[(proc->pos + pos_mem) % MEM_SIZE];
-			++pos_mem;
-		}
+			proc->inst.arg[a] = (int)mem[(proc->pos + pos_mem++) % MEM_SIZE];
 	}
 	return (pos_mem);
 }

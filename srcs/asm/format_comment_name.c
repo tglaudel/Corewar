@@ -6,13 +6,13 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 10:42:59 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 19:21:52 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 21:07:12 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static int	name_ok(header_t *cor)
+static int	name_ok(t_header *cor)
 {
 	if (cor->prog_name[0] != '\0')
 		return (1);
@@ -21,7 +21,7 @@ static int	name_ok(header_t *cor)
 	return (0);
 }
 
-static int	format_name(char *s, int n, header_t *cor)
+static int	format_name(char *s, int n, t_header *cor)
 {
 	int i;
 	int j;
@@ -50,7 +50,7 @@ static int	format_name(char *s, int n, header_t *cor)
 	return (1);
 }
 
-int			is_comment(char *s, header_t *cor)
+int			is_comment(char *s, t_header *cor)
 {
 	int i;
 

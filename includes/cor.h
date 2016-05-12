@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cor.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 19:26:27 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/05/12 22:07:50 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,9 @@ typedef struct		s_curse
 typedef struct		s_option
 {
 	int				n;
-	int 			c;
-	int 			v;
-	int 			d;
+	int				c;
+	int				v;
+	int				d;
 }					t_option;
 
 typedef struct		s_winner
@@ -126,7 +126,7 @@ typedef struct		s_env
 	t_curse			curse;
 }					t_env;
 
-typedef int 		(*instruction)(t_env *e, t_proc *proc);
+typedef int			(*t_instruction)(t_env *e, t_proc *proc);
 
 typedef struct		s_op
 {
@@ -140,7 +140,7 @@ typedef struct		s_op
 	int				carry;
 	int				dir_size;
 	int				ind_size;
-	instruction		f;
+	t_instruction	f;
 }					t_op;
 
 typedef struct		s_od
@@ -161,10 +161,10 @@ int					have_opt(char o, int opt);
 int					get_verbose(char **av);
 int					get_ncycle(char **av);
 void				free_all(t_env *e);
-void 				test_option(t_env *e, char *s);
-int 				test_param_opt(t_env *e, char *av);
-void 				show_start(t_env *e);
-void 				last_check(t_env *e);
+void				test_option(t_env *e, char *s);
+int					test_param_opt(t_env *e, char *av);
+void				show_start(t_env *e);
+void				last_check(t_env *e);
 
 /*
 ** Ncurses :
@@ -186,7 +186,8 @@ void				check_champ_cycle(t_env *e);
 ** Processus :
 */
 
-void				new_processus(t_env *e, t_champ *champ, int pos, t_proc *papa);
+void				new_processus(t_env *e, t_champ *champ, int pos,\
+					t_proc *papa);
 int					is_prog_pos(t_proc *start, int x, int y);
 void				check_proc_cycle(t_env *e);
 
@@ -197,6 +198,7 @@ void				check_proc_cycle(t_env *e);
 void				game_loop(t_env *e);
 int					ind_to_int(unsigned char *mem, int pos);
 short int			dir_to_int(unsigned char *mem, int pos);
+int					pre_int(t_proc *proc, unsigned char *mem, int n, int a);
 int					have_odc_arg(int a, unsigned char *mem, t_proc *proc,\
 					int i);
 int					check_odc(t_proc *proc, int i);
@@ -225,24 +227,24 @@ void				init_proc(t_proc *proc);
 */
 
 int					recup_value(unsigned char *mem, t_proc *proc, int i, int n);
-int 				check_args(t_proc *proc, int i, int n);
+int					check_args(t_proc *proc, int i, int n);
 
-int					live(t_env *e, t_proc *proc);//			1
-int					ld(t_env *e, t_proc *proc);//			2
-int					st(t_env *e, t_proc *proc);//			3
-int					add(t_env *e, t_proc *proc);//			4
-int					sub(t_env *e, t_proc *proc);//			5
-int					and(t_env *e, t_proc *proc);//			6
-int					or(t_env *e, t_proc *proc);//			7
-int					xor(t_env *e, t_proc *proc);//			8
-int					zjmp(t_env *e, t_proc *proc);//			9
-int					ldi(t_env *e, t_proc *proc);//			10
-int					sti(t_env *e, t_proc *proc);//			11
-int					fork_cor(t_env *e, t_proc *proc);//		12
-int					lld(t_env *e, t_proc *proc);//			13
-int					lldi(t_env *e, t_proc *proc);//			14
-int					lfork_cor(t_env *e, t_proc *proc);//	15
-int					aff(t_env *e, t_proc *proc);//			16
+int					live(t_env *e, t_proc *proc);
+int					ld(t_env *e, t_proc *proc);
+int					st(t_env *e, t_proc *proc);
+int					add(t_env *e, t_proc *proc);
+int					sub(t_env *e, t_proc *proc);
+int					and(t_env *e, t_proc *proc);
+int					or(t_env *e, t_proc *proc);
+int					xor(t_env *e, t_proc *proc);
+int					zjmp(t_env *e, t_proc *proc);
+int					ldi(t_env *e, t_proc *proc);
+int					sti(t_env *e, t_proc *proc);
+int					fork_cor(t_env *e, t_proc *proc);
+int					lld(t_env *e, t_proc *proc);
+int					lldi(t_env *e, t_proc *proc);
+int					lfork_cor(t_env *e, t_proc *proc);
+int					aff(t_env *e, t_proc *proc);
 
 /*
 ** Print :
@@ -253,7 +255,8 @@ void				print_board(t_env *env);
 void				print_processus_debug(t_proc *start, int nb_cycle);
 void				print_in_memory(t_env *e, int val, int pos, t_proc *proc);
 void				print_processus(t_proc *start, t_env *e);
-void 				print_instruction(t_proc * proc, int nb_arg, char *inst, int store);
-void				print_adv(t_proc * proc, t_env *e, int bloque);
+void				print_instruction(t_proc *proc, int nb_arg, char *inst,\
+					int store);
+void				print_adv(t_proc *proc, t_env *e, int bloque);
 
 #endif

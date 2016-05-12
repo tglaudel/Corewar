@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:25:26 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 18:05:20 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 21:07:33 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct		s_label
 typedef struct		s_env
 {
 	int				opt;
-	header_t		cor;
+	t_header		cor;
 	t_label			*label_s;
 	t_label			*label_e;
 	t_cmd			*cmd_s;
@@ -87,8 +87,8 @@ void				add_cmd(t_env *e, char *s, int n);
 ** Check & parsing:
 */
 
-int					is_good_format(char *s, header_t *cor, t_env *e);
-int					is_comment(char *s, header_t *cor);
+int					is_good_format(char *s, t_header *cor, t_env *e);
+int					is_comment(char *s, t_header *cor);
 int					is_label(char *s, t_env *e);
 int					is_cmd(char *s, t_env *e);
 int					is_dir(char *s);
@@ -116,7 +116,7 @@ void				print_opt_d(t_env *e, int i);
 void				print_opt_o(t_env *e);
 int					print_help(void);
 char				*format_str(char *s);
-void				create_file(header_t *cor, t_cmd *cmd, t_env *e);
+void				create_file(t_header *cor, t_cmd *cmd, t_env *e);
 void				free_all(t_env *e);
 void				free_label(t_label *label);
 void				free_cmd(t_cmd *cmd);

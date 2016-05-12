@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conversion.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/01 09:43:42 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 18:55:17 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/05/12 22:05:24 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ short int		dir_to_int(unsigned char *mem, int pos)
 	dir = mem[pos % MEM_SIZE] << 8;
 	dir = dir | mem[(pos + 1) % MEM_SIZE];
 	return (dir);
+}
+
+int				pre_int(t_proc *proc, unsigned char *mem, int n, int a)
+{
+	proc->inst.arg[a] = ind_to_int(mem, n);
+	return (2);
 }
 
 int				ind_to_int(unsigned char *mem, int pos)

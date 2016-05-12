@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/27 13:01:59 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/27 18:28:31 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 20:58:31 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		nprinted(va_list lst, const char *format, int i, int fd)
 			++ret;
 		}
 	}
-		free(def);
+	free(def);
 	return (ret);
 }
 
