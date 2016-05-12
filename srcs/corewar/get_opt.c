@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_opt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 11:13:48 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/02 13:51:02 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/11 14:49:21 by fgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int				get_opt(char **av, char *l_opt)
 	while (av[++i])
 	{
 		j = 0;
-		if (av[i][0] == '-' && av[i][1] != '\0')
+		if (av[i][0] == '-' && av[i][1] != '\0' && !ft_isdigit(av[i][1]))
 		{
 			while (av[i][++j])
 				opt = add_opt(position_in_opt(l_opt, av[i][j]), opt);

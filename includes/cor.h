@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cor.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/11 10:11:24 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 12:07:18 by fgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "op.h"
 # include <ncurses.h>
 
-# define OPT_STRING "cvd"
+# define OPT_STRING "cvdn"
 # define COMMENT_NAME_MAGIC		(PROG_NAME_LENGTH + COMMENT_LENGTH + 16)
 # define BASE_HEXA "0123456789abcdef"
 # define MUI 4294967295
@@ -76,8 +76,24 @@ typedef struct		s_curse
 	int				key;
 }					t_curse;
 
+typedef struct		s_option
+{
+	int				n;
+	int 			c;
+	int 			v;
+	int 			d;
+}					t_option;
+
 typedef struct		s_env
 {
+	int				c;
+	int				test_n;
+	int				v;
+	int				n3;
+	int				d;
+	char			char_opt;
+	char			*player;
+	int				iplayer;
 	int				opt;
 	int				fd;
 	int				width;
@@ -94,6 +110,8 @@ typedef struct		s_env
 	int				nb_proc_in_life;
 	int				speed;
 	int				speed_mult;
+	int				n;
+	t_option		option;
 	t_champ			*champ_start;
 	t_champ			*champ_end;
 	t_proc			*proc_start;
