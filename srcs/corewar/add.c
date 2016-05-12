@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 14:20:43 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/08 10:55:30 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/11 22:04:03 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int add(t_env *e, t_proc *proc)
 	int i;
 	unsigned int d;
 
+	d = 0;
 	(void)e;
 	i = -1;
 	while (++i < 3)

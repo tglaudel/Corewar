@@ -6,7 +6,7 @@
 /*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 17:52:24 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 00:32:45 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/12 14:31:27 by fgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,10 @@ static char		*get_champ_file(char *file, int width)
 	if ((fd = open(file, O_RDONLY)) == -1)
 		ft_errors("ERROR : Fail open.", 1, 0);
 	ret = read(fd, buf, COMMENT_NAME_MAGIC + width);
-	if (!(s = (char*)malloc(sizeof(char) * COMMENT_NAME_MAGIC + width)))
+	if (!(s = (char*)malloc(sizeof(char) * COMMENT_NAME_MAGIC + width + 1)))
 		ft_errors("ERROR : malloc.", 1, 0);
 	while (++i <= COMMENT_NAME_MAGIC + width)
-	{
-		//printf("%d -> %x -> %c \n", i, (unsigned char)buf[i], buf[i]);
 		s[i] = buf[i];
-	}
 	return (s);
 }
 
@@ -101,6 +98,7 @@ void			add_to_champ_lst(t_env *env, int nb, int width, char *file)
 	check_nbchamp(env, champ);
 	s = get_champ_file(file, width);
 	champ->width = width;
+	champ->color = nb;
 	champ->name = ft_strsub(s, 4, PROG_NAME_LENGTH);
 	champ->comment = ft_strsub(s, 12 + PROG_NAME_LENGTH, COMMENT_LENGTH);
 	champ->code = my_strsub(s, COMMENT_NAME_MAGIC, width);
@@ -111,4 +109,6 @@ void			add_to_champ_lst(t_env *env, int nb, int width, char *file)
 	if (env->champ_end != NULL)
 		env->champ_end->next = champ;
 	env->champ_end = champ;
+	ft_strdel(&s);
+	s = NULL;
 }

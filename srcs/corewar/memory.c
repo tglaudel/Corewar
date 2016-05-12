@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 16:31:37 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/11 09:33:31 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 14:33:24 by fgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void				insert_in_memory(t_env *e)
 		while (++i < champ->width)
 		{
 			e->mem[n + i] = champ->code[i];
-			e->col[n + i] = -champ->nb_champ;
+			e->col[n + i] = champ->color;
 		}
-		new_processus(e, champ->nb_champ, n, NULL);
+		new_processus(e, champ, n, NULL);
 		//first_print(e, champ->nb_champ, n, champ->width);
 		n += MEM_SIZE / e->nb_champ;
 		champ = champ->next;

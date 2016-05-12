@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/11 09:59:38 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 11:46:00 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ static void		proc_loop(t_env *e)
 	proc = e->proc_start;
 	while (proc)
 	{
+		++proc->live_exec;
 		if (proc->wait_cycle > 0)
 			--proc->wait_cycle;
 		if (proc->inst.opc == 0)
@@ -111,19 +112,19 @@ void		game_loop(t_env *e)
 
 	before_check_die = 0;
 	print_board(e);
-	while (e->nb_champ > 0 && e->nb_proc > 0 &&\
-	e->nb_cycle < e->nb_cycle_max && e->c_to_die > 0)
+	while (e->nb_proc_in_life > 0 &&\
+	e->nb_cycle < e->nb_cycle_max)
 	{
-		if (before_check_die == e->c_to_die)
+		++e->nb_cycle;
+		if (before_check_die >= e->c_to_die)
 		{
 			check_champ_cycle(e);
 			check_proc_cycle(e);
-			re_init_proc(e->proc_start);
 			before_check_die = 0;
-			e->global_live = 0;
+			if (e->nb_proc_in_life == 0)
+				return ;
 		}
 		++before_check_die;
-		++e->nb_cycle;
 		if (e->verbose & VERBOSE_CYCLE)
 			printf("It is now cycle %d\n", e->nb_cycle);
 		proc_loop(e);

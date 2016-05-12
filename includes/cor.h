@@ -6,7 +6,7 @@
 /*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 12:07:18 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/12 14:36:37 by fgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct		s_proc
 	int				pos;
 	int				pc;
 	int				carry;
-	int				r[REG_NUMBER];
+	int				*r;
 	int				wait_cycle;
 	int				live_exec;
 	int				champ_color;
@@ -56,6 +56,7 @@ typedef struct		s_proc
 
 typedef struct		s_champ
 {
+	char			color;
 	char			*name;
 	char			*comment;
 	char			*code;
@@ -83,6 +84,12 @@ typedef struct		s_option
 	int 			v;
 	int 			d;
 }					t_option;
+
+typedef struct		s_winner
+{
+	int				nb_win;
+	char			*winner;
+}					t_winner;
 
 typedef struct		s_env
 {
@@ -112,6 +119,7 @@ typedef struct		s_env
 	int				speed_mult;
 	int				n;
 	t_option		option;
+	t_winner		winner;
 	t_champ			*champ_start;
 	t_champ			*champ_end;
 	t_proc			*proc_start;
@@ -152,6 +160,7 @@ int					get_opt(char **av, char *l_opt);
 int					have_opt(char o, int opt);
 int					get_verbose(char **av);
 int					get_ncycle(char **av);
+void				free_all(t_env *e);
 
 /*
 ** Ncurses :
@@ -173,7 +182,7 @@ void				check_champ_cycle(t_env *e);
 ** Processus :
 */
 
-void				new_processus(t_env *e, int nb, int pos, t_proc *papa);
+void				new_processus(t_env *e, t_champ *champ, int pos, t_proc *papa);
 int					is_prog_pos(t_proc *start, int x, int y);
 void				check_proc_cycle(t_env *e);
 

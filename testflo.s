@@ -56,21 +56,4 @@ wall:
 	st r2, 6
 	live %-42
 	ld %0, r6
-	zjmp %:wall_front
-
-wall_front:
-	st r2, 6
-	live %-42
-	st r6, 60
-	st r6, 69
-	st r6, 78
-	st r6, 87
-	st r6, 96
-	st r6, 105
-	st r6, 114
-	st r6, 123
-	st r6, 132
-	st r2, 6
-	live %-42
-	ld %0, r6
 	zjmp %:wall

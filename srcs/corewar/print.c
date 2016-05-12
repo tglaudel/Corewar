@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/29 18:00:08 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/11 09:30:40 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 11:13:13 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void print_adv(t_proc * proc, t_env *e, int bloque)
 	if (proc->inst.opc == 9 && bloque)
 		return ;
 	printf("ADV %d (0x%.4x -> 0x%.4x) ", proc->inst.size, proc->pos,\
-	(proc->pos + proc->inst.size) % MEM_SIZE);
+	(proc->pos + proc->inst.size));
 	while (++i < proc->inst.size)
 		printf("%.2x ", e->mem[(proc->pos + i) % MEM_SIZE]);
 	printf("\n");

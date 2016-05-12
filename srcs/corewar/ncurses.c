@@ -6,7 +6,7 @@
 /*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 13:48:05 by ale-naou          #+#    #+#             */
-/*   Updated: 2016/05/10 20:52:01 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/12 14:25:34 by fgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void				print_board(t_env *e)
 		mvaddch(pos / 64, (pos % 64) * 3 + 2, ' ');
 	}
 	usleep(10000);
+	ft_strdel(&mem_hexa);
 	print_processus(e->proc_start, e);
 	refresh();
 }
@@ -109,7 +110,6 @@ void	init_ncurses2(void)
 
 char	get_move(void)
 {
-	usleep(50000);
 	int c;
 	if ((c = getch()))
 	{
@@ -125,7 +125,7 @@ char	get_move(void)
 
 void	change_speed(t_env *e, int n)
 {
-	if (e->speed == 1000)
+	if (e->speed == 1000 && n == -1000)
 		return ;
 	if (e->speed > 1000)
 		e->speed += n;

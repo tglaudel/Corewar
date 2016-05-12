@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:51:16 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/11 09:26:49 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/11 22:02:05 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,16 @@ int		sti(t_env *e, t_proc *proc)
 	int val2;
 	int pos_in_mem;
 
+	pos = 0;
 	if (!check_args(proc, 4, 1) || !check_args(proc, 2, 2))
 		return (0);
 	if (proc->inst.arg[0] > REG_NUMBER || proc->inst.arg[0] <= 0)
 		return (0);
 	val1 = recup_value(e->mem, proc, 4, 1);
-	// ft_putnbr(proc->r[proc->inst.arg[1]]);
-	// ft_putchar('\n');
-	// ft_putnbr(val1);
-	// ft_putchar('\n');
 	val2 = recup_value(e->mem, proc, 2, 2);
 	pos = (val1 + val2) % IDX_MOD;
-	pos = (pos + proc->pos) % MEM_SIZE;
-	pos_in_mem = pos;
+	pos_in_mem = (pos + proc->pos);
+	pos = pos_in_mem % MEM_SIZE;
 	if (pos < 0)
 		pos = MEM_SIZE + pos;
 	print_in_memory(e, proc->r[proc->inst.arg[0] - 1], pos, proc);

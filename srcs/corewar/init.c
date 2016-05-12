@@ -6,7 +6,7 @@
 /*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 17:59:20 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 12:24:58 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/12 14:19:14 by fgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void			init_env(t_env *e)
 		e->nb_cycle_max = 2147483647;
 	e->nb_cycle = 0;
 	e->nb_champ = 0;
+	e->width = 0;
 	e->c_to_die = CYCLE_TO_DIE;
 	e->nb_proc = 0;
 	e->nb_check_td = 0;
@@ -53,8 +54,6 @@ void			init_env(t_env *e)
 	e->nb_proc_in_life = 0;
 	e->speed = 10000;
 	e->speed_mult = 0;
-	bzero(e->mem, MEM_SIZE + 1);
-	bzero(e->col, MEM_SIZE + 1);
 	e->iplayer = 0;
 	e->player = NULL;
 	e->char_opt = '\0';
@@ -63,6 +62,10 @@ void			init_env(t_env *e)
 	e->d = 0;
 	e->v = 0;
 	e->test_n = 0;
+	e->winner.winner = NULL;
+	e->winner.nb_win = 0;
+	ft_bzero(e->mem, MEM_SIZE + 1);
+	ft_bzero(e->col, MEM_SIZE + 1);
 }
 
 static void		test_option(char *s, t_env *e)
@@ -124,14 +127,17 @@ static void		show_start(t_env *e)
 
 	champ = e->champ_start;
 	i = 0;
-	if (e->nb_champ > 0 && !have_opt('c', e->opt))
-		ft_putendl("Introducing contestants...");
-	while (++i <= e->nb_champ)
+	if (!have_opt('c', e->opt))
 	{
-		if (!have_opt('c', e->opt))
-			printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n",
-			champ->nb_champ, e->width, champ->name, champ->comment);
-		champ = champ->next;
+		if (e->nb_champ > 0 && !have_opt('c', e->opt))
+			ft_putendl("Introducing contestants...");
+		while (++i <= e->nb_champ)
+		{
+			if (!have_opt('c', e->opt))
+				printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n",
+				-champ->nb_champ, champ->width, champ->name, champ->comment);
+				champ = champ->next;
+		}
 	}
 }
 

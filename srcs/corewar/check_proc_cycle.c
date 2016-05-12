@@ -6,25 +6,39 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/01 14:16:05 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/11 09:27:28 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 11:46:48 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
 
-static int			recurse_del_proc(t_proc *prev_proc, t_proc *proc, int verb)
+static int				iter_del_proc(t_proc *start, t_env *e)
 {
-	if (proc == NULL)
-		return (1);
-	if (proc->live_exec == 0)
+	t_proc *proc_prev;
+	t_proc *proc;
+	int i;
+
+	i = 0;
+	proc_prev = start;
+	while (proc_prev && proc_prev->next)
 	{
-		if (verb)
-			printf("del proc: %d ->live %d\n", proc->index, proc->live_exec);
-		prev_proc->next = proc->next;
-		free(proc);
-		return (recurse_del_proc(prev_proc, proc->next, verb) + 1);
+		proc = proc_prev->next;
+		if (proc->live_exec >= e->c_to_die)
+		{
+			proc_prev->next = proc->next;
+			if (e->verbose & VERBOSE_DIE)
+				printf("Process %d hasn't lived for %d cycles (CTD %d)\n",\
+				proc->index, proc->live_exec, e->c_to_die);
+			free(proc->r);
+			proc->r = NULL;
+			free(proc);
+			proc = NULL;
+			i++;
+		}
+		else
+			proc_prev = proc_prev->next;
 	}
-	return (recurse_del_proc(proc, proc->next, verb));
+	return (i);
 }
 
 int					del_proc(t_proc *start, t_env *e)
@@ -33,22 +47,23 @@ int					del_proc(t_proc *start, t_env *e)
 	int		nb_proc_die;
 
 	proc = start;
-	while (e->proc_start && e->proc_start->live_exec == 0)
+	while (proc && proc->live_exec >= e->c_to_die)
 	{
-		if (e->verbose & VERBOSE_DEBUG)
-			printf("del proc : %d -> cycle %d -> live %d\n", proc->index,\
-			e->nb_cycle, proc->live_exec);
+		if (e->verbose & VERBOSE_DIE)
+			printf("Process %d hasn't lived for %d cycles (CTD %d)\n",\
+			proc->index, proc->live_exec, e->c_to_die);
 		e->proc_start = proc->next;
 		--e->nb_proc_in_life;
+		free(proc->r);
+		proc->r = NULL;
 		free(proc);
 		proc = e->proc_start;
 	}
 	if (e->proc_start == NULL)
 		return (0);
-	if ((nb_proc_die = recurse_del_proc(proc, proc->next,\
-		(e->verbose & VERBOSE_DEBUG))) > 1)
+	if ((nb_proc_die = iter_del_proc(proc, e)) > 0)
 	{
-		e->nb_proc_in_life -= nb_proc_die - 1;
+		e->nb_proc_in_life -= nb_proc_die;
 		return (1);
 	}
 	return (0);
@@ -77,4 +92,5 @@ void				check_proc_cycle(t_env *e)
 	}
 	if (e->verbose & VERBOSE_DEBUG)
 		print_processus_debug(e->proc_start, e->nb_cycle);
+	e->global_live = 0;
 }
