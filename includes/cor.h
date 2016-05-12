@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cor.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 22:07:50 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 23:11:39 by fgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,6 @@ typedef struct		s_curse
 	int				key;
 }					t_curse;
 
-typedef struct		s_option
-{
-	int				n;
-	int				c;
-	int				v;
-	int				d;
-}					t_option;
-
 typedef struct		s_winner
 {
 	int				nb_win;
@@ -118,7 +110,6 @@ typedef struct		s_env
 	int				speed;
 	int				speed_mult;
 	int				n;
-	t_option		option;
 	t_winner		winner;
 	t_champ			*champ_start;
 	t_champ			*champ_end;
