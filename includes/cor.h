@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/11 23:19:02 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 12:28:09 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,12 @@ typedef struct		s_curse
 	int				key;
 }					t_curse;
 
+typedef struct		s_winner
+{
+	int				nb_win;
+	char			*winner;
+}					t_winner;
+
 typedef struct		s_env
 {
 	int				opt;
@@ -94,7 +100,7 @@ typedef struct		s_env
 	int				nb_proc_in_life;
 	int				speed;
 	int				speed_mult;
-	t_champ			*winner;
+	t_winner		winner;
 	t_champ			*champ_start;
 	t_champ			*champ_end;
 	t_proc			*proc_start;

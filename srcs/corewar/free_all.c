@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 11:05:25 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/11 15:03:52 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 12:32:10 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,8 @@ static void	free_champ(t_champ *start)
 
 void		free_all(t_env *e)
 {
+	if (e->winner.winner)
+		e->winner.winner = NULL;
 	free_champ(e->champ_start);
+
 }

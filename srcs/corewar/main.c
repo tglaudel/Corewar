@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:46:57 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/11 23:31:35 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 12:30:07 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int				main(int ac, char **av)
 		init_ncurses2();
 	init_cor(&e, &av[1]);
 	game_loop(&e);
-	printf("Contestant %d, \"%s\", has won !\n", -e.winner->nb_champ, e.winner->name);
+	if (e.winner.winner != NULL)
+		printf("Contestant %d, \"%s\", has won !\n", -e.winner.nb_win, e.winner.winner);
 	print_board(&e);
 	free_all(&e);
 	endwin();

@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/01 14:16:05 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/11 22:48:25 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 11:46:48 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,6 @@ static int				iter_del_proc(t_proc *start, t_env *e)
 	}
 	return (i);
 }
-
-// static int			recurse_del_proc(t_proc *prev_proc, t_proc *proc, int verb)
-// {
-// 	if (proc == NULL)
-// 		return (1);
-// 	if (proc->live_exec == 0)
-// 	{
-// 		if (verb)
-// 			printf("del proc: %d ->live %d\n", proc->index, proc->live_exec);
-// 		prev_proc->next = proc->next;
-// 		free(proc);
-// 		return (recurse_del_proc(prev_proc, proc->next, verb) + 1);
-// 	}
-// 	return (recurse_del_proc(proc, proc->next, verb));
-// }
 
 int					del_proc(t_proc *start, t_env *e)
 {
@@ -107,4 +92,5 @@ void				check_proc_cycle(t_env *e)
 	}
 	if (e->verbose & VERBOSE_DEBUG)
 		print_processus_debug(e->proc_start, e->nb_cycle);
+	e->global_live = 0;
 }

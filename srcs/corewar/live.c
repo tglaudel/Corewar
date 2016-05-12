@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 13:41:53 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/11 23:16:41 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 12:28:45 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int		live(t_env *e, t_proc *proc)
 			{
 				++champ->nb_live;
 				champ->last_cycle_live = e->nb_cycle;
-				e->winner = champ;
+				e->winner.winner = champ->name;
+				e->winner.nb_win = champ->nb_champ;
 			}
 
 			if (e->verbose & VERBOSE_LIVE)

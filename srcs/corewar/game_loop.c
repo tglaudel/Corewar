@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 11:10:36 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 11:46:00 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,6 @@ void		game_loop(t_env *e)
 			check_champ_cycle(e);
 			check_proc_cycle(e);
 			before_check_die = 0;
-			e->global_live = 0;
 			if (e->nb_proc_in_life == 0)
 				return ;
 		}

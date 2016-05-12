@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 17:59:20 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/11 21:58:24 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 12:29:19 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void		init_env(t_env *e)
 	e->nb_proc_in_life = 0;
 	e->speed = 10000;
 	e->speed_mult = 0;
+	e->winner.winner = NULL;
+	e->winner.nb_win = 0;
 	ft_bzero(e->mem, MEM_SIZE + 1);
 	ft_bzero(e->col, MEM_SIZE + 1);
 }
