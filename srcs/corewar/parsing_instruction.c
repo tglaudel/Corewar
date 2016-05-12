@@ -3,16 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_instruction.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/01 09:46:44 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 15:09:47 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 19:39:11 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
 
-int					error_odc(t_proc *proc, int i)
+int				define_opc(t_proc *proc, unsigned char *mem)
+{
+	int i;
+
+	i = -1;
+	while (g_op_tab[++i].op_code != 0)
+	{
+		if (g_op_tab[i].op_code == mem[proc->pos])
+		{
+			proc->wait_cycle = g_op_tab[i].wait_before_exe - 1;
+			proc->inst.opc = g_op_tab[i].op_code;
+			return (1);
+		}
+	}
+	return (0);
+}
+
+int				error_odc(t_proc *proc, int i)
 {
 	int n;
 	int size;
@@ -31,7 +48,7 @@ int					error_odc(t_proc *proc, int i)
 	return (size);
 }
 
-int					have_odc_arg(int a, unsigned char *mem, t_proc *proc, int i)
+int				have_odc_arg(int a, unsigned char *mem, t_proc *proc, int i)
 {
 	int pos_mem;
 
@@ -69,28 +86,28 @@ int					have_odc_arg(int a, unsigned char *mem, t_proc *proc, int i)
 	return (pos_mem);
 }
 
-int				parsing_argument(t_proc *proc, unsigned char *mem, int i)
+int				parsing_argument(t_proc *p, unsigned char *mem, int i)
 {
 	int a;
 	int pos_mem;
 
 	pos_mem = 1;
 	a = -1;
-	if (proc->inst.odc)
+	if (p->inst.odc)
 	{
-		if (proc->inst.opc == 15)
-			proc->inst.arg[0] = mem[(proc->pos + 2) % MEM_SIZE];
+		if (p->inst.opc == 15)
+			p->inst.arg[0] = mem[(p->pos + 2) % MEM_SIZE];
 		else
-			return (have_odc_arg(a, mem, proc, i));
+			return (have_odc_arg(a, mem, p, i));
 	}
-	else if (proc->inst.opc == 1)
+	else if (p->inst.opc == 1)
 	{
-		proc->inst.arg[0] = ind_to_int(mem, proc->pos + pos_mem);
+		p->inst.arg[0] = ind_to_int(mem, p->pos + pos_mem);
 		pos_mem += 4;
 	}
-	else if (proc->inst.opc == 12 || proc->inst.opc == 15 || proc->inst.opc == 9)
+	else if (p->inst.opc == 12 || p->inst.opc == 15 || p->inst.opc == 9)
 	{
-		proc->inst.arg[0] = dir_to_int(mem, proc->pos + pos_mem);
+		p->inst.arg[0] = dir_to_int(mem, p->pos + pos_mem);
 		pos_mem += 2;
 	}
 	return (pos_mem == 1 ? 0 : pos_mem);

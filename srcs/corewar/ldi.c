@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ldi.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:45:02 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/11 09:25:58 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 18:44:19 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
 
-int ldi(t_env *e, t_proc *proc)
+int		ldi(t_env *e, t_proc *proc)
 {
 	int val1;
 	int val2;

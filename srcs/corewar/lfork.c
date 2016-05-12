@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lfork.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 13:17:51 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/11 09:26:02 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 18:53:36 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int			lfork_cor(t_env *e, t_proc *proc)
 {
 	int		pos;
-	int 	pos_new;
+	int		pos_new;
 
 	pos = (proc->pos + (proc->inst.arg[0]));
 	if ((pos_new = pos % MEM_SIZE) < 0)

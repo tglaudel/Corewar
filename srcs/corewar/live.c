@@ -3,16 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   live.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 13:41:53 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/12 12:28:45 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 18:02:02 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
 
-int		live(t_env *e, t_proc *proc)
+static void		last_live(t_env *e, t_champ *champ)
+{
+	++champ->nb_live;
+	champ->last_cycle_live = e->nb_cycle;
+	e->winner.winner = champ->name;
+	e->winner.nb_win = champ->nb_champ;
+}
+
+int				live(t_env *e, t_proc *proc)
 {
 	t_champ *champ;
 
@@ -26,15 +34,10 @@ int		live(t_env *e, t_proc *proc)
 		if (champ->nb_champ == (int)proc->inst.arg[0])
 		{
 			if (champ->is_alive)
-			{
-				++champ->nb_live;
-				champ->last_cycle_live = e->nb_cycle;
-				e->winner.winner = champ->name;
-				e->winner.nb_win = champ->nb_champ;
-			}
-
+				last_live(e, champ);
 			if (e->verbose & VERBOSE_LIVE)
-				printf("Player %d (%s) is said to be alive\n", -champ->nb_champ, champ->name);
+				printf("Player %d (%s) is said to be alive\n", \
+				-champ->nb_champ, champ->name);
 			return (1);
 		}
 		champ = champ->next;

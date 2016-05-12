@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 11:46:00 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 19:42:36 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
 
-static int		parsing_instruction(t_proc *proc, unsigned char *mem)
+static int			parsing_instruction(t_proc *proc, unsigned char *mem)
 {
 	int i;
 	int size;
@@ -36,7 +36,7 @@ static int		parsing_instruction(t_proc *proc, unsigned char *mem)
 	return (size);
 }
 
-static void		exe_instruction(t_proc *proc, t_env *e)
+static void			exe_instruction(t_proc *proc, t_env *e)
 {
 	int i;
 
@@ -57,24 +57,22 @@ static void		exe_instruction(t_proc *proc, t_env *e)
 	proc->pos = proc->pc;
 }
 
-int		define_opc(t_proc *proc, unsigned char *mem)
+static void			pre_exec(t_env *e, t_proc *proc)
 {
-	int i;
-
-	i = -1;
-	while (g_op_tab[++i].op_code != 0)
+	if ((proc->inst.size = parsing_instruction(proc, e->mem)) != -1)
+		proc->pc = (proc->pos + proc->inst.size) % MEM_SIZE;
+	if (proc->exec == 1)
+		exe_instruction(proc, e);
+	else
 	{
-		if (g_op_tab[i].op_code == mem[proc->pos])
-		{
-			proc->wait_cycle = g_op_tab[i].wait_before_exe - 1;
-			proc->inst.opc = g_op_tab[i].op_code;
-			return (1);
-		}
+		if ((e->verbose & VERBOSE_PC) == VERBOSE_PC)
+			print_adv(proc, e, 1);
+		proc->pos = proc->pc;
 	}
-	return (0);
+	init_proc(proc);
 }
 
-static void		proc_loop(t_env *e)
+static void			proc_loop(t_env *e)
 {
 	t_proc *proc;
 
@@ -87,33 +85,20 @@ static void		proc_loop(t_env *e)
 		if (proc->inst.opc == 0)
 			define_opc(proc, e->mem);
 		if (proc->inst.opc != 0 && proc->wait_cycle == 0)
-		{
-			if ((proc->inst.size = parsing_instruction(proc, e->mem)) != -1)
-				proc->pc = (proc->pos + proc->inst.size) % MEM_SIZE;
-			if (proc->exec == 1)
-				exe_instruction(proc, e);
-			else
-			{
-				if ((e->verbose & VERBOSE_PC) == VERBOSE_PC)
-					print_adv(proc, e, 1);
-				proc->pos = proc->pc;
-			}
-			init_proc(proc);
-		}
+			pre_exec(e, proc);
 		else if (proc->wait_cycle == 0)
 			proc->pos = ++proc->pos % MEM_SIZE;
 		proc = proc->next;
 	}
 }
 
-void		game_loop(t_env *e)
+void				game_loop(t_env *e)
 {
 	int before_check_die;
 
 	before_check_die = 0;
 	print_board(e);
-	while (e->nb_proc_in_life > 0 &&\
-	e->nb_cycle < e->nb_cycle_max)
+	while (e->nb_proc_in_life > 0 && e->nb_cycle < e->nb_cycle_max)
 	{
 		++e->nb_cycle;
 		if (before_check_die >= e->c_to_die)

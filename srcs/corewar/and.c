@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   and.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 14:26:08 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/11 09:25:27 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 18:56:18 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
 
-int and(t_env *e, t_proc *proc)
+int		and(t_env *e, t_proc *proc)
 {
 	int val1;
 	int val2;

@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lld.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 13:07:16 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/11 09:26:08 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 17:58:01 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
-
-// • lld : Signifie long-load, donc son opcode est évidemment 13. C’est la même chose
-// que ld, mais sans % IDX_MOD. Modifie le carry.
 
 int		lld(t_env *e, t_proc *proc)
 {

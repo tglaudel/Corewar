@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 17:59:20 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 14:19:14 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/12 19:28:28 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,19 @@ void			init_proc(t_proc *proc)
 	proc->pc = 0;
 }
 
+static void		init_env2(t_env *e)
+{
+	e->c = 0;
+	e->n3 = 0;
+	e->d = 0;
+	e->v = 0;
+	e->test_n = 0;
+	e->winner.winner = NULL;
+	e->winner.nb_win = 0;
+	ft_bzero(e->mem, MEM_SIZE + 1);
+	ft_bzero(e->col, MEM_SIZE + 1);
+}
+
 void			init_env(t_env *e)
 {
 	e->champ_start = NULL;
@@ -57,99 +70,7 @@ void			init_env(t_env *e)
 	e->iplayer = 0;
 	e->player = NULL;
 	e->char_opt = '\0';
-	e->c = 0;
-	e->n3 = 0;
-	e->d = 0;
-	e->v = 0;
-	e->test_n = 0;
-	e->winner.winner = NULL;
-	e->winner.nb_win = 0;
-	ft_bzero(e->mem, MEM_SIZE + 1);
-	ft_bzero(e->col, MEM_SIZE + 1);
-}
-
-static void		test_option(char *s, t_env *e)
-{
-	if (e->n3 > 1)
-		ft_errors("ERROR : error opt -n", 1, 0);
-	if (ft_strcmp(s, "-n") == 0)
-	{
-		e->n3++;
-		e->char_opt = 'n';
-	}
-	else if (ft_strcmp(s, "-v") == 0)
-	{
-		e->n3 > 0 ? e->test_n++ : 0;
-		e->v++;
-		e->char_opt = 'v';
-	}
-	else if (ft_strcmp(s, "-d") == 0)
-	{
-		e->n3 > 0 ? e->test_n++ : 0;
-		e->d++;
-		e->char_opt = 'd';
-	}
-	else if (ft_strcmp(s, "-c") == 0)
-	{
-		e->n3 > 0 ? e->test_n++ : 0;
-		e->c++;
-	}
-}
-
-static int		test_param_opt(t_env *e, char *av)
-{
-	int i;
-	int i2;
-
-	i = 0;
-	if (av == NULL)
-		ft_errors("ERROR : bad positionning opt", 1, 0);
-	i2 = ft_strlen(av);
-	av[0] == '-' ? i++ : 0;
-	while (av[i] != '\0')
-	{
-		if (ft_isdigit(av[i]) == 0)
-			ft_errors("ERROR : val param option", 1, 0);
-		i++;
-	}
-	if (ft_atod(av) > 2147483647 || ft_atod(av) < -2147483648)
-		ft_errors("ERROR : val param opt", 1, 0);
-	e->char_opt == '\0' ? ft_errors("ERROR : val with no param", 1, 0) : 0;
-	(e->char_opt != 'v' || e->char_opt != 'd') ? e->char_opt = '\0' : 0;
-	e->player = av;
-	return (0);
-}
-
-static void		show_start(t_env *e)
-{
-	int		i;
-	t_champ *champ;
-
-	champ = e->champ_start;
-	i = 0;
-	if (!have_opt('c', e->opt))
-	{
-		if (e->nb_champ > 0 && !have_opt('c', e->opt))
-			ft_putendl("Introducing contestants...");
-		while (++i <= e->nb_champ)
-		{
-			if (!have_opt('c', e->opt))
-				printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n",
-				-champ->nb_champ, champ->width, champ->name, champ->comment);
-				champ = champ->next;
-		}
-	}
-}
-
-static void		last_check(t_env *e)
-{
-	if (e->nb_champ == 0)
-		ft_errors("ERROR : no champ", 1, 0);
-	if ((e->c > 0 && e->v > 0) || (e->c > 0 && e->d > 0))
-		ft_errors("ERROR : error with param -v", 1, 0);
-	if (e->n3 > 0 || e->c > 1 || e->d > 1 || e->v > 1)
-		ft_errors("ERROR : bad syntax", 1, 0);
-	show_start(e);
+	init_env2(e);
 }
 
 void			init_cor(t_env *e, char **av)
@@ -160,7 +81,7 @@ void			init_cor(t_env *e, char **av)
 	init_env(e);
 	while (av[i])
 	{
-		test_option(av[i], e);
+		test_option(e, av[i]);
 		if (ft_strcmp(av[i], "-c") != 0 && e->char_opt != '\0')
 		{
 			i++;

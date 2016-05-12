@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   xor.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 14:32:18 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/11 09:26:58 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 16:33:04 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
 
-int xor(t_env *e, t_proc *proc)
+int		xor(t_env *e, t_proc *proc)
 {
 	int val1;
 	int val2;

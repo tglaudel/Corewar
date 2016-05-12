@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   processus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 10:01:32 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 14:35:51 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/12 17:10:30 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
 
-static void copie_proc(t_proc *new, t_proc *papa, int pos, t_env *e)
+static void	copie_proc(t_proc *new, t_proc *papa, int pos, t_env *e)
 {
 	int i;
 
@@ -45,6 +45,17 @@ static int	*init_registre(void)
 	return (r);
 }
 
+static void	init_newproc(t_proc *proc, t_champ *champ, int pos)
+{
+	ft_bzero(proc->r, REG_NUMBER);
+	proc->r[0] = champ->nb_champ;
+	proc->champ_color = champ->color;
+	proc->pos = pos;
+	proc->wait_cycle = 0;
+	proc->carry = 0;
+	proc->live_exec = 0;
+}
+
 void		new_processus(t_env *e, t_champ *champ, int pos, t_proc *papa)
 {
 	t_proc *proc;
@@ -65,13 +76,7 @@ void		new_processus(t_env *e, t_champ *champ, int pos, t_proc *papa)
 		copie_proc(proc, papa, pos, e);
 	else
 	{
-		ft_bzero(proc->r, REG_NUMBER);
-		proc->r[0] = champ->nb_champ;
-		proc->champ_color = champ->color;
-		proc->pos = pos;
-		proc->wait_cycle = 0;
-		proc->carry = 0;
-		proc->live_exec = 0;
+		init_newproc(proc, champ, pos);
 		init_proc(proc);
 	}
 	proc->index = e->nb_proc;
