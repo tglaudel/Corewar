@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   check_proc_cycle.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/01 14:16:05 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 11:46:48 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 19:02:42 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
 
-static int				iter_del_proc(t_proc *start, t_env *e)
+static int		iter_del_proc(t_proc *start, t_env *e)
 {
-	t_proc *proc_prev;
-	t_proc *proc;
-	int i;
+	t_proc	*proc_prev;
+	t_proc	*proc;
+	int		i;
 
 	i = 0;
 	proc_prev = start;
@@ -41,9 +41,9 @@ static int				iter_del_proc(t_proc *start, t_env *e)
 	return (i);
 }
 
-int					del_proc(t_proc *start, t_env *e)
+int				del_proc(t_proc *start, t_env *e)
 {
-	t_proc 	*proc;
+	t_proc	*proc;
 	int		nb_proc_die;
 
 	proc = start;
@@ -69,15 +69,21 @@ int					del_proc(t_proc *start, t_env *e)
 	return (0);
 }
 
-void				check_proc_cycle(t_env *e)
+static void		print_ctd(t_env *e)
+{
+	if (!have_opt('c', e->opt) && (e->verbose & VERBOSE_CYCLE) == \
+		VERBOSE_CYCLE)
+		printf("Cycle to die is now %d\n", e->c_to_die);
+}
+
+void			check_proc_cycle(t_env *e)
 {
 	del_proc(e->proc_start, e);
 	if (e->global_live >= NBR_LIVE)
 	{
 		e->c_to_die -= CYCLE_DELTA;
-		if (!have_opt('c', e->opt) && (e->verbose & VERBOSE_CYCLE) == VERBOSE_CYCLE)
-			printf("Cycle to die is now %d\n", e->c_to_die);
 		e->nb_check_td = 0;
+		print_ctd(e);
 	}
 	else
 	{
@@ -86,8 +92,7 @@ void				check_proc_cycle(t_env *e)
 		{
 			e->c_to_die -= CYCLE_DELTA;
 			e->nb_check_td = 0;
-			if (!have_opt('c', e->opt) && (e->verbose & VERBOSE_CYCLE) == VERBOSE_CYCLE)
-				printf("Cycle to die is now %d\n", e->c_to_die);
+			print_ctd(e);
 		}
 	}
 	if (e->verbose & VERBOSE_DEBUG)

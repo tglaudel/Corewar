@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 16:31:37 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 14:33:24 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/12 17:40:28 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void				print_memory(unsigned char *s)
 
 void				insert_in_memory(t_env *e)
 {
-	int i;
-	t_champ *champ;
-	int n;
+	int		i;
+	t_champ	*champ;
+	int		n;
 
 	n = 0;
 	champ = e->champ_start;
@@ -48,7 +48,6 @@ void				insert_in_memory(t_env *e)
 			e->col[n + i] = champ->color;
 		}
 		new_processus(e, champ, n, NULL);
-		//first_print(e, champ->nb_champ, n, champ->width);
 		n += MEM_SIZE / e->nb_champ;
 		champ = champ->next;
 	}

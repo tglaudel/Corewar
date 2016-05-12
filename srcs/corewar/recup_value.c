@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   recup_value.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/05 09:27:55 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/08 19:25:22 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 16:54:12 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
 
-int check_args(t_proc *proc, int i, int n)
+int	check_args(t_proc *proc, int i, int n)
 {
 	if (((proc->inst.odc >> i) & IND_CODE) == IND_CODE)
 		return (1);

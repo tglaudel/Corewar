@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:46:57 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 14:24:33 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/12 17:50:51 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
+
+static void		define_opt(t_env *e, char **av)
+{
+	e->verbose = 0;
+	e->opt = get_opt(&av[1], OPT_STRING);
+	e->nb_cycle_max = -1;
+	if (have_opt('v', e->opt))
+		e->verbose = get_verbose(&av[1]);
+	if (have_opt('d', e->opt))
+		e->nb_cycle_max = get_ncycle(&av[1]);
+}
 
 int				main(int ac, char **av)
 {
@@ -21,13 +32,7 @@ int				main(int ac, char **av)
 		print_help();
 		ft_errors("ERROR : invalide arguments.", 1, 0);
 	}
-	e.verbose = 0;
-	e.opt = get_opt(&av[1], OPT_STRING);
-	e.nb_cycle_max = -1;
-	if (have_opt('v', e.opt))
-		e.verbose = get_verbose(&av[1]);
-	if (have_opt('d', e.opt))
-		e.nb_cycle_max = get_ncycle(&av[1]);
+	define_opt(&e, av);
 	if (have_opt('h', e.opt))
 		return (print_help());
 	init_cor(&e, &av[1]);
@@ -35,12 +40,9 @@ int				main(int ac, char **av)
 		init_ncurses2();
 	game_loop(&e);
 	if (e.winner.winner != NULL)
-		printf("Contestant %d, \"%s\", has won !\n", -e.winner.nb_win, e.winner.winner);
+		printf("Contestant %d, \"%s\", has won !\n", \
+		-e.winner.nb_win, e.winner.winner);
 	print_board(&e);
 	free_all(&e);
 	endwin();
-//	sleep(20);
-	// free(e.curse.principal);
-	// free(e.curse.secondary_2);
-	// free(e.curse.secondary_1);
 }

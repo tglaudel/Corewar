@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   or.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 14:31:45 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/11 09:26:27 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 17:41:44 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
 
-int or(t_env *e, t_proc *proc)
+int		or(t_env *e, t_proc *proc)
 {
 	int val1;
 	int val2;

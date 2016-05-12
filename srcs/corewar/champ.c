@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   champ.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 17:52:24 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 14:31:27 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/12 19:15:27 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,11 @@ static char		*my_strsub(char const *s, unsigned int start, size_t len)
 
 static char		*get_champ_file(char *file, int width)
 {
-	int fd;
-	char buf[COMMENT_NAME_MAGIC + width];
-	int i;
-	int ret;
-	char *s;
-
+	int		fd;
+	char	buf[COMMENT_NAME_MAGIC + width];
+	int		i;
+	int		ret;
+	char	*s;
 
 	i = -1;
 	if ((fd = open(file, O_RDONLY)) == -1)
@@ -53,8 +52,8 @@ static char		*get_champ_file(char *file, int width)
 
 static int		check_find(t_env *e, int val)
 {
-	t_champ *champ;
-	int i2;
+	t_champ	*champ;
+	int		i2;
 
 	i2 = 0;
 	champ = e->champ_start;
@@ -72,7 +71,7 @@ static void		check_nbchamp(t_env *env, t_champ *champ)
 	if (env->player == NULL)
 	{
 		champ->nb_champ = -1;
-		if(env->nb_champ == 1)
+		if (env->nb_champ == 1)
 			return ;
 		while (check_find(env, champ->nb_champ) != 0)
 			champ->nb_champ -= 1;
@@ -88,8 +87,9 @@ static void		check_nbchamp(t_env *env, t_champ *champ)
 
 void			add_to_champ_lst(t_env *env, int nb, int width, char *file)
 {
-	t_champ *champ;
-	char *s;
+	t_champ	*champ;
+	char	*s;
+
 	if (!(champ = (t_champ*)malloc(sizeof(t_champ))))
 		ft_errors("ERROR : Error malloc", 1, 0);
 	if (env->champ_start == NULL)

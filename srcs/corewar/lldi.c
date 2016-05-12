@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   lldi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 13:10:17 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/11 09:26:12 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 17:57:14 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
 
-int lldi(t_env *e, t_proc *proc)
+int		lldi(t_env *e, t_proc *proc)
 {
 	int val1;
 	int val2;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+         #
+#    By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 08:59:28 by tglaudel          #+#    #+#              #
-#    Updated: 2016/05/12 13:37:57 by tglaudel         ###   ########.fr        #
+#    Updated: 2016/05/12 19:32:40 by ale-naou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRC_NAME_ASM = main.c \
 SRC_NAME_COR = main.c \
 			   op.c \
 			   get_opt.c \
+			   get_opt_dv.c \
 			   print_help.c \
 			   is_something.c \
 			   champ.c \
@@ -66,6 +67,7 @@ SRC_NAME_COR = main.c \
 			   aff.c \
 			   check_champ_cycle.c \
 			   free_all.c \
+			   test_opt.c \
 
 OBJ_NAME_ASM = $(SRC_NAME_ASM:.c=.o)
 OBJ_NAME_COR = $(SRC_NAME_COR:.c=.o)

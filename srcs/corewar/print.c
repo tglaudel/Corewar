@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/29 18:00:08 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 11:13:13 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 17:13:06 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
 
-void print_processus_debug(t_proc *start, int nb_cycle)
+void		print_processus_debug(t_proc *start, int nb_cycle)
 {
 	t_proc *proc;
 
@@ -28,13 +28,25 @@ void print_processus_debug(t_proc *start, int nb_cycle)
 	ft_putchar('\n');
 }
 
-void print_in_memory(t_env *e, int val, int pos, t_proc *proc)
+static void	ncurses_moves(t_proc *proc, int pos, int i, char *mem_hexa)
 {
-	int i;
-	int j;
-	unsigned char u;
-	char mem_hexa[2];
-	int color;
+	mvaddch((pos + i) % MEM_SIZE / 64, ((pos + i) % MEM_SIZE % 64) *\
+	3, mem_hexa[1]);
+	mvaddch((pos + i) % MEM_SIZE / 64, ((pos + i) % MEM_SIZE % 64) *\
+	3 + 1, mem_hexa[0]);
+	mvaddch((pos + i) % MEM_SIZE / 64, ((pos + i) % MEM_SIZE % 64) *\
+	3 + 2, ' ');
+	mvchgat((pos + i) % MEM_SIZE / 64, ((pos + i) % MEM_SIZE % 64) *\
+	3, 2, A_NORMAL, proc->champ_color, NULL);
+}
+
+void		print_in_memory(t_env *e, int val, int pos, t_proc *proc)
+{
+	int				i;
+	int				j;
+	unsigned char	u;
+	char			mem_hexa[2];
+	int				color;
 
 	i = -1;
 	color = 0;
@@ -51,19 +63,12 @@ void print_in_memory(t_env *e, int val, int pos, t_proc *proc)
 				mem_hexa[j] = BASE_HEXA[u % 16];
 				u /= 16;
 			}
-			mvaddch((pos + i) % MEM_SIZE / 64, ((pos + i) % MEM_SIZE % 64) *\
-			3, mem_hexa[1]);
-			mvaddch((pos + i) % MEM_SIZE / 64, ((pos + i) % MEM_SIZE % 64) *\
-			3 + 1, mem_hexa[0]);
-			mvaddch((pos + i) % MEM_SIZE / 64, ((pos + i) % MEM_SIZE % 64) *\
-			3 + 2, ' ');
-			mvchgat((pos + i) % MEM_SIZE / 64, ((pos + i) % MEM_SIZE % 64) *\
-			3, 2, A_NORMAL, proc->champ_color, NULL);
+			ncurses_moves(proc, pos, i, mem_hexa);
 		}
 	}
 }
 
-void print_instruction(t_proc * proc, int nb_arg, char *inst, int store)
+void		print_instruction(t_proc *proc, int nb_arg, char *inst, int store)
 {
 	int i;
 
@@ -85,7 +90,7 @@ void print_instruction(t_proc * proc, int nb_arg, char *inst, int store)
 		ft_putendl("store");
 }
 
-void print_adv(t_proc * proc, t_env *e, int bloque)
+void		print_adv(t_proc *proc, t_env *e, int bloque)
 {
 	int i;
 

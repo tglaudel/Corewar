@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   sub.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 14:24:16 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/11 09:26:56 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 16:32:30 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cor.h"
 
-int sub(t_env *e, t_proc *proc)
+int		sub(t_env *e, t_proc *proc)
 {
-	int i;
-	unsigned int d;
+	int				i;
+	unsigned int	d;
 
 	(void)e;
 	i = -1;
