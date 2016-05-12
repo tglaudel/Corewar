@@ -156,3 +156,5 @@ live %0
 st r10, 511
 st r11, 510
 zjmp %501
+ERROR : invalide line in .s
+ERROR : invalidERROR : invalide line in .s

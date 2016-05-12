@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 15:37:02 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/28 17:21:53 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 16:19:59 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ static int	check_args(int fd, t_env *env)
 		is_good_format(line, &env->cor, env) != 1)
 		{
 			ft_putendl(line);
-			ft_strdel(&line);
+			free(line);
+			line = NULL;
 			ft_errors("ERROR : invalide line in .s", 1, 0);
 		}
-		ft_strdel(&line);
+		free(line);
+		line = NULL;
 	}
-	ft_strdel(&line);
 	return (1);
 }
 

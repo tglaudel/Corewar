@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 15:04:20 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/28 16:46:21 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 17:08:07 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,23 +110,23 @@ int				is_cmd(char *s, t_env *e)
 	int n;
 	int j;
 
-	n = 0;
+	n = -1;
 	i = 0;
 	j = 0;
 	while (s[i] == '\t' || s[i] == ' ')
 		i++;
 	while (s[i + j] != '\t' && s[i + j] != ' ')
 		j++;
-	while (g_op_tab[n].name != 0)
-	{
+	while (g_op_tab[++n].name != 0)
 		if (ft_strncmp(&s[i], g_op_tab[n].name, j) == 0)
+		{
 			if (check_cmd(&s[i + ft_strlen(g_op_tab[n].name)], \
 			g_op_tab[n].nb_arg, n) == 1)
 			{
 				add_cmd(e, &s[i], g_op_tab[n].op_code);
 				return (1);
 			}
-		n++;
-	}
+			return (0);
+		}
 	return (0);
 }

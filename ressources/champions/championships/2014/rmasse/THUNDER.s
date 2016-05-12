@@ -136,3 +136,4 @@ front:
 	st		r2, 501
 	st		r2, 510
 	zjmp		%:front
+ERROR : invalide line in .s

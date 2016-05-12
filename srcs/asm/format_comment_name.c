@@ -6,11 +6,20 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 10:42:59 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/04/26 13:56:23 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/12 19:21:52 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+static int	name_ok(header_t *cor)
+{
+	if (cor->prog_name[0] != '\0')
+		return (1);
+	else
+		ft_errors("ERROR : name vide", 1, 0);
+	return (0);
+}
 
 static int	format_name(char *s, int n, header_t *cor)
 {
@@ -52,19 +61,19 @@ int			is_comment(char *s, header_t *cor)
 		return (1);
 	if (ft_strncmp(s, NAME_CMD_STRING, NAME_CMD_STRING_LENGTH) == 0)
 	{
-		if (format_name(&s[NAME_CMD_STRING_LENGTH], 1, cor) == 1)
-			return (1);
+		if (cor->prog_name[0] == '\0' && format_name(&s[NAME_CMD_STRING_LENGTH]\
+			, 1, cor) == 1)
+			return (name_ok(cor));
 		else
-			ft_errors("ERROR : is_comment(char *s, header_t *cor),\
-			format_name not good", 1, 0);
+			ft_errors("ERROR : NAME", 1, 0);
 	}
 	else if (ft_strncmp(s, COMMENT_CMD_STRING, COMMENT_CMD_LENGTH) == 0)
 	{
-		if (format_name(&s[COMMENT_CMD_LENGTH], 2, cor) == 1)
+		if (cor->comment[0] == '\0' && format_name(&s[COMMENT_CMD_LENGTH], 2,\
+			cor) == 1)
 			return (1);
 		else
-			ft_errors("ERROR : is_comment(char *s, header_t *cor),\
-			format_comment not good", 1, 0);
+			ft_errors("ERROR : COMMENT", 1, 0);
 	}
 	return (0);
 }
