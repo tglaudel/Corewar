@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/13 12:27:47 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/13 16:14:27 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,10 +162,18 @@ void				last_check(t_env *e);
 ** Ncurses :
 */
 
-void				init_ncurses(t_env *e);
-void				init_ncurses2(void);
+void				init_ncurses(void);
 void				ncurses_loop(t_env *e);
 void				ncurses_winner(t_env *e);
+void				print_champ(t_env *e);
+void				print_info(t_env *e);
+void				print_processus(t_proc *start, t_env *e);
+void				wait_cycle(t_env *e);
+char				get_move(void);
+void				change_speed(t_env *e, int n);
+void				init_color_pair(void);
+void				print_boarder_second(void);
+void				print_boarder_principal(void);
 
 /*
 ** Champ :
@@ -247,7 +255,6 @@ int					print_help(void);
 void				print_board(t_env *env);
 void				print_processus_debug(t_proc *start, int nb_cycle);
 void				print_in_memory(t_env *e, int val, int pos, t_proc *proc);
-void				print_processus(t_proc *start, t_env *e);
 void				print_instruction(t_proc *proc, int nb_arg, char *inst,\
 					int store);
 void				print_adv(t_proc *proc, t_env *e, int bloque);

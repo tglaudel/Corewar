@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/13 10:37:27 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/13 15:46:24 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void				game_loop(t_env *e)
 
 	before_check_die = 0;
 	print_board(e);
+	refresh();
 	while (e->nb_proc_in_life > 0 && e->nb_cycle < e->nb_cycle_max)
 	{
 		++e->nb_cycle;

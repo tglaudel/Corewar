@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+         #
+#    By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 08:59:28 by tglaudel          #+#    #+#              #
-#    Updated: 2016/05/12 19:32:40 by ale-naou         ###   ########.fr        #
+#    Updated: 2016/05/13 16:08:02 by tglaudel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,8 @@ SRC_NAME_COR = main.c \
 			   memory.c \
 			   init.c \
 			   ncurses.c \
+			   ncurses_print.c \
+			   ncurses_utils.c \
 			   processus.c \
 			   game_loop.c \
 			   print.c \
