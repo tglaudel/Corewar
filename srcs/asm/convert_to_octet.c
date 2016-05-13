@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 13:35:07 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/29 12:00:54 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/13 17:41:19 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,9 @@ static int				int_to_dir(unsigned char *octet, char *s, int pos,\
 
 	n = 0;
 	i = 0;
-	if (s[0] == '%')
-		n++;
-	if (s[1] == ':')
-		i = search_label(lab, &s[2], pos);
-	else if (is_all_num(&s[0 + n]))
+	if (s[0] == ':')
+		i = search_label(lab, &s[1], pos);
+	else if (is_all_num(&s[n]))
 		i = ft_atoi(&s[0 + n]);
 	octet[0] = i >> 8;
 	octet[1] = i;
@@ -56,9 +54,9 @@ static int				int_to_ind(unsigned char *octet, char *s, int pos,\
 	i = 0;
 	if (s[0] == '%')
 		n++;
-	if (s[1] == ':')
-		i = search_label(lab, &s[2], pos);
-	else if (is_all_num(&s[0 + n]))
+	if (s[0] == ':' || s[1] == ':')
+		i = search_label(lab, &s[n + 1], pos);
+	else if (is_all_num(&s[n]))
 		i = ft_atoi(&s[0 + n]);
 	octet[0] = i >> 24;
 	octet[1] = i >> 16;

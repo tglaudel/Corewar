@@ -3,10 +3,9 @@
 
 live:
 	live %1
-
 ld:
-	ld %1, r1
-	ld 42, r1
+	ld %6, r1 ; commentaire
+	ld 42, r1 # commentaire 
 	ld %:ld, r1
 
 st:

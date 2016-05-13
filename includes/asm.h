@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:25:26 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 21:07:33 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/13 21:18:02 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int					have_opt(char o, int opt);
 int					get_args(char *av, t_env *e);
 char				create_odc(int opc, t_arg **tab);
 int					get_size(t_arg **tab, int odc);
-t_arg				**get_cmd_arg(char *s, int opc);
+t_arg				**get_cmd_arg(char *s, int opc, int i);
 int					format_cmd_size(char type, char *s, int n, int opc);
 int					format_cmd_arg(char *s);
 t_cmd				*new_cmd(void);

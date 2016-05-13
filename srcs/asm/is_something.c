@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 19:24:42 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/28 15:09:40 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/13 17:30:04 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,27 @@
 
 int		is_ind(char *s)
 {
+	int i;
+
+	i = 0;
 	if (is_all_num(&s[0]) == 1)
 		return (1);
+	if (s[i] == ':')
+	{
+		while (s[++i] != '\0')
+		{
+			if (in_str(s[i], LABEL_CHARS) != 1)
+			{
+				while (s[i] == ' ' || s[i] == '\t')
+					i++;
+				if (s[i] == '\0' || in_str(s[i], COMMENT_CHAR))
+					return (1);
+				return (0);
+			}
+			if (s[i + 1] == '\0')
+				return (1);
+		}
+	}
 	return (0);
 }
 

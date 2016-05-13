@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 15:37:02 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 16:19:59 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/13 19:30:06 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,9 @@ int			get_args(char *av, t_env *e)
 	if (av && av[0] == '-')
 		return (1);
 	if (av == NULL || check_asm(av) != 1 || (fd = open(av, O_RDWR)) == -1)
-	{
-		ft_errors("ERROR : No args/file or bad format file.", 0, 0);
-		return (-1);
-	}
+		ft_errors("ERROR : No args/file or bad format file.", 1, 0);
 	else if (check_args(fd, e) != 1)
-	{
-		ft_errors("ERROR : bad format cmd.", 0, 0);
-		return (-1);
-	}
+		ft_errors("ERROR : bad format cmd.", 1, 0);
 	av[j] == '.' ? j++ : 0;
 	while (av[j] != '.')
 		j++;

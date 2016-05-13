@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 16:56:36 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/29 12:01:27 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/13 21:18:23 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int				format_cmd_size(char type, char *s, int n, int opc)
 	if (type == T_DIR && (opc == 9 || opc == 14 || opc == 12 || opc == 15))
 		return (T_DIR);
 	if (type == T_DIR && (opc == 2 || opc == 7 || opc == 8 || opc == 6 ||\
-		opc == 13))
+		opc == 13 || opc == 1))
 		return (T_IND);
 	if (type == T_IND && (opc == 10 || opc == 14 || opc == 13))
 		return (T_DIR);
@@ -74,7 +74,7 @@ void			add_cmd(t_env *e, char *s, int n)
 	if (e->cmd_s == NULL)
 		e->cmd_s = new;
 	new->opc = n;
-	new->tab = get_cmd_arg(s, n);
+	new->tab = get_cmd_arg(s, n, 0);
 	new->odc = create_odc(n, new->tab);
 	new->size = get_size(new->tab, new->odc);
 	new->pos_oct = e->pos_rel;

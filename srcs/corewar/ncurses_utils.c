@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/13 15:53:08 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/13 16:17:01 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/13 16:59:55 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void		init_color_pair(void)
 	init_pair(8, COLOR_BLACK, 4);
 	init_pair(9, COLOR_BLACK, COLOR_BLACK);
 	init_pair(10, COLOR_BLACK, COLOR_WHITE);
-	init_pair(11, COLOR_BLACK, 8);
+	init_pair(11, COLOR_BLACK, 10);
 	init_pair(12, COLOR_BLACK, 6);
 }
 

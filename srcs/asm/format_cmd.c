@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 15:04:20 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 17:08:07 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/13 21:17:22 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,8 @@ int				format_cmd_arg(char *s)
 	return (0);
 }
 
-t_arg			**get_cmd_arg(char *s, int opc)
+t_arg			**get_cmd_arg(char *s, int opc, int i)
 {
-	int		i;
 	t_arg	**tab;
 	char	**arg;
 	int		nb_arg;
@@ -89,17 +88,18 @@ t_arg			**get_cmd_arg(char *s, int opc)
 		i++;
 	arg = ft_strsplit(&s[i], SEPARATOR_CHAR);
 	nb_arg = len_tab(arg);
-	tab = (t_arg**)malloc(sizeof(t_arg*) * nb_arg + 1);
-	i = 0;
+	if (!(tab = (t_arg**)malloc(sizeof(t_arg*) * nb_arg + 1)))
+		ft_errors("ERROR : Malloc arg.", 1, 0);
+	i = -1;
 	while (nb_arg--)
 	{
-		tab[i] = (t_arg*)malloc(sizeof(t_arg));
+		if (!(tab[++i] = (t_arg*)malloc(sizeof(t_arg))))
+			ft_errors("ERROR : Malloc arg.", 1, 0);
 		tab[i]->type = format_cmd_arg(arg[i]);
 		tab[i]->arg = format_str(arg[i]);
 		tab[i]->size = format_cmd_size(tab[i]->type, tab[i]->arg, i, opc);
-		i++;
 	}
-	tab[i] = NULL;
+	tab[i + 1] = NULL;
 	free_tab(arg);
 	return (tab);
 }

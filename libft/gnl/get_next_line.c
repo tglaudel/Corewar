@@ -6,88 +6,55 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/05 12:30:30 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/03/11 11:07:10 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/13 19:41:17 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strnotnull(char *buf, char *str)
+static void	ret_line(char **line, char **tmp, int fd, char *el)
 {
-	char *tmp;
+	char		*del;
 
-	tmp = str;
-	str = ft_strjoin(tmp, buf);
-	free(tmp);
-	return (str);
-}
-
-char	*ft_strnext(char *str, char **line)
-{
-	int		i;
-	char	*tmp;
-
-	i = 0;
-	i = ft_strchr(str, '\n') - str;
-	*line = ft_strsub(str, 0, i);
-	tmp = str;
-	str = ft_strsub(tmp, i + 1, ft_strlen(tmp) - i + 1);
-	free(tmp);
-	return (str);
-}
-
-t_fd	*ft_createstruct(int fd, t_fd *stru)
-{
-	int		i;
-	t_fd	*tmp;
-
-	tmp = stru;
-	i = 0;
-	if (tmp == NULL)
+	if (!el)
 	{
-		tmp = (t_fd*)malloc(sizeof(tmp) * 50);
-		while (i < 50)
-		{
-			tmp[i].fd = -1;
-			i++;
-		}
+		*line = ft_strdup(tmp[fd]);
+		ft_strdel(&tmp[fd]);
 	}
-	i = 0;
-	while (tmp[i].fd != -1)
+	else
 	{
-		if (tmp[i].fd == fd)
-			return (tmp);
-		i++;
+		del = tmp[fd];
+		*line = ft_strsub(tmp[fd], 0, el - tmp[fd]);
+		tmp[fd] = ft_strsub(tmp[fd], el - tmp[fd] + 1,
+				ft_strlen(el));
+		ft_strdel(&del);
 	}
-	tmp[i].fd = fd;
-	return (tmp);
 }
 
-int		get_next_line(int const fd, char **line)
+int			get_next_line(int const fd, char **line)
 {
-	static t_fd	*stru = NULL;
+	static char	*tmp[256];
+	int			ret;
 	char		buf[BUFF_SIZE + 1];
-	int			r[2];
+	char		*del;
+	char		*el;
 
-	r[1] = 0;
-	stru = ft_createstruct(fd, stru);
-	while (stru[r[1]].fd != fd)
-		r[1]++;
-	while (stru[r[1]].str == NULL || ft_strchr(stru[r[1]].str, '\n') == NULL)
+	ret = 0;
+	if (fd < 0 || BUFF_SIZE < 1 || fd > 256 || !line)
+		return (-1);
+	if (!(tmp[fd] = tmp[fd] == NULL ? ft_strnew(1) : tmp[fd]))
+		return (-1);
+	while (!(el = ft_strchr(tmp[fd], '\n')) &&
+			(ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
-		r[0] = read(fd, buf, BUFF_SIZE);
-		buf[r[0]] = '\0';
-		if (r[0] < 0 || line == NULL)
+		del = tmp[fd];
+		buf[ret] = '\0';
+		if (!(tmp[fd] = ft_strjoin(tmp[fd], buf)))
 			return (-1);
-		if (r[0] == 0 && stru[r[1]].str != NULL)
-		{
-			*line = ft_strdup(stru[r[1]].str);
-			ft_strdel(&stru[r[1]].str);
-			return (ft_strcmp(*line, "") != 0);
-		}
-		stru[r[1]].str = (stru[r[1]].str != NULL) ? (ft_strnotnull(buf, \
-					stru[r[1]].str)) : (ft_strdup(buf));
+		ft_strdel(&del);
 	}
-	stru[r[1]].str = ft_strnext(stru[r[1]].str, line);
-	return (1);
+	if (ret == -1)
+		return (-1);
+	ret_line(line, tmp, fd, el);
+	return (!tmp[fd] && ft_strlen(*line) == 0 ? 0 : 1);
 }
