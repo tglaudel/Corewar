@@ -10,7 +10,10 @@ if ($handle = opendir('unit_test/instructions')) {
 					echo "$entry :\n";
     				while (false !== ($entry2 = readdir($handle2))) {
 						if (strcmp($entry2, ".") != 0 && strcmp($entry2, "..") != 0 && !strstr($entry2, ".cor"))
-								exec("./asm unit_test/instructions/".$entry.'/'.$entry2);
+						{
+							echo "test : $entry2\n";
+							exec("./asm unit_test/instructions/".$entry.'/'.$entry2);
+						}
 					}
 				}
     			closedir($handle2);
