@@ -9,6 +9,23 @@
 #                                                        |_|               #
 ############################################################################
 
-ASM USAGE : ./corewar
+VM USAGE : ./corewar
 
-############################################################################
+Usage: ./corewar [-d N -v N -c | -n N <champion1.cor> <...>
+#### TEXT OUTPUT MODE ##########################################################
+    -d N		: Dumps memory after N cycles then exits
+    -v N		: Verbosity levels, can be added together to enable several
+                	- 0 : Show only essentials
+                	- 1 : Show lives
+                	- 2 : Show cycles
+                	- 4 : Show operations (Params are NOT litteral ...)
+                	- 8 : Show deaths
+                	- 16 : Show PC movements (Except for jumps)
+    -n N		: change the name of the champs
+					It might be a number.
+#### NCURSES MODE ##############################################################
+    -c			: ncurses mode
+					- KEY_UP : start / pause
+					- KEY_LEFT : speed--
+					- KEY_RIGHT : speed++
+################################################################################
