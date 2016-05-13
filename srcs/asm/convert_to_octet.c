@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 13:35:07 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/13 17:41:19 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/13 21:30:29 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ static int				char_to_octet(t_cmd *tmp, t_arg *arg, t_label *lab,\
 	if (arg->size == T_REG)
 	{
 		tmp->octet[i] = ft_atoi(&arg->arg[1]);
+		if (tmp->octet[i] <= 0 || tmp->octet[i] > 16)
+			ft_errors("ERROR : 1 <= registre <= 16.", 1, 0);
 		return (1);
 	}
 	if (arg->size == T_DIR)

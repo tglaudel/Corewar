@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 11:24:56 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/13 20:06:49 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/13 21:22:25 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,5 @@ int				main(int ac, char **av)
 		if (av[i][0] != '-')
 			asm_loop(&e, av[i]);
 	}
-	sleep(30);
 	return (0);
 }
