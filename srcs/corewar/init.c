@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 17:59:20 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 19:28:28 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/05/13 10:41:11 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ void			init_proc(t_proc *proc)
 
 static void		init_env2(t_env *e)
 {
+	int i;
+
+	i = -1;
 	e->c = 0;
 	e->n3 = 0;
 	e->d = 0;
@@ -48,6 +51,8 @@ static void		init_env2(t_env *e)
 	e->winner.nb_win = 0;
 	ft_bzero(e->mem, MEM_SIZE + 1);
 	ft_bzero(e->col, MEM_SIZE + 1);
+	while (++i < MEM_SIZE)
+		e->col[i] = 9;
 }
 
 void			init_env(t_env *e)

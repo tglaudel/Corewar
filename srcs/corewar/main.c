@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:46:57 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 17:50:51 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/05/13 11:54:33 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int				main(int ac, char **av)
 	if (have_opt('c', e.opt))
 		init_ncurses2();
 	game_loop(&e);
+	if (have_opt('c', e.opt))
+		ncurses_winner(&e);
 	if (e.winner.winner != NULL)
 		printf("Contestant %d, \"%s\", has won !\n", \
 		-e.winner.nb_win, e.winner.winner);

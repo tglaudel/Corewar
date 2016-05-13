@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/01 14:16:05 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 23:03:17 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/13 12:27:51 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,9 @@ static int		iter_del_proc(t_proc *start, t_env *e)
 			if (e->verbose & VERBOSE_DIE)
 				printf("Process %d hasn't lived for %d cycles (CTD %d)\n",\
 				proc->index, proc->live_exec, e->c_to_die);
-			mvchgat(proc->pos / 64, proc->pos % 64 * 3, 2, A_NORMAL,\
+			mvchgat(proc->pos / 64 + 2, proc->pos % 64 * 3 + 2, 2, A_NORMAL,\
 			proc->champ_color, NULL);
-			free(proc->r);
-			proc->r = NULL;
-			free(proc);
-			proc = NULL;
+			free_processus(proc);
 			i++;
 		}
 		else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cor.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:47:40 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 23:11:39 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/13 12:27:47 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,7 @@ int					have_opt(char o, int opt);
 int					get_verbose(char **av);
 int					get_ncycle(char **av);
 void				free_all(t_env *e);
+void				free_processus(t_proc *proc);
 void				test_option(t_env *e, char *s);
 int					test_param_opt(t_env *e, char *av);
 void				show_start(t_env *e);
@@ -164,6 +165,7 @@ void				last_check(t_env *e);
 void				init_ncurses(t_env *e);
 void				init_ncurses2(void);
 void				ncurses_loop(t_env *e);
+void				ncurses_winner(t_env *e);
 
 /*
 ** Champ :

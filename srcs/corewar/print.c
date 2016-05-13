@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/29 18:00:08 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 17:13:06 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/05/13 10:37:21 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ void		print_processus_debug(t_proc *start, int nb_cycle)
 
 static void	ncurses_moves(t_proc *proc, int pos, int i, char *mem_hexa)
 {
-	mvaddch((pos + i) % MEM_SIZE / 64, ((pos + i) % MEM_SIZE % 64) *\
-	3, mem_hexa[1]);
-	mvaddch((pos + i) % MEM_SIZE / 64, ((pos + i) % MEM_SIZE % 64) *\
-	3 + 1, mem_hexa[0]);
-	mvaddch((pos + i) % MEM_SIZE / 64, ((pos + i) % MEM_SIZE % 64) *\
-	3 + 2, ' ');
-	mvchgat((pos + i) % MEM_SIZE / 64, ((pos + i) % MEM_SIZE % 64) *\
-	3, 2, A_NORMAL, proc->champ_color, NULL);
+	mvaddch(((pos + i) % MEM_SIZE / 64) + 2, ((pos + i) % MEM_SIZE % 64) *\
+	3 + 6, mem_hexa[1]);
+	mvaddch(((pos + i) % MEM_SIZE / 64) + 2, ((pos + i) % MEM_SIZE % 64) *\
+	3 + 1 + 6, mem_hexa[0]);
+	mvaddch(((pos + i) % MEM_SIZE / 64) + 2, ((pos + i) % MEM_SIZE % 64) *\
+	3 + 2 + 6, ' ');
+	mvchgat(((pos + i) % MEM_SIZE / 64) + 2, ((pos + i) % MEM_SIZE % 64) *\
+	3 + 6, 2, A_NORMAL, proc->champ_color, NULL);
 }
 
 void		print_in_memory(t_env *e, int val, int pos, t_proc *proc)
