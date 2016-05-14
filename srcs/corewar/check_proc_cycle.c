@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/01 14:16:05 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/13 12:27:51 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/14 10:49:21 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int		iter_del_proc(t_proc *start, t_env *e)
 		{
 			proc_prev->next = proc->next;
 			if (e->verbose & VERBOSE_DIE)
-				printf("Process %d hasn't lived for %d cycles (CTD %d)\n",\
+				ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",\
 				proc->index, proc->live_exec, e->c_to_die);
 			mvchgat(proc->pos / 64 + 2, proc->pos % 64 * 3 + 2, 2, A_NORMAL,\
 			proc->champ_color, NULL);
@@ -49,7 +49,7 @@ int				del_proc(t_proc *start, t_env *e)
 	while (proc && proc->live_exec >= e->c_to_die)
 	{
 		if (e->verbose & VERBOSE_DIE)
-			printf("Process %d hasn't lived for %d cycles (CTD %d)\n",\
+			ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",\
 			proc->index, proc->live_exec, e->c_to_die);
 		e->proc_start = proc->next;
 		--e->nb_proc_in_life;
@@ -72,7 +72,7 @@ static void		print_ctd(t_env *e)
 {
 	if (!have_opt('c', e->opt) && (e->verbose & VERBOSE_CYCLE) == \
 		VERBOSE_CYCLE)
-		printf("Cycle to die is now %d\n", e->c_to_die);
+		ft_printf("Cycle to die is now %d\n", e->c_to_die);
 }
 
 void			check_proc_cycle(t_env *e)

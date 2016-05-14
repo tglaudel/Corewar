@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lld.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 13:07:16 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/12 17:58:01 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/05/14 10:50:03 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		lld(t_env *e, t_proc *proc)
 		proc->carry = 0;
 	proc->r[proc->inst.arg[1] - 1] = val1;
 	if (e->verbose & VERBOSE_OP)
-		printf("P %4d | %s %d r%d\n", proc->index, "lld",\
+		ft_printf("P %4d | %s %d r%d\n", proc->index, "lld",\
 		val1, proc->inst.arg[1]);
 	return (1);
 }

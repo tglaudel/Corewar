@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:07:29 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/13 15:46:24 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/14 10:49:32 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void				game_loop(t_env *e)
 		}
 		++before_check_die;
 		if (e->verbose & VERBOSE_CYCLE)
-			printf("It is now cycle %d\n", e->nb_cycle);
+			ft_printf("It is now cycle %d\n", e->nb_cycle);
 		proc_loop(e);
 		if (have_opt('c', e->opt))
 			ncurses_loop(e);

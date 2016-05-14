@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/13 15:49:58 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/13 16:19:20 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/14 11:19:43 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,12 @@ void	print_processus(t_proc *start, t_env *e)
 void	print_board(t_env *e)
 {
 	int		pos;
-	char	*mem_hexa;
+	char	mem_hexa[3];
 	int		u;
 	int		i;
 
-	mem_hexa = (char*)malloc(sizeof(char) * 3);
 	pos = -1;
-	mem_hexa[2] = '\0';
+	ft_bzero(mem_hexa, 3);
 	while (++pos < MEM_SIZE)
 	{
 		i = -1;
@@ -56,7 +55,6 @@ void	print_board(t_env *e)
 		COLOR_PAIR(e->col[pos]));
 		mvaddch(pos / 64 + 2, (pos % 64) * 3 + 2 + 6, ' ');
 	}
-	ft_strdel(&mem_hexa);
 	print_processus(e->proc_start, e);
 }
 

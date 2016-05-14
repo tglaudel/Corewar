@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   or.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 14:31:45 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/12 17:41:44 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/05/14 10:50:33 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		or(t_env *e, t_proc *proc)
 	else
 		proc->carry = 0;
 	if (e->verbose & VERBOSE_OP)
-		printf("P %4d | %s %d %d r%d\n", proc->index, "or",\
+		ft_printf("P %4d | %s %d %d r%d\n", proc->index, "or",\
 		val1, val2, proc->inst.arg[2]);
 	return (1);
 }

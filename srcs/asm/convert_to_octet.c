@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 13:35:07 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/14 10:02:14 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/14 11:31:37 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,9 @@ void					convert_to_octet(t_cmd *start, t_label *lab)
 	{
 		n = -1;
 		i = 0;
-		tmp->octet = (unsigned char*)malloc(sizeof(unsigned char) * tmp->size);
+		if (!(tmp->octet = (unsigned char*)malloc(sizeof(unsigned char)\
+		* tmp->size)))
+			ft_errors("ERROR : petit malloc des familles", 1, 0);
 		tmp->octet[i++] = tmp->opc;
 		if (tmp->odc > 0)
 			tmp->octet[i++] = tmp->odc;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sti.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:51:16 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/12 16:39:58 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/05/14 10:51:05 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	verbose_sti(t_proc *proc, int val1, int val2, int pos_in_mem)
 {
-	printf("P %4d | %s r%d %d %d\n", proc->index, "sti",\
+	ft_printf("P %4d | %s r%d %d %d\n", proc->index, "sti",\
 	proc->inst.arg[0], val1, val2);
-	printf("       | -> store to %d + %d = %d (with pc and mod %d)\n",\
+	ft_printf("       | -> store to %d + %d = %d (with pc and mod %d)\n",\
 	val1, val2, val1 + val2, pos_in_mem);
 }
 

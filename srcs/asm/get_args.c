@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 15:37:02 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/14 10:00:31 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/14 11:34:57 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,7 @@ int			get_args(char *av, t_env *e)
 	tmp = ft_strsub(av, 0, j);
 	e->name = ft_strjoin(tmp, ".cor");
 	ft_strdel(&tmp);
+	if (close(fd) == -1)
+		ft_errors("ERROR : Nooooon pas le cloooose.", 1, 0);
 	return (1);
 }

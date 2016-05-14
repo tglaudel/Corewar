@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ldi.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 11:45:02 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/12 18:44:19 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/05/14 10:49:53 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int		ldi(t_env *e, t_proc *proc)
 	proc->r[proc->inst.arg[2] - 1] = ind_to_int(e->mem, pos);
 	if (e->verbose & VERBOSE_OP)
 	{
-		printf("P %4d | %s %d %d r%d\n", proc->index, "ldi",\
+		ft_printf("P %4d | %s %d %d r%d\n", proc->index, "ldi",\
 		val1, val2, proc->inst.arg[2]);
-		printf("       | -> load from %d + %d = %d (with pc and mod %d)\n",\
+		ft_printf("       | -> load from %d + %d = %d (with pc and mod %d)\n",\
 		val1, val2, val1 + val2, pos_in_mem);
 	}
 	return (1);

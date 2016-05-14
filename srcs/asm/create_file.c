@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/26 18:16:36 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 21:07:00 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/14 11:32:25 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ void		create_file(t_header *cor, t_cmd *cmd, t_env *e)
 		tmp = tmp->next;
 	}
 	ft_printf("file : %s  -> done.\n", e->name);
-	close(fd);
+	if (close(fd) == -1)
+		ft_errors("ERROR : close fail. wesh alors ?", 1, 0);
 }

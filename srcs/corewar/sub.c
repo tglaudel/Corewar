@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sub.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 14:24:16 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/12 16:32:30 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/05/14 11:28:51 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int		sub(t_env *e, t_proc *proc)
 	int				i;
 	unsigned int	d;
 
-	(void)e;
 	i = -1;
 	while (++i < 3)
 		if (proc->inst.arg[i] > REG_NUMBER || proc->inst.arg[i] <= 0)
@@ -29,7 +28,7 @@ int		sub(t_env *e, t_proc *proc)
 	else
 		proc->carry = 0;
 	if (e->verbose & VERBOSE_OP)
-		printf("P %4d | %s r%d r%d r%d\n", proc->index, "sub",\
+		ft_printf("P %4d | %s r%d r%d r%d\n", proc->index, "sub",\
 		proc->inst.arg[0], proc->inst.arg[1], proc->inst.arg[2]);
 	return (1);
 }

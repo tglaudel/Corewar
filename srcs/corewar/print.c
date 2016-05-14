@@ -6,7 +6,7 @@
 /*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/29 18:00:08 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/13 10:37:21 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/14 11:26:30 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		print_processus_debug(t_proc *start, int nb_cycle)
 		ft_putchar(' ');
 		proc = proc->next;
 	}
-	printf(" ->cycle : %d", nb_cycle);
+	ft_printf(" ->cycle : %d", nb_cycle);
 	ft_putchar('\n');
 }
 
@@ -73,19 +73,19 @@ void		print_instruction(t_proc *proc, int nb_arg, char *inst, int store)
 	int i;
 
 	i = -1;
-	printf("P %4d | %s", proc->index, inst);
+	ft_printf("P %4d | %s", proc->index, inst);
 	while (++i < nb_arg)
 	{
 		if (((proc->inst.odc >> (6 - i * 2)) & IND_CODE) == IND_CODE)
-			printf(" %d", proc->inst.arg[i]);
+			ft_printf(" %d", proc->inst.arg[i]);
 		else if (((proc->inst.odc >> (6 - i * 2)) & DIR_CODE) == DIR_CODE)
-			printf(" %d", proc->inst.arg[i]);
+			ft_printf(" %d", proc->inst.arg[i]);
 		else if (((proc->inst.odc >> (6 - i * 2)) & REG_CODE) == REG_CODE)
-			printf(" r%d", proc->inst.arg[i]);
+			ft_printf(" r%d", proc->inst.arg[i]);
 		else if (proc->inst.opc == 1)
-			printf(" %d", proc->inst.arg[i]);
+			ft_printf(" %d", proc->inst.arg[i]);
 	}
-	printf("\n");
+	ft_printf("\n");
 	if (store == 1)
 		ft_putendl("store");
 }
@@ -97,9 +97,9 @@ void		print_adv(t_proc *proc, t_env *e, int bloque)
 	i = -1;
 	if (proc->inst.opc == 9 && bloque)
 		return ;
-	printf("ADV %d (0x%.4x -> 0x%.4x) ", proc->inst.size, proc->pos,\
+	ft_printf("ADV %d (0x%.4x -> 0x%.4x) ", proc->inst.size, proc->pos,\
 	(proc->pos + proc->inst.size));
 	while (++i < proc->inst.size)
-		printf("%.2x ", e->mem[(proc->pos + i) % MEM_SIZE]);
-	printf("\n");
+		ft_printf("%.2x ", e->mem[(proc->pos + i) % MEM_SIZE]);
+	ft_printf("\n");
 }

@@ -136,12 +136,12 @@ Une instruction est decompose de cette facon :
 	b) octet de codage
 
 		il va permettre de savoir ce que l'instruction attend comme parametres.
-		//A completer
+		/* <- ceci est une petite etoile lol/
 
 	c) parametres de l'insctruction
 
 		ils seront de type DIR, INDIR ou REG
-		//A completer
+		/*/
 
 	pour ce projet corewar sont :
 

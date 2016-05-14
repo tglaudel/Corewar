@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   live.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 13:41:53 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/12 18:02:02 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/05/14 10:49:59 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int				live(t_env *e, t_proc *proc)
 			if (champ->is_alive)
 				last_live(e, champ);
 			if (e->verbose & VERBOSE_LIVE)
-				printf("Player %d (%s) is said to be alive\n", \
+				ft_printf("Player %d (%s) is said to be alive\n", \
 				-champ->nb_champ, champ->name);
 			return (1);
 		}

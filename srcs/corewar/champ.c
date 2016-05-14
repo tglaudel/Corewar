@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   champ.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 17:52:24 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 19:15:27 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/05/14 11:43:16 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void			add_to_champ_lst(t_env *env, int nb, int width, char *file)
 	champ->nb_live = 0;
 	champ->is_alive = 1;
 	champ->pos = 0;
+	champ->last_cycle_live = 0;
 	if (env->champ_end != NULL)
 		env->champ_end->next = champ;
 	env->champ_end = champ;

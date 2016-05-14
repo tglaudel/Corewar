@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 16:31:37 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 17:40:28 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/05/14 10:50:18 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void				print_memory(unsigned char *s)
 	i = 0;
 	while (++x < 64)
 	{
-		printf("0x%.4x : ", i);
+		ft_printf("0x%.4x : ", i);
 		y = -1;
 		while (++y < 64)
-			printf("%2.2x ", (unsigned char)s[i++]);
-		printf("\n");
+			ft_printf("%2.2x ", (unsigned char)s[i++]);
+		ft_printf("\n");
 	}
 }
 

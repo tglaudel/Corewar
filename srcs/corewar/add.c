@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/27 14:20:43 by fgiraud           #+#    #+#             */
-/*   Updated: 2016/05/12 18:55:52 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/05/14 11:13:56 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int		add(t_env *e, t_proc *proc)
 	unsigned int	d;
 
 	d = 0;
-	(void)e;
 	i = -1;
 	while (++i < 3)
 		if (proc->inst.arg[i] > REG_NUMBER || proc->inst.arg[i] <= 0)

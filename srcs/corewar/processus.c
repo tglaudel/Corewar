@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   processus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 10:01:32 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/12 17:10:30 by ale-naou         ###   ########.fr       */
+/*   Updated: 2016/05/14 11:27:54 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ static int	*init_registre(void)
 	int i;
 
 	i = -1;
-	r = (int*)malloc(sizeof(int) * REG_NUMBER);
+	if (!(r = (int*)malloc(sizeof(int) * REG_NUMBER)))
+		ft_errors("ERROR : malloc.", 1, 0);
 	while (++i < REG_NUMBER)
 		r[i] = 0;
 	return (r);
@@ -71,7 +72,7 @@ void		new_processus(t_env *e, t_champ *champ, int pos, t_proc *papa)
 		proc->next = e->proc_start;
 	e->proc_start = proc;
 	if (e->verbose & VERBOSE_DEBUG)
-		printf("creation proc : %d -> cycle %d\n", e->nb_proc, e->nb_cycle);
+		ft_printf("creation proc : %d -> cycle %d\n", e->nb_proc, e->nb_cycle);
 	if (papa)
 		copie_proc(proc, papa, pos, e);
 	else
