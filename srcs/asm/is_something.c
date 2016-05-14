@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_something.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 19:24:42 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/13 17:30:04 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/14 05:10:59 by fgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		is_ind(char *s)
 					return (1);
 				return (0);
 			}
-			if (s[i + 1] == '\0')
+			if (s[i + 1] == '\0') // ?
 				return (1);
 		}
 	}
@@ -40,7 +40,7 @@ int		is_ind(char *s)
 
 int		is_reg(char *s)
 {
-	if (s[0] == 'r' && is_all_num(&s[1]) && ft_atoi(&s[1]) <= REG_NUMBER)
+	if (s[0] == 'r' && is_all_num(&s[1]) && ft_atoi(&s[1]) <= REG_NUMBER) // si < 1 ?
 		return (1);
 	return (0);
 }
