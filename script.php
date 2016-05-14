@@ -153,6 +153,5 @@ exec("./corewar ressources/champions/examples/zork.cor -v 31 > test1");
 exec("./ressources/corewar ressources/champions/examples/zork.cor -v 31 > test2");
 exec("diff test1 test2");
 echo "-------- if nothin here diff OK --------\n";
-exec("rm test1");
-exec("rm test2");
+exec("rm test1 test2 t1 t2 t3");
 ?>
