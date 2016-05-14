@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ale-naou <ale-naou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 14:46:57 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/13 16:10:28 by tglaudel         ###   ########.fr       */
+/*   Updated: 2016/05/14 11:03:59 by ale-naou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ int				main(int ac, char **av)
 	if (e.winner.winner != NULL)
 		printf("Contestant %d, \"%s\", has won !\n", \
 		-e.winner.nb_win, e.winner.winner);
+	else
+		printf("Contestant %d, \"%s\", has won !\n", \
+		-e.champ_start->nb_champ, e.champ_start->name);
 	print_board(&e);
 	free_all(&e);
 	endwin();
