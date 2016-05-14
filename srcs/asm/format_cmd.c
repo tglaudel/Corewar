@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   format_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 15:04:20 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/14 05:15:08 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/14 09:51:59 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ t_arg			**get_cmd_arg(char *s, int opc, int i)
 	char	**arg;
 	int		nb_arg;
 
-	i = 0; // ? pourquoi init ici alors que tu l'init avant dans add cmd valgrind ?
 	while (s[i] != ' ' && s[i] != '\t')
 		i++;
 	while (s[i] == ' ' || s[i] == '\t')

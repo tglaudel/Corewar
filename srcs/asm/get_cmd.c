@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 16:56:36 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/14 06:23:46 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/14 10:00:08 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int				format_cmd_size(char type, char *s, int n, int opc)
 		return (T_DIR);
 	if (type == T_REG || type == T_IND)
 		return (type);
-	if (s[1] == ':') // probleme de taille si label est indirect ?
+	if (s[1] == ':')
 		return (type);
 	if (n == 2)
 		return (type);
@@ -63,7 +63,7 @@ t_cmd			*new_cmd(void)
 	new->size = 0;
 	new->tab = NULL;
 	new->opc = 0;
-	new->octet = NULL; //octet pas init ? 
+	new->octet = NULL;
 	return (new);
 }
 

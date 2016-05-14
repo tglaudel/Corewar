@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_odc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/25 11:03:33 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/14 07:59:35 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/14 10:02:32 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ char	create_odc(int opc, t_arg **tab)
 	res = 0;
 	while (tab[++i])
 	{
-		ft_printf("%s\n", tab[i]->arg); //
-		ft_printf("%d\n", (unsigned char)tab[i]->type); //
-		ft_printf("%d\n", (unsigned char)tab[i]->size); //
 		if (tab[i]->type == T_REG)
 			tmp = REG_CODE;
 		else if (tab[i]->type == T_DIR)

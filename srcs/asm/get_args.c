@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_args.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgiraud <fgiraud@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tglaudel <tglaudel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 15:37:02 by tglaudel          #+#    #+#             */
-/*   Updated: 2016/05/14 04:07:49 by fgiraud          ###   ########.fr       */
+/*   Updated: 2016/05/14 10:00:31 by tglaudel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int			get_args(char *av, t_env *e)
 	char	*tmp;
 
 	j = 0;
-	if (av && av[0] == '-') //utile ? le test sur le - est deja fait dans le main
+	if (av && av[0] == '-')
 		return (1);
 	if (av == NULL || check_asm(av) != 1 || (fd = open(av, O_RDWR)) == -1)
 		ft_errors("ERROR : No args/file or bad format file.", 1, 0);
