@@ -1,4 +1,10 @@
 <?php
+
+
+echo "\n----------------------------------------------------------------------------------------------\n\n\n";
+echo "test hexdump \n\n\n";
+echo "\n----------------------------------------------------------------------------------------------\n\n\n";
+
 // test compil
 if ($handle = opendir('unit_test/instructions')) {
     while (false !== ($entry = readdir($handle))) {
@@ -7,7 +13,52 @@ if ($handle = opendir('unit_test/instructions')) {
 			{
 				if (($handle2 = opendir('unit_test/instructions/'.$entry)) != NULL)
 				{
-					echo "$entry :\n";
+					echo "\n--------------------------------------------------------------\n";
+					echo "\n$entry :\n";
+					echo "\n--------------------------------------------------------------\n";
+    				while (false !== ($entry2 = readdir($handle2))) {
+						if (strcmp($entry2, ".") != 0 && strcmp($entry2, "..") != 0 && !strstr("$entry2", "test_err"))
+						{
+							echo "\n--------------------------------------------------------------\n";
+							echo "test HEXDUMP : $entry2";
+							echo "\n--------------------------------------------------------------\n";
+							$search  = array('.s');
+							$replace = array('.cor');
+							$entry3 = str_replace($search, $replace, $entry2);
+							exec("./ressources/asm unit_test/instructions/".$entry."/".$entry2);
+							exec("hexdump unit_test/instructions/".$entry."/".$entry3." > t1");
+							exec("./asm unit_test/instructions/".$entry."/".$entry2);
+							exec("hexdump unit_test/instructions/".$entry."/".$entry3." > t2");
+							exec('diff t1 t2 > t3');
+							$contenuFichier=readfile("t3");
+							echo "\n--------------------------------------------------------------\n";
+							echo $contenuFichier;
+							echo "\n--------------------------------------------------------------\n";
+							echo "if nothing write before hexdump ok\n";
+							echo "\n--------------------------------------------------------------\n";
+						}
+					}
+				}
+    			closedir($handle2);
+			}
+		}
+    }
+    closedir($handle);
+}
+
+echo "\n----------------------------------------------------------------------------------------------\n\n\n";
+echo "test error \n\n\n";
+echo "\n----------------------------------------------------------------------------------------------\n\n\n";
+
+// test compil
+if ($handle = opendir('unit_test/instructions')) {
+    while (false !== ($entry = readdir($handle))) {
+		{
+			if (strcmp($entry, ".") != 0 && strcmp($entry, "..") != 0)
+			{
+				if (($handle2 = opendir('unit_test/instructions/'.$entry)) != NULL)
+				{
+					echo "$entry :\n\n\n";
     				while (false !== ($entry2 = readdir($handle2))) {
 						if (strcmp($entry2, ".") != 0 && strcmp($entry2, "..") != 0 && !strstr($entry2, ".cor"))
 						{
@@ -54,6 +105,7 @@ if ($handle = opendir('unit_test/instructions')) {
     }
     closedir($handle);
 }
+
 
 echo "\n----------------------------------------------------------------------------------------------\n\n\n";
 echo "RM .cor \n\n\n";
