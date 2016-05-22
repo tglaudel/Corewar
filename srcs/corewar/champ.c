@@ -36,15 +36,16 @@ static char		*get_champ_file(char *file, int width)
 	int		fd;
 	char	buf[COMMENT_NAME_MAGIC + width];
 	int		i;
-	int		ret;
 	char	*s;
-
+	int ret;
+	
 	i = -1;
 	if ((fd = open(file, O_RDONLY)) == -1)
 		ft_errors("ERROR : Fail open.", 1, 0);
 	ret = read(fd, buf, COMMENT_NAME_MAGIC + width);
-	if (!(s = (char*)malloc(sizeof(char) * COMMENT_NAME_MAGIC + width + 1)))
-		ft_errors("ERROR : malloc.", 1, 0);
+	if (ret > 0)
+		if (!(s = (char*)malloc(sizeof(char) * COMMENT_NAME_MAGIC + width + 1)))
+			ft_errors("ERROR : malloc.", 1, 0);
 	while (++i <= COMMENT_NAME_MAGIC + width)
 		s[i] = buf[i];
 	return (s);
@@ -53,9 +54,7 @@ static char		*get_champ_file(char *file, int width)
 static int		check_find(t_env *e, int val)
 {
 	t_champ	*champ;
-	int		i2;
 
-	i2 = 0;
 	champ = e->champ_start;
 	while (champ != NULL)
 	{

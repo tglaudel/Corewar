@@ -39,13 +39,11 @@ static int		aff_string(const char *s, t_def *def, int i)
 
 int				print_string(va_list lst, t_def *def, int n)
 {
-	int			i;
 	const char	*s;
 	int			nprint;
 
 	s = NULL;
 	nprint = 0;
-	i = 0;
 	if (def->prec <= -1)
 		def->prec = 0x7fffffff;
 	if (!n)

@@ -43,12 +43,10 @@ void		test_option(t_env *e, char *s)
 int			test_param_opt(t_env *e, char *av)
 {
 	int i;
-	int i2;
 
 	i = 0;
 	if (av == NULL)
 		ft_errors("ERROR : option ./corewar -h for help", 1, 0);
-	i2 = ft_strlen(av);
 	av[0] == '-' ? i++ : 0;
 	while (av[i] != '\0')
 	{

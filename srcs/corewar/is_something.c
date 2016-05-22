@@ -29,13 +29,11 @@ static int			check_octet(char *s)
 
 static int			is_len_champ(t_env *e, int width)
 {
-	int		i;
 	int		n;
 	char	buf;
 	int		ret;
 
 	n = 0;
-	i = 0;
 	while ((ret = read(e->fd, &buf, 1)) == 1)
 		n++;
 	if (width != n || n > CHAMP_MAX_SIZE)

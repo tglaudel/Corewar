@@ -15,10 +15,8 @@
 int		ft_sqrtlow(int nb)
 {
 	int i;
-	int sq;
 
 	i = 1;
-	sq = 1;
 	if (nb == 0)
 		return (0);
 	if (nb == 2)

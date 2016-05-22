@@ -93,10 +93,10 @@ co: $(NAME_COR)
 as: $(NAME_ASM)
 
 $(NAME_ASM): $(LIBFT) $(OBJ_ASM)
-	$(CC) $(CFLAGS) $(LIBFT) $(SRC_ASM) -Iincludes -o $(NAME_ASM)
+	$(CC) $(CFLAGS) $(LIBFT) $(SRC_ASM) -Iincludes -o $(NAME_ASM) libft/libft.a
 
 $(NAME_COR): $(LIBFT) $(OBJ_COR)
-	$(CC) $(CFLAGS) $(LIBFT) $(SRC_COR) -Iincludes -lncurses -o $(NAME_COR)
+	$(CC) $(CFLAGS) $(LIBFT) $(SRC_COR) -Iincludes -lncurses -o $(NAME_COR) libft/libft.a
 
 $(OBJ_PATH_ASM)%.o: $(SRC_PATH_ASM)%.c
 	@mkdir $(OBJ_PATH_ASM) 2> /dev/null || true

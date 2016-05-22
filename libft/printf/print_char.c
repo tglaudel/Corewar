@@ -36,12 +36,10 @@ static int		aff_char(unsigned int c, t_def *def, int n)
 
 int				print_char(va_list lst, t_def *def, int n, char o)
 {
-	int				i;
 	unsigned int	c;
 	int				nprint;
 
 	nprint = 0;
-	i = 0;
 	if (def->prec == -1)
 		def->prec = 0x7fffffff;
 	if (def->modif == 2 || def->modif == 1)

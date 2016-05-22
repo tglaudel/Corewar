@@ -15,10 +15,8 @@
 double	ft_atod(const char *str)
 {
 	int		sign;
-	double	i;
 	double	value;
 
-	i = 1;
 	sign = 0;
 	value = 0;
 	while (*str == '\n' || *str == '\v' || *str == '\t' || *str == '\f' || \

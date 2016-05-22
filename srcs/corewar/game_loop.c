@@ -87,7 +87,7 @@ static void			proc_loop(t_env *e)
 		if (proc->inst.opc != 0 && proc->wait_cycle == 0)
 			pre_exec(e, proc);
 		else if (proc->wait_cycle == 0)
-			proc->pos = ++proc->pos % MEM_SIZE;
+			proc->pos = (proc->pos + 1) % MEM_SIZE;
 		proc = proc->next;
 	}
 }

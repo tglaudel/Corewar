@@ -46,10 +46,8 @@ void		print_in_memory(t_env *e, int val, int pos, t_proc *proc)
 	int				j;
 	unsigned char	u;
 	char			mem_hexa[2];
-	int				color;
 
 	i = -1;
-	color = 0;
 	while (++i < 4)
 	{
 		u = val >> (24 - (8 * i));
